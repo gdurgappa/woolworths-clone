@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import Home from "../../components/Home";
 import { Switch } from "react-router-dom";
 import ProductList from "../Products/ProductList";
+import ProductDetails from "../Products/ProductDetails";
 
 const Routes = (props: {}) => {
   return (
@@ -11,6 +12,10 @@ const Routes = (props: {}) => {
       <Route
         path="/shop/browse/:category/:subCategory/:subCategorySelected"
         component={ProductList}
+      />
+      <Route
+        path="/shop/productdetails/:Stockcode/:product"
+        component={ProductDetails}
       />
     </Switch>
   );

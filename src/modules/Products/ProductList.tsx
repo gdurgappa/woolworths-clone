@@ -34,7 +34,8 @@ function ProductList() {
         console.log("res", res.Bundles);
         setProductsList(res.Bundles);
       });
-  });
+  }, []);
+
   console.log("params", params);
   return (
     <>

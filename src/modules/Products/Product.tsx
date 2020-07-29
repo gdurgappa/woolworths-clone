@@ -7,6 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -22,6 +23,7 @@ const Product = (props: any) => {
     InstorePrice,
     MediumImageFile,
     UrlFriendlyName,
+    Stockcode,
   } = props.Products[0];
   return (
     <Card className={classes.root}>
@@ -34,11 +36,16 @@ const Product = (props: any) => {
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {Description}
-          </Typography>
+          <Link to={`/shop/productdetails/${Stockcode}/${UrlFriendlyName}`}>
+            <Typography gutterBottom variant="h5" component="h2">
+              {Description}
+            </Typography>
+          </Link>
           <Typography variant="body2" color="textSecondary" component="p">
             {InstorePrice}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {CupString}
           </Typography>
         </CardContent>
       </CardActionArea>
