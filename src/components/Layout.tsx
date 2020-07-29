@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import { Box } from "@material-ui/core";
 import Home from "./Home";
 import Categories from "../modules/Categories/Categories";
+import Routes from "../modules/Routes/Routes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,7 +64,7 @@ const Layout = (props: {}) => {
           <>left panel</>
         </Grid>
         <Grid item xs={10} className={classes.mainPanel}>
-          <Home />
+          <Routes />
         </Grid>
         <Grid item xs={1} className={classes.rightPanel}>
           <Paper>right panel</Paper>

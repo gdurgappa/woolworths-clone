@@ -6,9 +6,11 @@ const config = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[contenthash].js",
+    publicPath: "/",
   },
   devServer: {
     contentBase: "./dist",
+    historyApiFallback: true,
     // writeToDisk: true,
   },
   module: {

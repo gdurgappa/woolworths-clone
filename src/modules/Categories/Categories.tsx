@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { allCategories } from "../../constants/allCategories";
+import { Link } from "react-router-dom";
 
 const Categories = (props: {}) => {
   const [categories, setCategories] = useState<any>([]);
-  const [activeCategory, setActiveCategory] = useState<any>([]);
-  const [activeSubCategory, setActiveSubCategory] = useState<any>([]);
+  const [activeCategory, setActiveCategory] = useState<any>();
+  const [activeSubCategory, setActiveSubCategory] = useState<any>();
 
   useEffect(() => {
     setCategories(allCategories);
@@ -17,30 +18,34 @@ const Categories = (props: {}) => {
   return (
     <div>
       {categories.map((cat: any) => (
-        <div onClick={() => setActiveCategory(cat.Children)}>
-          {cat.Description}
-        </div>
+        <div onClick={() => setActiveCategory(cat)}>{cat.Description}</div>
       ))}
       <hr />
       {/* <div>breadcrumbs</div>  */}
       {activeCategory && (
         <>
           <div>
-            {activeCategory.map((cat: any) => {
+            {activeCategory.Children.map((cat: any) => {
               return (
-                <div onClick={() => setActiveSubCategory(cat.Children)}>
+                <div onClick={() => setActiveSubCategory(cat)}>
                   {cat.Description}
                 </div>
               );
             })}
           </div>
           <hr />
-          {activeSubCategory.map((cat: any) => {
-            return (
-              // <div onClick={() => setActiveSubCategory(cat.Children)}>
-              <div>{cat.Description}</div>
-            );
-          })}
+          {activeSubCategory &&
+            activeSubCategory.Children.map((cat: any) => {
+              return (
+                // <div onClick={() => setActiveSubCategory(cat.Children)}>
+                //shop/browse/fruit-veg/fruit/organic-fruit
+                <Link
+                  to={`/shop/browse/${activeCategory.UrlFriendlyName}/${activeSubCategory.UrlFriendlyName}/${cat.UrlFriendlyName}`}
+                >
+                  <div>{cat.Description}</div>
+                </Link>
+              );
+            })}
         </>
       )}
     </div>
