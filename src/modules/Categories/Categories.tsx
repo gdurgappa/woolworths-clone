@@ -40,7 +40,7 @@ const Categories = (props: {}) => {
                 // <div onClick={() => setActiveSubCategory(cat.Children)}>
                 //shop/browse/fruit-veg/fruit/organic-fruit
                 <Link
-                  to={`/shop/browse/${activeCategory.UrlFriendlyName}/${activeSubCategory.UrlFriendlyName}/${cat.UrlFriendlyName}`}
+                  to={`/shop/browse/${activeCategory.UrlFriendlyName}/${activeSubCategory.UrlFriendlyName}/${cat.UrlFriendlyName}/${cat.NodeId}`}
                 >
                   <div>{cat.Description}</div>
                 </Link>

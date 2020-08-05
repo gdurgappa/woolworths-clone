@@ -10,7 +10,9 @@
     "allowSyntheticDefaultImports": true,
     "target": "es5",
     "allowJs": true,
-    "jsx": "react"
+    "jsx": "react",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "include": ["./src/**/*", "config"]
 }
