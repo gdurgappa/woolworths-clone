@@ -6,6 +6,7 @@ import { Box } from "@material-ui/core";
 import Home from "./Home";
 import Categories from "../modules/Categories/Categories";
 import Routes from "../modules/Routes/Routes";
+import Header from "../modules/Header/Header";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,7 +54,7 @@ const Layout = (props: {}) => {
         <Paper>xs=12</Paper>
       </Grid>
       <Grid item xs={12} className={classes.mainLinks}>
-        <Paper>xs=12</Paper>
+        <Header />
       </Grid>
       <Grid item xs={12} className={classes.categories}>
         <Categories />

@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import Home from "../../components/Home";
 import { Switch } from "react-router-dom";
 import ProductList from "../Products/ProductList";
-import ProductDetails from "../Products/ProductDetails";
+import ProductDetails from "../Products/Details/ProductDetails";
 
 const Routes = (props: {}) => {
   return (
