@@ -1,9 +1,12 @@
-const initialState = {};
+const initialState = {
+  filteredProducts: [],
+  loading: false,
+};
 
 export default function productsReducer(state = initialState, action: any) {
   switch (action.type) {
-    case "INCREMENT":
-      return state;
+    case "PRODUCTS_LIST_SUCCESS":
+      return { ...state, filteredProducts: action.payload.Bundles };
     case "DECREMENT":
       return state;
     default:

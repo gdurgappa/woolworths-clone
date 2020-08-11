@@ -10,7 +10,13 @@ const Routes = (props: {}) => {
     <Switch>
       <Route path="/" exact component={Home} />
       <Route
-        path="/shop/browse/:category/:subCategory/:subCategorySelected/:nodeId"
+        exact
+        path="/shop/browse/:category/:subCategory"
+        component={ProductList}
+      />
+      <Route
+        exact
+        path="/shop/browse/:category/:subCategory/:subCategorySelected"
         component={ProductList}
       />
       <Route

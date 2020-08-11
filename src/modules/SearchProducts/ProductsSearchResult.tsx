@@ -53,7 +53,6 @@ function ProductsSearchResult() {
     })
       .then((res: any) => res.json())
       .then((res: any) => {
-        console.log("res", res.Bundles);
         setProductsList(res.Bundles);
         setPage({ ...page, totalProductsCount: res.TotalRecordCount });
       });

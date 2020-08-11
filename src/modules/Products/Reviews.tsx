@@ -15,7 +15,6 @@ const Reviews = ({ stockCode }: any) => {
     )
       .then((res: any) => res.json())
       .then((res: any) => {
-        console.log("reviews", res);
         setReviewsData(res);
       });
   }, []);

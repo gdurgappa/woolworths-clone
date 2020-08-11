@@ -4,6 +4,8 @@ import Product from "./Product";
 import Categories from "../Categories/Categories";
 import { makeStyles } from "@material-ui/core/styles";
 import Pagination from "@material-ui/lab/Pagination";
+import { useDispatch, useSelector } from "react-redux";
+import { getUrlParamsToFetchProducts } from "../../utils/commonHelper";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,42 +23,40 @@ function ProductList() {
     totalProductsCount: 0,
     limit: 10,
   });
-  const params = useParams<any>();
-  const { category, subCategorySelected, subCategory, nodeId } = params;
+  const params: any = useParams<any>();
+  const { category, subCategorySelected, subCategory } = params;
   //path="/shop/browse/:category/:subCategory/:subCategorySelected"
+  const dispatch = useDispatch();
+
+  const products: any = useSelector<any>(
+    (state) => state.products.filteredProducts
+  );
+  const categoryMappedId: any = useSelector<any>(
+    (state) => state.category.categoryMappedId
+  );
 
   useEffect(() => {
-    const body = JSON.stringify({
-      //   categoryId: "1-A90F8053",
-      categoryId: nodeId,
-      pageNumber: page.currentPage,
-      pageSize: page.limit,
-      sortType: "TraderRelevance",
-      url: `/shop/browse/${category}/${subCategory}/${subCategorySelected}`,
-      location: `/shop/browse/${category}/${subCategory}/${subCategorySelected}`,
-      formatObject: '{"name":"Organic Fruit"}',
-      isSpecial: false,
-      isBundle: false,
-      isMobile: false,
-      filters: null,
-    });
-    fetch("https://www.woolworths.com.au/apis/ui/browse/category", {
-      method: "post",
+    console.log("categoryMappedId", categoryMappedId);
+    if (Object.keys(categoryMappedId).length) {
+      const urlParams = getUrlParamsToFetchProducts(params, categoryMappedId);
 
-      body,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        mode: "no-cors",
-      },
-    })
-      .then((res: any) => res.json())
-      .then((res: any) => {
-        console.log("res", res.Bundles);
-        setProductsList(res.Bundles);
-        setPage({ ...page, totalProductsCount: res.TotalRecordCount });
-      });
-  }, [params]);
+      const body = {
+        ...urlParams,
+        // categoryId: urlParams.,
+        pageNumber: page.currentPage,
+        pageSize: page.limit,
+        sortType: "TraderRelevance",
+        // url: url,
+        location: urlParams?.url,
+        formatObject: '{"name":"Organic Fruit"}',
+        isSpecial: false,
+        isBundle: false,
+        isMobile: false,
+        filters: null,
+      };
+      dispatch({ type: "GET_PRODUCT_LIST", payload: body });
+    }
+  }, [params, categoryMappedId]);
 
   return (
     <>
@@ -65,12 +65,14 @@ function ProductList() {
       <div>Filter Your search - tab</div>
       <h4>{page.totalProductsCount}</h4>
 
-      {productsList.map((product: any) => {
+      {/* {productsList.map((product: any) => { */}
+      {products.map((product: any) => {
         // xxxx store categories in redux?
         return (
           <Product
+            key={product.Stockcode}
             {...product}
-            category={{ category, subCategorySelected, subCategory, nodeId }}
+            category={{ category, subCategorySelected, subCategory }}
           />
         );
       })}

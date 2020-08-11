@@ -7,6 +7,8 @@ import Home from "./Home";
 import Categories from "../modules/Categories/Categories";
 import Routes from "../modules/Routes/Routes";
 import Header from "../modules/Header/Header";
+import TopNavs from "./TopNavs";
+import AnnouncementBanner from "./AnnouncementBanner";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,10 +56,16 @@ const Layout = (props: {}) => {
         <Paper>xs=12</Paper>
       </Grid>
       <Grid item xs={12} className={classes.mainLinks}>
+        <TopNavs />
+      </Grid>
+      <Grid item xs={12} className={classes.mainLinks}>
         <Header />
       </Grid>
       <Grid item xs={12} className={classes.categories}>
         <Categories />
+      </Grid>
+      <Grid item xs={12} className={classes.mainLinks}>
+        <AnnouncementBanner content="Due to temporary supply disruptions in our network some products may be unavailable, and you may experience higher than usual out of stocks in your order. We apologise for any inconvenience caused." />
       </Grid>
 
       <Grid container>

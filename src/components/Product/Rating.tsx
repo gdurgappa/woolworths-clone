@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-//Y92831981 - B
 const Rating = ({ rating }: any) => {
   const {
     RatingCount: ratingCount,

@@ -20,6 +20,7 @@ import AdditionalInfo from "../../../components/Product/AdditionalInfo";
 import RatingSummary from "../../../components/Product/RatingSummary";
 import Reviews from "../Reviews";
 import Rating from "../../../components/Product/Rating";
+import PeopleAlsoViewedProducts from "./PeopleAlsoViewedProducts";
 
 const useStyles = makeStyles({
   root: {
@@ -55,52 +56,18 @@ const ProductDetails = (props: {}) => {
     )
       .then((res: any) => res.json())
       .then((res: any) => {
-        console.log("product detail", res);
         setProductDetails(res);
       });
-  };
-  const getAlsoViewedItemsProductList = () => {
-    const body = JSON.stringify({
-      //   categoryId: "1-A90F8053",
-      categoryId: params.nodeId,
-      pageNumber: 1,
-      pageSize: 36,
-      sortType: "TraderRelevance",
-      url: `/shop/browse/${params.category}/${params.subCategory}/${params.subCategorySelected}`,
-      location: `/shop/browse/${params.category}/${params.subCategory}/${params.subCategorySelected}`,
-      formatObject: '{"name":"Organic Fruit"}',
-      isSpecial: false,
-      isBundle: false,
-      isMobile: false,
-      filters: null,
-    });
-    // fetch("https://www.woolworths.com.au/apis/ui/browse/category", {
-    //   method: "post",
-
-    //   body,
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //     mode: "no-cors",
-    //   },
-    // })
-    //   .then((res: any) => res.json())
-    //   .then((res: any) => {
-    //     console.log("res", res.Bundles);
-    //     setProductDetailssList(res.Bundles);
-    //   });
   };
   const getAlsoBroughtItemsProductList = () => {};
   useEffect(() => {
     getProductDetailss();
-    //   // console.log("ProductJson", ProductJson);
     //   // setProductDetails(ProductJson.Product);
     //   fetch(
     //     `https://www.woolworths.com.au/apis/ui/product/detail/${params.Stockcode}`
     //   )
     //     .then((res: any) => res.json())
     //     .then((res: any) => {
-    //       console.log("product detail", res.Product);
     //       // setProductDetails(res.Product);
     //     });
   }, []);
@@ -173,7 +140,16 @@ const ProductDetails = (props: {}) => {
         {/* render prop? */}
         <Rating rating={productDetails.Product.Rating} />
         <Reviews stockCode={params.Stockcode} />
-        <h1>People Who Viewed This Item Also Viewed</h1>
+        <PeopleAlsoViewedProducts
+          params={params}
+          categoryId={
+            productDetails.Product.AdditionalAttributes
+              .PiesProductDepartmentNodeId
+          }
+          categoryName={
+            productDetails.Product.AdditionalAttributes.piescategorynamesjson
+          }
+        />
         <h1>People Who Bought This Item Also Bought</h1>
       </>
     )

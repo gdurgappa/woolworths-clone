@@ -1,10 +1,12 @@
-import { createStore, combineReducers } from "redux";
-import categoryReducer from "../modules/Categories/categoryReducer";
-import productsReducer from "../modules/Products/producstReducer";
+import { createStore, applyMiddleware, combineReducers } from "redux";
+import createSagaMiddleware from "redux-saga";
+import rootSaga from "./rootSaga";
+import rootReducer from "./rootReducer";
 
-let rootReducers = combineReducers({
-  products: productsReducer,
-  category: categoryReducer,
-});
+const sagaMiddleware = createSagaMiddleware();
 
-export default createStore(rootReducers);
+const middlewares = applyMiddleware(sagaMiddleware);
+
+const store = createStore(rootReducer, middlewares);
+sagaMiddleware.run(rootSaga);
+export default store;
