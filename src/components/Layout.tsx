@@ -7,12 +7,16 @@ import Home from "./Home";
 import Categories from "../modules/Categories/Categories";
 import Routes from "../modules/Routes/Routes";
 import Header from "../modules/Header/Header";
-import TopNavs from "./TopNavs";
+import TopNavLinks from "./TopNav/TopNavLinks";
 import AnnouncementBanner from "./AnnouncementBanner";
+import { topNavLinks } from "../constants/menus";
+import TopNavLink from "./TopNav/TopNavLink";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    padding: 0,
+    margin: 0,
   },
   topLinks: {
     background: "gray",
@@ -51,12 +55,9 @@ const useStyles = makeStyles((theme) => ({
 const Layout = (props: {}) => {
   const classes = useStyles();
   return (
-    <Grid container spacing={3}>
+    <Grid className={classes.root} container spacing={0}>
       <Grid item xs={12} className={classes.topLinks}>
-        <Paper>xs=12</Paper>
-      </Grid>
-      <Grid item xs={12} className={classes.mainLinks}>
-        <TopNavs />
+        <TopNavLinks />
       </Grid>
       <Grid item xs={12} className={classes.mainLinks}>
         <Header />

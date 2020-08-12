@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import Categories from "../Categories/Categories";
 import { makeStyles } from "@material-ui/core/styles";
 import Pagination from "@material-ui/lab/Pagination";
+import { useDispatch, useSelector } from "react-redux";
+import { getUrlParamsToFetchProducts } from "../../utils/commonHelper";
+import Product from "../Products/Product";
 
-// https://www.woolworths.com.au/apis/ui/Search/products -
-//{"Filters":[],"IsSpecial":false,"Location":"/shop/search/products?searchTerm=aioli%20mayonnaise","PageNumber":1,"PageSize":36,"SearchTerm":"aioli mayonnaise","SortType":"TraderRelevance"}
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -16,69 +17,53 @@ const useStyles = makeStyles((theme) => ({
 
 function ProductsSearchResult() {
   const classes = useStyles();
-  const [productsList, setProductsList] = useState([]);
   const [page, setPage] = useState({
     currentPage: 1,
     totalProductsCount: 0,
     limit: 10,
   });
-  const params = useParams<any>();
-  const { category, subCategorySelected, subCategory, nodeId } = params;
-  //path="/shop/browse/:category/:subCategory/:subCategorySelected"
+  const params: any = useLocation<any>();
+  const query = new URLSearchParams(params.search);
+  console.log("query.get", query.get("searchTerm"));
+
+  const { search } = params;
+
+  const dispatch = useDispatch();
+
+  const aggregatedProductsResult: any = useSelector<any>(
+    (state) => state.search.aggregatedProductsResult
+  );
+  const searchProductsResultsList: any = useSelector<any>(
+    (state) => state.search.searchProductsResultsList
+  );
 
   useEffect(() => {
-    const body = JSON.stringify({
-      //   categoryId: "1-A90F8053",
-      categoryId: nodeId,
-      pageNumber: page.currentPage,
-      pageSize: page.limit,
-      sortType: "TraderRelevance",
-      url: `/shop/browse/${category}/${subCategory}/${subCategorySelected}`,
-      location: `/shop/browse/${category}/${subCategory}/${subCategorySelected}`,
-      formatObject: '{"name":"Organic Fruit"}',
-      isSpecial: false,
-      isBundle: false,
-      isMobile: false,
-      filters: null,
+    dispatch({
+      type: "PRODUCTS_SEARCH_AGGREGATED_RESULTS",
+      payload: query.get("searchTerm"),
     });
-    fetch("https://www.woolworths.com.au/apis/ui/browse/category", {
-      method: "post",
-
-      body,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        mode: "no-cors",
-      },
-    })
-      .then((res: any) => res.json())
-      .then((res: any) => {
-        setProductsList(res.Bundles);
-        setPage({ ...page, totalProductsCount: res.TotalRecordCount });
-      });
+    dispatch({
+      type: "PRODUCTS_SEARCH_RESULTS",
+      payload: query.get("searchTerm"),
+    });
   }, [params]);
 
   return (
     <>
-      {/* xxxx use redux to display h1 - use category.Description  */}
-      <h1>product search result</h1>
-      {/* <div>Filter Your search - tab</div>
-      <h4>{page.totalProductsCount}</h4>
+      <h1>{"Product search result"}</h1>
+      <div>Filter Your search - tab</div>
+      <div>hi {JSON.stringify(aggregatedProductsResult)}</div>
+      {/* <h4>{page.totalProductsCount}</h4> */}
 
-      {productsList.map((product: any) => {
+      {searchProductsResultsList.map((product: any) => {
         // xxxx store categories in redux?
-        return (
-          <Product
-            {...product}
-            category={{ category, subCategorySelected, subCategory, nodeId }}
-          />
-        );
+        return <Product key={product.Products[0].Stockcode} {...product} />;
       })}
 
       <Pagination
         count={page.totalProductsCount && page.totalProductsCount / page.limit}
         shape="rounded"
-      /> */}
+      />
     </>
   );
 }

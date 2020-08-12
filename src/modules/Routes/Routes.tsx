@@ -4,6 +4,7 @@ import Home from "../../components/Home";
 import { Switch } from "react-router-dom";
 import ProductList from "../Products/ProductList";
 import ProductDetails from "../Products/Details/ProductDetails";
+import ProductsSearchResult from "../SearchProducts/ProductsSearchResult";
 
 const Routes = (props: {}) => {
   return (
@@ -18,6 +19,11 @@ const Routes = (props: {}) => {
         exact
         path="/shop/browse/:category/:subCategory/:subCategorySelected"
         component={ProductList}
+      />
+      <Route
+        exact
+        path="/shop/search/products"
+        component={ProductsSearchResult}
       />
       <Route
         path="/shop/productdetails/:Stockcode/:product"

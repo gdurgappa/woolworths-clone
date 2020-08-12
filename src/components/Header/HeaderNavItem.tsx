@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from "react";
-
-const HeaderNavItem = ({}: any) => {
-  return <div>HeaderNavItem</div>;
+import { makeStyles } from "@material-ui/core/styles";
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "block",
+    lineHeight: "70px",
+    color: "#fff",
+    padding: "0 10px",
+    fontFamily: `"Fresh Sans Medium",Helvetica,Arial,sans-serif`,
+    whiteSpace: "nowrap",
+  },
+}));
+const HeaderNavItem = ({ nav }: any) => {
+  const classes = useStyles();
+  return <div className={classes.root}>{nav.name}</div>;
 };
 
 export default HeaderNavItem;

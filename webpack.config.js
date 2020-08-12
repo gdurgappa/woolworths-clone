@@ -25,7 +25,12 @@ const config = {
               importLoaders: 1,
             },
           },
-          "postcss-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              options: {},
+            },
+          },
         ],
       },
       {

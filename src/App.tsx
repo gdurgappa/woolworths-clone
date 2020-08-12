@@ -6,6 +6,17 @@ import Layout from "./components/Layout";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import "./style.css";
+import {
+  createMuiTheme,
+  makeStyles,
+  createStyles,
+  Theme as AugmentedTheme,
+  ThemeProvider,
+} from "@material-ui/core/styles";
+
+const theme = createMuiTheme({});
+
 interface Props {
   name: string;
 }
@@ -18,7 +29,9 @@ class App extends React.Component<Props> {
         {/* <h1>Hello {name}</h1>
         <Button variant="contained">xthis is a material UI button</Button> */}
         <BrowserRouter>
-          <Layout />
+          <ThemeProvider theme={theme}>
+            <Layout />
+          </ThemeProvider>
         </BrowserRouter>
       </Provider>
     );

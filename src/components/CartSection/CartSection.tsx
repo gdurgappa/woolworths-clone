@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import ViewCartButton from "../../components/CartSection/ViewCartButton";
+import ViewCartTotal from "./ViewCartTotal";
+import ViewCartButton from "./ViewCartButton";
 
 const CartSection = (props: {}) => {
   return (
     <div>
-      <p>Your Cart $12.30</p>
+      <ViewCartTotal />
       <ViewCartButton />
     </div>
   );
