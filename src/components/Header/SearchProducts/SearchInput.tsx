@@ -16,12 +16,14 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "20px",
     border: "none",
     outline: "0",
-    width: "100%",
+    // width: "100%",
     height: "40px",
     lineHeight: "1.15",
     fontSize: "16px",
     fontFamily: "Helvetica,Arial,sans-serif",
-    padding: "0 40px 0 16px",
+    padding: "0px 60px 0px 10px",
+    width: "calc(100% - 83px)",
+    // padding: "0 40px 0 16px",
   },
 }));
 const SearchInput = ({
@@ -50,6 +52,7 @@ const SearchInput = ({
               getSuggestions(e.target.value);
             }}
             value={searchTerm}
+            placeholder="Search products & recipies"
           />
         </div>
         // <TextField

@@ -5,4 +5,4 @@
 
 ## TODO
 
--
+- del all console.logs in project

@@ -7,6 +7,7 @@ import { useHistory } from "react-router";
 import { makeStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
 import SearchIcon from "@material-ui/icons/Search";
+
 const useStyles = makeStyles((theme) => ({
   container: {
     height: "40px",
@@ -16,12 +17,15 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
+    position: "relative",
   },
   searchRoot: {},
   iconsContainer: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    position: "absolute",
+    right: 0,
   },
   closeIcon: {
     height: "25px",
@@ -51,14 +55,12 @@ const SearchProducts = (props: {}) => {
     const apiSuggestions = await api.get(
       GET_SUGGESTIONS_URL + `?Key=${searchKey}`
     );
-    console.log("apiSuggestions", apiSuggestions.SearchSuggestion);
     setSuggestions(
       apiSuggestions.SearchSuggestion.map((s: any) => ({ title: s, value: s }))
     );
   };
 
   const onOptionSelect = (event: any, value: any) => {
-    console.log("value", value);
     history.push({
       pathname: "/shop/search/products",
       search: "?searchTerm=" + value.title,

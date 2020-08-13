@@ -24,7 +24,6 @@ function ProductsSearchResult() {
   });
   const params: any = useLocation<any>();
   const query = new URLSearchParams(params.search);
-  console.log("query.get", query.get("searchTerm"));
 
   const { search } = params;
 

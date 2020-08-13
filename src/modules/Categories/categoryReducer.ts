@@ -36,7 +36,7 @@ const getConsolidatedCategories = (categories: any) => {
 };
 
 const getData = (obj: any) => {
-  const { NodeId, Description, UrlFriendlyName, Children } = obj;
-  categoryMappedId[UrlFriendlyName] = NodeId;
+  const { NodeId, Description, UrlFriendlyName, Children, ProductCount } = obj;
+  categoryMappedId[UrlFriendlyName] = { NodeId, Description, ProductCount };
   return { NodeId, Description, UrlFriendlyName, Children };
 };

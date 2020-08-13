@@ -16,7 +16,6 @@ export function* watchGetAggregatedSearchProductsResults() {
 }
 
 function* getSearchProductsResultsList(action: any) {
-  console.log("action in saga", action);
   const body = {
     Filters: [],
     IsSpecial: false,

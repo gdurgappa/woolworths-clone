@@ -8,6 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
+import { Product } from "./types/product";
 
 const useStyles = makeStyles({
   root: {
@@ -15,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Product = (props: any) => {
+const Product = (props: Product) => {
   const classes = useStyles();
   const {
     Description,
@@ -24,7 +25,7 @@ const Product = (props: any) => {
     MediumImageFile,
     UrlFriendlyName,
     Stockcode,
-  } = props.Products[0];
+  } = props;
   return (
     <Card className={classes.root}>
       <CardActionArea>

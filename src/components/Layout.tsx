@@ -70,10 +70,10 @@ const Layout = (props: {}) => {
       </Grid>
 
       <Grid container>
-        <Grid item xs={1} className={classes.leftPanel}>
+        {/* <Grid item xs={1} className={classes.leftPanel}>
           <>left panel</>
-        </Grid>
-        <Grid item xs={10} className={classes.mainPanel}>
+        </Grid> */}
+        <Grid item xs={11} className={classes.mainPanel}>
           <Routes />
         </Grid>
         <Grid item xs={1} className={classes.rightPanel}>
