@@ -132,4 +132,23 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   box-sizing: border-box;
   line-height: 1.625;
+  background: #eee;
+  color: #3a474e;
+}
+
+.visible-xs {
+  display: none !important;
+}
+
+.hidden-xs {
+  display: block !important;
+}
+@media only screen and (max-width: 768px) {
+    .visible-xs {
+    display: block !important;
+  }
+
+  .hidden-xs {
+    display: none !important;
+  }
 }

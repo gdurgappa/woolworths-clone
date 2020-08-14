@@ -5,4 +5,7 @@ export interface Product {
   MediumImageFile: string;
   UrlFriendlyName: string;
   Stockcode: number;
+  ImageTag: {
+    TagContent: string;
+  };
 }

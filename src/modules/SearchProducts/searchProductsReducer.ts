@@ -1,6 +1,7 @@
 const initialState = {
   aggregatedProductsResult: {},
   searchProductsResultsList: [],
+  TotalRecordCount: 0,
 };
 
 export default function searchProductsReducer(

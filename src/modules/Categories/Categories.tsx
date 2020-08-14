@@ -73,42 +73,6 @@ const Categories = (props: {}) => {
           handleClose={handleClose}
         />
       )}
-      {/* <div>breadcrumbs</div>  */}
-      {/* {activeCategory && (
-        <>
-          <div>
-            {activeCategory.Children.map((cat: any) => {
-              return (
-                <div key={cat.NodeId} onClick={() => setActiveSubCategory(cat)}>
-                  {cat.Description}
-                </div>
-              );
-            })}
-          </div>
-          <hr />
-          {activeSubCategory && (
-            <Link
-              to={`/shop/browse/${activeCategory.UrlFriendlyName}/${activeSubCategory.UrlFriendlyName}`}
-            >
-              <div>{"Show All " + activeSubCategory.Description}</div>
-            </Link>
-          )}
-          {activeSubCategory &&
-            activeSubCategory.Children.map((cat: any) => {
-              return (
-                // <div onClick={() => setActiveSubCategory(cat.Children)}>
-                //shop/browse/fruit-veg/fruit/organic-fruit
-                <Link
-                  key={activeCategory.NodeId}
-                  to={`/shop/browse/${activeCategory.UrlFriendlyName}/${activeSubCategory.UrlFriendlyName}/${cat.UrlFriendlyName}`}
-                  // to={`/shop/browse/${activeCategory.UrlFriendlyName}/${activeSubCategory.UrlFriendlyName}/${cat.UrlFriendlyName}/${cat.NodeId}`}
-                >
-                  <div>{cat.Description}</div>
-                </Link>
-              );
-            })}
-        </>
-      )} */}
     </div>
   );
 };

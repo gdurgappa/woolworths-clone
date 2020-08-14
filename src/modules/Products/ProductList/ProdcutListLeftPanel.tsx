@@ -36,10 +36,11 @@ const useStyles = makeStyles((theme) => ({
   },
   leftPanelNav: {
     boxShadow: "0 0 5px rgba(0,0,0,.15)",
-    height: "100%",
+    height: "100wh",
     backgroundColor: "#fff",
     fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
     width: "220px",
+    flex: "0 0 220px",
   },
   leftPanelUl: {},
   leftPanelLi: {
@@ -76,7 +77,6 @@ const ProductListLeftPanel = ({
   );
   useEffect(() => {
     if (categoriesList.length) {
-      console.log("pppppp", { category, subCategorySelected, subCategory });
       let identifiedCategory: any = { Children: [] };
       if (category) {
         identifiedCategory = categoriesList.find(
@@ -101,7 +101,6 @@ const ProductListLeftPanel = ({
     }
   }, [category, subCategorySelected, subCategory, categoriesList]);
   const classes = useStyles();
-
   return (
     <nav className={classes.leftPanelNav}>
       {leftPanelItems.length && (
@@ -135,11 +134,16 @@ const ProductListLeftPanel = ({
               <Link
                 to={
                   getUrlParamsToFetchProducts(
-                    {
-                      category,
-                      subCategorySelected: item.UrlFriendlyName,
-                      subCategory,
-                    },
+                    subCategory
+                      ? {
+                          category,
+                          subCategory,
+                          subCategorySelected: item.UrlFriendlyName,
+                        }
+                      : {
+                          category,
+                          subCategory: item.UrlFriendlyName,
+                        },
                     categoryMappedId
                   ).url
                 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -21,11 +21,14 @@ const useStyles = makeStyles((theme) => ({
   topLinks: {
     background: "gray",
   },
-  mainLinks: {
-    background: "lightblue",
+  headerNavItems: {
+    position: "sticky",
+    top: 0,
+    zIndex: 1,
   },
   categories: {
-    background: "yellow",
+    position: (props: any) => (props.isScrollDown ? "static" : "sticky"),
+    top: (props: any) => (props.isScrollDown ? "" : "70px"),
   },
   bannerAd: {
     background: "lightgreen",
@@ -36,9 +39,7 @@ const useStyles = makeStyles((theme) => ({
   leftPanel: {
     background: "#ccc",
   },
-  mainPanel: {
-    background: "green",
-  },
+  mainPanel: {},
   rightPanel: {
     background: "red",
   },
@@ -51,21 +52,40 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
 }));
-
+var lastScrollTop = 0;
 const Layout = (props: {}) => {
-  const classes = useStyles();
+  const [isScrollDown, setIsScrollDown] = useState(false);
+  const classes = useStyles({ isScrollDown });
+  useEffect(() => {
+    document.addEventListener("scroll", callback);
+    return () => {
+      document.removeEventListener("scroll", callback);
+    };
+  }, []);
+
+  const callback = () => {
+    var st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop) {
+      // downscroll code
+      setIsScrollDown(true);
+    } else {
+      setIsScrollDown(false);
+      // upscroll code
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+  };
   return (
     <Grid className={classes.root} container spacing={0}>
       <Grid item xs={12} className={classes.topLinks}>
         <TopNavLinks />
       </Grid>
-      <Grid item xs={12} className={classes.mainLinks}>
+      <Grid item xs={12} className={classes.headerNavItems}>
         <Header />
       </Grid>
       <Grid item xs={12} className={classes.categories}>
         <Categories />
       </Grid>
-      <Grid item xs={12} className={classes.mainLinks}>
+      <Grid item xs={12}>
         <AnnouncementBanner content="Due to temporary supply disruptions in our network some products may be unavailable, and you may experience higher than usual out of stocks in your order. We apologise for any inconvenience caused." />
       </Grid>
 

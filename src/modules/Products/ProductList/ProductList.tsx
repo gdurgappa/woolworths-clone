@@ -7,6 +7,8 @@ import Pagination from "@material-ui/lab/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { getUrlParamsToFetchProducts } from "../../../utils/commonHelper";
 import ProductListLeftPanel from "./ProdcutListLeftPanel";
+import ProductListContent from "./ProductListContent";
+import DynamicBanner from "../../../components/ProductList/DynamicBanner";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   pageContainer: {
     display: "flex",
+    width: "100%",
   },
   contentContainer: {},
   adBanner: {},
@@ -25,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
 
 function ProductList() {
   const classes = useStyles();
-  const [productsList, setProductsList] = useState([]);
   const [page, setPage] = useState({
     currentPage: 1,
     totalProductsCount: 0,
@@ -70,28 +72,7 @@ function ProductList() {
       <ProductListLeftPanel
         {...{ category, subCategorySelected, subCategory }}
       />
-      <div className={classes.contentContainer}>
-        <div>breadCrumbs</div>
-        <h1>{subCategorySelected}</h1>
-        <div>Filter Your search - tab</div>
-        <h4>{page.totalProductsCount}</h4>
-        {products.map((product: any) => {
-          return (
-            <Product
-              key={product.Stockcode}
-              {...product.Products[0]}
-              category={{ category, subCategorySelected, subCategory }}
-            />
-          );
-        })}
-
-        <Pagination
-          count={
-            page.totalProductsCount && page.totalProductsCount / page.limit
-          }
-          shape="rounded"
-        />
-      </div>
+      <ProductListContent params={params} categoryMappedId={categoryMappedId} />
     </div>
   );
 }
