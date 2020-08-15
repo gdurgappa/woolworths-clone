@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import SearchInput from "../../components/Header/SearchProducts/SearchInput";
+import SearchInput, {
+  Suggestion,
+} from "../../components/Header/SearchProducts/SearchInput";
 import * as api from "../../api/request";
 import { GET_SUGGESTIONS_URL } from "../../api/urls";
 import { useDispatch } from "react-redux";
@@ -46,25 +48,34 @@ const useStyles = makeStyles((theme) => ({
     padding: "5px",
   },
 }));
+
 const SearchProducts = (props: {}) => {
   const classes = useStyles();
-  const [suggestions, setSuggestions] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [suggestions, setSuggestions] = useState<Array<Suggestion>>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const history = useHistory();
-  const getSuggestions = async (searchKey: any) => {
+  const requestSuggestions = async (searchKey: string) => {
     const apiSuggestions = await api.get(
       GET_SUGGESTIONS_URL + `?Key=${searchKey}`
     );
     setSuggestions(
-      apiSuggestions.SearchSuggestion.map((s: any) => ({ title: s, value: s }))
+      apiSuggestions.SearchSuggestion.map((s: Suggestion) => ({
+        title: s,
+        value: s,
+      }))
     );
   };
 
-  const onOptionSelect = (event: any, value: any) => {
-    history.push({
-      pathname: "/shop/search/products",
-      search: "?searchTerm=" + value.title,
-    });
+  const onOptionSelect = (
+    event: React.ChangeEvent<{}>,
+    value: Suggestion | null
+  ) => {
+    if (value) {
+      history.push({
+        pathname: "/shop/search/products",
+        search: "?searchTerm=" + value.title,
+      });
+    }
   };
 
   return (
@@ -73,7 +84,7 @@ const SearchProducts = (props: {}) => {
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         suggestions={suggestions}
-        getSuggestions={getSuggestions}
+        requestSuggestions={requestSuggestions}
         onOptionSelect={onOptionSelect}
       />
       <div className={classes.iconsContainer}>

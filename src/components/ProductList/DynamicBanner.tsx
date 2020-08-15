@@ -26,6 +26,7 @@ const DynamicBanner = ({ url }: any) => {
 
   useEffect(() => {
     //https://www.woolworths.com.au/Shop/DynamicContent2Panel?scheduleKey=/shop/browse/fruit-veg/vegetables
+    //https://www.woolworths.com.au/Shop/DynamicContent2Panel?scheduleKey=/shop/search/products
     if (url) {
       api.get(GET_DYNAMIC_CONTENT_URL + url).then((res) => {
         setDynamicHtml(res);

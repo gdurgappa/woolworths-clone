@@ -89,7 +89,7 @@ function ProductListContent({ params, categoryMappedId }: any) {
           {products.map((product: any) => {
             return (
               <Product
-                key={product.Stockcode}
+                key={product.Products[0].Stockcode}
                 {...product.Products[0]}
                 category={{ category, subCategorySelected, subCategory }}
               />

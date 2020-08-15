@@ -6,6 +6,8 @@ import Layout from "./components/Layout";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import firebase from "firebase";
+
 import "./style.css";
 import {
   createMuiTheme,
@@ -14,12 +16,17 @@ import {
   Theme as AugmentedTheme,
   ThemeProvider,
 } from "@material-ui/core/styles";
+import { get } from "./api/request";
+import { firebaseConfig } from "./config/firebaseConfig";
 
 const theme = createMuiTheme({});
 
 interface Props {
   name: string;
 }
+
+firebase.initializeApp(firebaseConfig);
+export const db = firebase.firestore();
 
 class App extends React.Component<Props> {
   render() {

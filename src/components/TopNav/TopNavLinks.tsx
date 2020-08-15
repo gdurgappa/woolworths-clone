@@ -27,9 +27,9 @@ const TopNavLinks = (props: {}) => {
       {topNavLinks.map((nav) => {
         return (
           <TopNavLink
+            key={nav.name}
             isActive={nav.name === "Shopping"}
             nav={nav}
-            key={nav.name}
           />
         );
       })}

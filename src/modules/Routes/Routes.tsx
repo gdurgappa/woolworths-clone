@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
-import Home from "../../components/Home";
+import Home from "../Home/Home";
 import { Switch } from "react-router-dom";
 import ProductList from "../Products/ProductList/ProductList";
 import ProductDetails from "../Products/Details/ProductDetails";

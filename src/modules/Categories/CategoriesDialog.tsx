@@ -108,8 +108,8 @@ const CategoriesDialog = ({
             {activeCategory.Children.map((cat: any) => {
               return (
                 <li
-                  className={classes.categoryItem}
                   key={cat.NodeId}
+                  className={classes.categoryItem}
                   onClick={() => setActiveSubCategory(cat)}
                 >
                   <span> {cat.Description}</span>
@@ -137,10 +137,9 @@ const CategoriesDialog = ({
               {activeSubCategory &&
                 activeSubCategory.Children.map((cat: any) => {
                   return (
-                    <li onClick={() => handleClose(false)}>
+                    <li key={cat.NodeId} onClick={() => handleClose(false)}>
                       <Link
                         className={classes.dialogContentNavLink}
-                        key={activeCategory.NodeId}
                         to={`/shop/browse/${activeCategory.UrlFriendlyName}/${activeSubCategory.UrlFriendlyName}/${cat.UrlFriendlyName}`}
                         // to={`/shop/browse/${activeCategory.UrlFriendlyName}/${activeSubCategory.UrlFriendlyName}/${cat.UrlFriendlyName}/${cat.NodeId}`}
                       >

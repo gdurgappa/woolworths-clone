@@ -92,15 +92,17 @@ const ProductListLeftPanel = ({
 
       setLeftPanelItems(
         identifiedCategory.Children.map(
-          ({ Description, UrlFriendlyName }: any) => ({
+          ({ Description, UrlFriendlyName, NodeId }: any) => ({
             Description,
             UrlFriendlyName,
+            NodeId,
           })
         )
       );
     }
   }, [category, subCategorySelected, subCategory, categoriesList]);
   const classes = useStyles();
+  console.log("leftPanelItems", leftPanelItems);
   return (
     <nav className={classes.leftPanelNav}>
       {leftPanelItems.length && (
@@ -130,7 +132,7 @@ const ProductListLeftPanel = ({
       <ul className={classes.leftPanelUl}>
         {leftPanelItems.map((item: any) => {
           return (
-            <li className={classes.leftPanelLi}>
+            <li key={item.NodeId} className={classes.leftPanelLi}>
               <Link
                 to={
                   getUrlParamsToFetchProducts(

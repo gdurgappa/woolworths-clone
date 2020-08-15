@@ -3,7 +3,7 @@ import {
   GET_PRODUCTS_SEARCH_URL,
   GET_AGGREGATED_SEARCH_PRODUCTS_RESULT_URL,
 } from "../../api/urls";
-import { put, takeLatest } from "redux-saga/effects";
+import { put, takeLatest, call } from "redux-saga/effects";
 
 export function* watchGetSearchProductsResultsList() {
   yield takeLatest("PRODUCTS_SEARCH_RESULTS", getSearchProductsResultsList);
@@ -29,14 +29,17 @@ function* getSearchProductsResultsList(action: any) {
   const products = yield api.post(GET_PRODUCTS_SEARCH_URL, body);
   yield put({
     type: "PRODUCTS_SEARCH_RESULTS_SUCCESS",
-    payload: products.Products,
+    payload: products,
   });
 }
 
 function* getAggregatedSearchProductsResults(action: any) {
-  const aggregatedResult = yield api.get(
+  const aggregatedResult = yield call(
+    api.get,
     GET_AGGREGATED_SEARCH_PRODUCTS_RESULT_URL + "?searchTerm=" + action.payload
   );
+  console.log("action", action);
+  console.log("aggregatedResult", aggregatedResult);
   yield put({
     type: "PRODUCTS_SEARCH_AGGREGATED_RESULTS_SUCCESS",
     payload: aggregatedResult.SearchCount,

@@ -6,13 +6,77 @@ import Pagination from "@material-ui/lab/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { getUrlParamsToFetchProducts } from "../../utils/commonHelper";
 import Product from "../Products/Product";
+import ProductListContent from "../Products/ProductList/ProductListContent";
+import ProductFilter from "../../components/ProductList/ProductFilter";
+import ProductSortBy from "../../components/ProductList/ProductSortBy";
+import DynamicBanner from "../../components/ProductList/DynamicBanner";
+
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     display: "flex",
+//     flexDirection: "column",
+//     width: "100%",
+//   },
+//   contentContainer: {
+//     margin: "0 auto",
+//     width: "960px",
+//   },
+//   breadCrumbContainer: {},
+//   breadCrumbItem: {},
+//   headingText: {
+//     marginBottom: "32px",
+//     textTransform: "capitalize",
+//     fontSize: "38px",
+//     lineHeight: 1.05263158,
+//     fontWeight: 500,
+//   },
+//   //total
+//   totalProductsText: {
+//     display: "flex",
+//     fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
+//     fontSize: "20px",
+//     marginRight: "18px",
+//   },
+//   //sort
+
+//   //products
+//   productsContainer: { display: "flex", flexFlow: "wrap" },
+//   adBanner: {},
+//   breadCrumbs: {},
+// }));
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& > *": {
-      marginTop: theme.spacing(2),
-    },
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
   },
+  contentContainer: {
+    margin: "0 auto",
+    width: "960px",
+  },
+  breadCrumbContainer: {},
+  breadCrumbItem: {},
+  headingText: {
+    marginBottom: "32px",
+    textTransform: "capitalize",
+    fontSize: "38px",
+    lineHeight: 1.05263158,
+    fontWeight: 500,
+  },
+  //total
+  totalProductsText: {
+    display: "flex",
+    fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
+    fontSize: "20px",
+    marginRight: "18px",
+  },
+  //sort
+
+  //products
+  productsContainer: { display: "flex", flexFlow: "wrap" },
+  adBanner: {},
+  breadCrumbs: {},
 }));
 
 function ProductsSearchResult() {
@@ -29,11 +93,17 @@ function ProductsSearchResult() {
 
   const dispatch = useDispatch();
 
-  const aggregatedProductsResult: any = useSelector<any>(
+  const { ProductCount }: any = useSelector<any>(
     (state) => state.search.aggregatedProductsResult
   );
-  const searchProductsResultsList: any = useSelector<any>(
-    (state) => state.search.searchProductsResultsList
+  const {
+    searchProductsResultsList,
+    TotalRecordCount,
+    SuggestedTerm,
+  }: any = useSelector<any>((state) => state.search);
+
+  const categoryMappedId: any = useSelector<any>(
+    (state) => state.category.categoryMappedId
   );
 
   useEffect(() => {
@@ -47,23 +117,53 @@ function ProductsSearchResult() {
     });
   }, [params]);
 
+  console.log("searchProductsResultsList", searchProductsResultsList);
   return (
-    <>
-      <h1>{"Product search result"}</h1>
-      <div>Filter Your search - tab</div>
-      <div>hi {JSON.stringify(aggregatedProductsResult)}</div>
-      {/* <h4>{page.totalProductsCount}</h4> */}
+    <div className={classes.root}>
+      <div className={classes.contentContainer}>
+        {ProductCount && (
+          <h1 className={classes.headingText}>
+            {`No results TBD... “${search.split("=")[1]}”`}
+          </h1>
+        )}
+        {SuggestedTerm && (
+          <h1 className={classes.headingText}>
+            {`Unfortunately, we couldn’t find results for “${
+              search.split("=")[1]
+            }”`}
+          </h1>
+        )}
+        {!SuggestedTerm && (
+          <h1 className={classes.headingText}>
+            {`Showing results for “${search.split("=")[1]}”`}
+          </h1>
+        )}
+        <ProductFilter />
+        <h4 className={classes.totalProductsText}>
+          {TotalRecordCount} Products
+        </h4>
 
-      {searchProductsResultsList.map((product: any) => {
-        // xxxx store categories in redux?
-        return <Product key={product.Products[0].Stockcode} {...product} />;
-      })}
+        <ProductSortBy />
 
-      <Pagination
-        count={page.totalProductsCount && page.totalProductsCount / page.limit}
-        shape="rounded"
-      />
-    </>
+        <div className={classes.productsContainer}>
+          {searchProductsResultsList.map((product: any) => {
+            return (
+              <Product
+                key={product.Products[0].Stockcode}
+                {...product.Products[0]}
+              />
+            );
+          })}
+        </div>
+
+        <Pagination
+          count={
+            page.totalProductsCount && page.totalProductsCount / page.limit
+          }
+          shape="rounded"
+        />
+      </div>
+    </div>
   );
 }
 

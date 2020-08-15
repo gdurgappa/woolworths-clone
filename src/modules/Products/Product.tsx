@@ -10,6 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import { Product } from "./types/product";
 import { getProductPriceInDollarsAndCents } from "../../utils/commonHelper";
+import ProductPrice from "../../components/ProductList/ProductPrice";
+import AddToCartButton from "../../components/ProductList/AddToCartButton";
 
 const useStyles = makeStyles({
   root: {
@@ -41,47 +43,12 @@ const useStyles = makeStyles({
     lineHeight: "1.42857143",
     cursor: "pointer",
     textDecoration: "none",
+    height: "40px",
+    marginBottom: "10px",
+    overflow: "hidden",
     "&:hover": {
       textDecoration: "underline",
     },
-  },
-  //image
-  priceContainer: {
-    display: "flex",
-    MsFlexPack: "justify",
-    justifyContent: "space-between",
-    MsFlexAlign: "start",
-    alignItems: "flex-start",
-    height: "56px",
-    margin: "0 20px",
-  },
-  productPriceContainer: {
-    position: "relative",
-    marginTop: "27px",
-  },
-  productPriceDollarSymbol: {
-    fontSize: "20px",
-    lineHeight: 1,
-    verticalAlign: "top",
-  },
-  productPriceInDollar: { fontSize: "36px" },
-  productPriceInCents: {
-    // position: "absolute", //todo: bug
-    width: "1px",
-    height: "1px",
-    margin: "-1px",
-    padding: 0,
-    overflow: "hidden",
-    clip: "rect(0,0,0,0)",
-    border: 0,
-    lineHeight: 1,
-    verticalAlign: "top",
-  },
-  cupPrice: {
-    lineHeight: 2,
-    color: "#3a474e",
-    whiteSpace: "nowrap",
-    marginLeft: "5px",
   },
   specialImageTag: {
     width: "60px",
@@ -89,6 +56,14 @@ const useStyles = makeStyles({
     position: "absolute",
     top: "60px",
     left: "10px",
+  },
+  cardActionButtonsContainer: {
+    display: "flex",
+    alignItems: "center",
+    margin: "10px 20px",
+    textAlign: "center",
+    flexDirection: "column",
+    padding: 0,
   },
 });
 
@@ -109,12 +84,12 @@ const Product = (props: Product) => {
         <CardMedia
           classes={{ media: classes.image }}
           component="img"
-          alt="Contemplative Reptile"
+          alt={Description}
           height="140"
           image={MediumImageFile}
-          title="Contemplative Reptile"
+          title={Description}
         />
-        {ImageTag.TagContent && (
+        {ImageTag && ImageTag.TagContent && (
           <img
             className={classes.specialImageTag}
             src={`https://woolworths.com.au/${ImageTag.TagContent}`}
@@ -127,24 +102,11 @@ const Product = (props: Product) => {
           >
             {Description}
           </Link>
-          <div className={classes.priceContainer}>
-            <div className={classes.productPriceContainer}>
-              <span className={classes.productPriceDollarSymbol}>$</span>
-              <span className={classes.productPriceInDollar}>
-                {getProductPriceInDollarsAndCents(InstorePrice).dollarAmount}
-              </span>
-              <span className={classes.productPriceInCents}>
-                {getProductPriceInDollarsAndCents(InstorePrice).cents}
-              </span>
-            </div>
-            <span className={classes.cupPrice}>{CupString}</span>
-          </div>
         </CardContent>
+        <ProductPrice {...{ CupString, InstorePrice }} />
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Add to Card
-        </Button>
+      <CardActions className={classes.cardActionButtonsContainer}>
+        <AddToCartButton onClickCallback={() => {}} />
         <Button size="small" color="primary">
           Save to List
         </Button>

@@ -57,7 +57,7 @@ function ProductList() {
         sortType: "TraderRelevance",
         // url: url,
         location: urlParams?.url,
-        formatObject: '{"name":"Organic Fruit"}',
+        // formatObject: '{"name":"Organic Fruit"}',
         isSpecial: false,
         isBundle: false,
         isMobile: false,

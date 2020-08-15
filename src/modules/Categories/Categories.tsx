@@ -56,14 +56,13 @@ const Categories = (props: {}) => {
     <div className={classes.root}>
       {categoriesList.map((cat: any) => (
         <div
-          className={classes.category}
           key={cat.NodeId}
+          className={classes.category}
           onClick={() => handleCategoryClick(cat)}
         >
           {cat.Description}
         </div>
       ))}
-      <hr />
       {activeCategory && (
         <CategoriesDialog
           open={open}

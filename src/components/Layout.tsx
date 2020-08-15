@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { Box } from "@material-ui/core";
-import Home from "./Home";
+import Home from "../modules/Home/Home";
 import Categories from "../modules/Categories/Categories";
 import Routes from "../modules/Routes/Routes";
 import Header from "../modules/Header/Header";
@@ -24,9 +24,10 @@ const useStyles = makeStyles((theme) => ({
   headerNavItems: {
     position: "sticky",
     top: 0,
-    zIndex: 1,
+    zIndex: 2,
   },
   categories: {
+    zIndex: 1,
     position: (props: any) => (props.isScrollDown ? "static" : "sticky"),
     top: (props: any) => (props.isScrollDown ? "" : "70px"),
   },

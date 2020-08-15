@@ -26,13 +26,31 @@ const useStyles = makeStyles((theme) => ({
     // padding: "0 40px 0 16px",
   },
 }));
+
+interface SearchInputProps {
+  requestSuggestions: (val: string) => void;
+  // suggestions: Array<Suggestion>;
+  suggestions: Suggestion[];
+  searchTerm: string;
+  setSearchTerm: (val: string) => void;
+  onOptionSelect: (
+    event: React.ChangeEvent<{}>,
+    value: Suggestion | null
+  ) => void;
+}
+// todo put it in common place
+export interface Suggestion {
+  title: string;
+  value: string;
+}
+
 const SearchInput = ({
-  getSuggestions,
+  requestSuggestions,
   suggestions,
   searchTerm,
   setSearchTerm,
   onOptionSelect,
-}: any) => {
+}: SearchInputProps) => {
   const classes = useStyles();
   return (
     <Autocomplete
@@ -49,22 +67,12 @@ const SearchInput = ({
             className={classes.textField}
             onChange={(e) => {
               setSearchTerm(e.target.value);
-              getSuggestions(e.target.value);
+              requestSuggestions(e.target.value);
             }}
             value={searchTerm}
             placeholder="Search products & recipies"
           />
         </div>
-        // <TextField
-        //   {...params}
-        //   label="Search for product and recipies"
-        //   // variant="outlined"
-        //   onChange={(e) => {
-        //     setSearchTerm(e.target.value);
-        //     getSuggestions(e.target.value);
-        //   }}
-        //   value={searchTerm}
-        // />
       )}
     />
   );

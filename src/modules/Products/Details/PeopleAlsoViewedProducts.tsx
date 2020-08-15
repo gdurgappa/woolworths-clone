@@ -48,7 +48,8 @@ const PeopleAlsoViewedProducts = ({ params }: any) => {
           // xxxx store categories in redux?
           return (
             <Product
-              {...product}
+              key={product.Products[0].Stockcode}
+              {...product.Products[0]}
               category={{ category, subCategorySelected, subCategory, nodeId }}
             />
           );

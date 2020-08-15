@@ -7,16 +7,19 @@ export const getUrlParamsToFetchProducts = (
     return {
       url: `/shop/browse/${category}/${subCategory}/${subCategorySelected}`,
       categoryId: categoryMappedId[subCategorySelected].NodeId,
+      formatObject: `{"name":"${categoryMappedId[subCategorySelected].Description}"}`,
     };
   } else if (subCategory) {
     return {
       url: `/shop/browse/${category}/${subCategory}/`,
       categoryId: categoryMappedId[subCategory].NodeId,
+      formatObject: `{"name":"${categoryMappedId[subCategory].Description}"}`,
     };
   } else if (category) {
     return {
       url: `/shop/browse/${category}/`,
       categoryId: categoryMappedId[category].NodeId,
+      formatObject: `{"name":"${categoryMappedId[category].Description}"}`,
     };
   }
 
