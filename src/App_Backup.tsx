@@ -47,7 +47,7 @@ class App extends React.Component<Props> {
     //   var $ = cheerio.load(html);
     // jsonframe($);
     // var companiesList = $("body").scrape(frame);
-    // console.log("hi", companiesList); // Output the data in the terminal
+    //
     // });
   }
   render() {

@@ -16,7 +16,7 @@
 //     .text()
 //     .trim();
 // });
-// console.log(exploreData);
+//
 
 // // Explore this week’s specials
 // let welcomeData = [];
@@ -29,7 +29,7 @@
 //     .text()
 //     .trim();
 // });
-// console.log(JSON.stringify(welcomeData));
+//
 
 // // Check out the latest from Woolworths
 // let latestData = [];
@@ -43,7 +43,7 @@
 //     .text()
 //     .trim();
 // });
-// console.log(latestData);
+//
 
 // const objectArr = [
 //   {
@@ -102,7 +102,7 @@
 //   recipesData[i]["link"] = $(el).find("a").attr("href");
 //   recipesData[i]["image"] = $(el).css("background-image");
 // });
-// console.log(recipesData);
+//
 
 // // Shopping online
 // let shoppingData = [];
@@ -117,7 +117,7 @@
 //     .text()
 //     .trim();
 // });
-// console.log(shoppingData);
+//
 
 // // More from Woolworths
 // let moreData = [];
@@ -132,7 +132,7 @@
 //     .text()
 //     .trim();
 // });
-// console.log(moreData);
+//
 
 // // latest latest
 // // Explore this week’s specials
@@ -146,7 +146,7 @@
 //     .text()
 //     .trim();
 // });
-// console.log(welcomeData);
+//
 
 // // Check out the latest from Woolworths
 // let data = [];
@@ -163,7 +163,7 @@
 //   data[i]["link"] = $(el).find("a").attr("href");
 //   data[i]["image"] = $(el).css("background-image");
 // });
-// console.log(JSON.stringify(data));
+//
 
 // // Home cooking
 // let recipesData = [];
@@ -178,7 +178,7 @@
 //     .text()
 //     .trim();
 // });
-// console.log(recipesData);
+//
 
 // // Shopping online
 // let data = [];
@@ -195,7 +195,7 @@
 //   data[i]["link"] = $(el).find("a").attr("href");
 //   data[i]["image"] = $(el).css("background-image");
 // });
-// console.log(JSON.stringify(data));
+//
 
 // // More from Woolworths
 // let data = [];
@@ -212,7 +212,7 @@
 //   data[i]["link"] = $(el).find("a").attr("href");
 //   data[i]["image"] = $(el).css("background-image");
 // });
-// console.log(JSON.stringify(data));
+//
 
 // //carousal
 // const slides = ["cs1", "cs2", "cs3", "cs4", "cs5"];
@@ -233,7 +233,7 @@
 //     .text()
 //     .trim();
 // });
-// console.log(slideData);
+//
 // const res = [
 //   {
 //     background:
@@ -306,7 +306,7 @@
 //     db.collection("carousel")
 //       .add(object)
 //       .then(function (docRef) {
-//         console.log("Document written with ID: ", docRef.id);
+//
 //       });
 //   });
 // }

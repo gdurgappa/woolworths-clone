@@ -20,7 +20,7 @@
 //       .get()
 //       .then(({ docs }) => {
 //         docs.forEach((doc) => {
-//           console.log("doc", doc.data());
+//
 //           items.push(doc.data());
 //         });
 //         setCarouselItems(items);

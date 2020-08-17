@@ -18,7 +18,7 @@ const Reviews = ({ stockCode }: any) => {
         setReviewsData(res);
       });
   }, []);
-  console.log("reviews", reviews);
+
   return (
     <div>
       <h1>Reviews {totalCount}</h1>

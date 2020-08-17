@@ -2277,7 +2277,7 @@ function _updateRibbonItem(idx, option) {
 
        qaNavItems[idx].querySelector('.quick-access-nav-item-image').style.background = 'url("' + bgUrl + '") no-repeat center center/' + bgWidth + 'px ' + bgHeight + 'px ';
    } else {
-       console.log('Missing something');
+       
        return
    }
    if (!option.tooltip) {
@@ -2378,7 +2378,7 @@ _generateRibbonItems(ribbonItems, qaNavEl);
 
 
 scrollBehaviorMeasure = (ribbonWidth * (ribbonItems.length)) + ((ribbonItems.length + 1) * 16);
-// console.log(scrollBehaviorMeasure)
+// 
 
 if (qaNavEl.scrollWidth == scrollBehaviorMeasure && qaNavEl.scrollLeft == 0) {
    qaNavArrowRight.disabled = false;
@@ -2408,8 +2408,8 @@ qaNavArrowRight.addEventListener("click", function () {
 //     }
 // })
 window.addEventListener('resize', function (e) {
-   // console.log(qaNavEl.scrollWidth);
-   // console.log(qaNavEl.scrollLeft);
+   // 
+   // 
    if (qaNavEl.scrollWidth == scrollBehaviorMeasure && qaNavEl.scrollLeft == 0) {
        qaNavArrowRight.disabled = false;
    } else if (qaNavEl.scrollWidth == scrollBehaviorMeasure && qaNavEl.scrollLeft != 0) {
@@ -7150,10 +7150,10 @@ class="dynamic-content2-item dynamic-content2-item-html">
 //     ot.forEach(function(offertile) {
    
 //           try {
-//               console.log('For Each');
+//               
 //             document.getElementById("offertiles").appendChild(document.getElementById(offertile));
 //         } catch(e) {
-//             console.log(e + "From loop");
+//             
 //         }
 //     })
 
@@ -7178,10 +7178,10 @@ class="dynamic-content2-item dynamic-content2-item-html">
 // ot.forEach(function(offertile) {
    
 //       try {
-//           //console.log('For Each');
+//           //
 //         document.getElementById("offertiles").appendChild(document.getElementById(offertile));
 //     } catch(e) {
-//         //console.log(e + "From loop");
+//         //
 //     }
 // })
 
@@ -7883,9 +7883,9 @@ var swiper = new Swiper('.swiper-container', {
                let index_currentSlide = this.activeIndex,
                    currentSlide = this.slides[index_currentSlide]
                //
-               // console.log(getStyle(currentSlide, "background-color"))
-               // console.log(rgb2hex(getStyle(currentSlide, "background-color")))
-               // console.log(getCorrectTextColor(rgb2hex(getStyle(currentSlide, "background-color"))))
+               // 
+               // 
+               // 
      
                // document.documentElement.style.setProperty('--swiper-theme-color', getCorrectTextColor(rgb2hex(getStyle(currentSlide, "background-color"))));
                document.documentElement.style.setProperty('--swiper-theme-color', getCorrectTextColor(rgb2hex(getStyle(currentSlide, "background-color"))));
@@ -7894,9 +7894,9 @@ var swiper = new Swiper('.swiper-container', {
                let index_currentSlide = this.activeIndex,
                    currentSlide = this.slides[index_currentSlide]
                //
-               // console.log(getStyle(currentSlide, "background-color"))
-               // console.log(rgb2hex(getStyle(currentSlide, "background-color")))
-               // console.log(getCorrectTextColor(rgb2hex(getStyle(currentSlide, "background-color"))))
+               // 
+               // 
+               // 
                // document.documentElement.style.setProperty('--swiper-theme-color', getCorrectTextColor(rgb2hex(getStyle(currentSlide, "background-color"))));
                document.documentElement.style.setProperty('--swiper-theme-color', getCorrectTextColor(rgb2hex(getStyle(currentSlide, "background-color"))));
            }

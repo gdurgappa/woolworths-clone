@@ -43,7 +43,7 @@ export interface Suggestion {
   title: string;
   value: string;
 }
-
+// todo: suggestion should close after enter key
 const SearchInput = ({
   requestSuggestions,
   suggestions,
@@ -52,13 +52,26 @@ const SearchInput = ({
   onOptionSelect,
 }: SearchInputProps) => {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const handleEnterPress = (e: any) => {
+    e.keyCode === 13 &&
+      onOptionSelect(e, {
+        title: e.target.value,
+        value: e.target.value,
+      });
+    setOpen(false);
+  };
   return (
     <Autocomplete
       id="combo-box-demo"
+      open={open}
       options={suggestions}
+      openOnFocus
       getOptionLabel={(option: any) => option.title}
       onChange={onOptionSelect}
       className={classes.autoCompleteRoot}
+      onBlur={() => (setOpen(false)}
+      onFocus={() => (setOpen(true)}
       renderInput={(params) => (
         <div ref={params.InputProps.ref}>
           <input
@@ -66,9 +79,11 @@ const SearchInput = ({
             {...params.inputProps}
             className={classes.textField}
             onChange={(e) => {
+              setOpen(true);
               setSearchTerm(e.target.value);
               requestSuggestions(e.target.value);
             }}
+            onKeyDown={handleEnterPress}
             value={searchTerm}
             placeholder="Search products & recipies"
           />

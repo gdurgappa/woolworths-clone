@@ -29,6 +29,15 @@ const useStyles = makeStyles({
     background: "#fff",
     boxShadow: "0 0 1px rgba(0,0,0,.3)",
     outline: "none",
+    border: (props: any) => props && props.BorderColor && "2px solid",
+    borderColor: (props: any) =>
+      props && props.BorderColor && props.BorderColor,
+  },
+  titleAndPriceContainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    height: "145px",
   },
   cardContentRoot: {
     padding: 0,
@@ -60,7 +69,7 @@ const useStyles = makeStyles({
   cardActionButtonsContainer: {
     display: "flex",
     alignItems: "center",
-    margin: "10px 20px",
+    margin: "30px 20px 0px 20px",
     textAlign: "center",
     flexDirection: "column",
     padding: 0,
@@ -68,18 +77,40 @@ const useStyles = makeStyles({
 });
 
 const Product = (props: Product) => {
-  const classes = useStyles();
   const {
     Description,
     CupString,
+    InstoreHasCupPrice,
     InstorePrice,
     MediumImageFile,
     UrlFriendlyName,
     Stockcode,
     ImageTag,
+    HeaderTag,
+    Name,
+    HideWasSavedPrice,
+    InstoreWasPrice,
   } = props;
+  console.log("HeaderTag", HeaderTag);
+  const classes = useStyles(HeaderTag || {});
   return (
     <Card className={classes.productContainer}>
+      {HeaderTag && (
+        <div
+          style={{
+            backgroundColor: HeaderTag.BackgroundColor,
+            color: HeaderTag.TextColor,
+            textAlign: "center",
+            width: "100%",
+            textTransform: "uppercase",
+            padding: "4px 0px",
+            fontSize: "14px",
+          }}
+          dangerouslySetInnerHTML={{
+            __html: HeaderTag.Content && HeaderTag.Content,
+          }}
+        />
+      )}
       <CardActionArea>
         <CardMedia
           classes={{ media: classes.image }}
@@ -95,15 +126,25 @@ const Product = (props: Product) => {
             src={`https://woolworths.com.au/${ImageTag.TagContent}`}
           />
         )}
-        <CardContent className={classes.cardContentRoot}>
-          <Link
-            className={classes.title}
-            to={`/shop/productdetails/${Stockcode}/${UrlFriendlyName}`}
-          >
-            {Description}
-          </Link>
-        </CardContent>
-        <ProductPrice {...{ CupString, InstorePrice }} />
+        <div className={classes.titleAndPriceContainer}>
+          <CardContent className={classes.cardContentRoot}>
+            <Link
+              className={classes.title}
+              to={`/shop/productdetails/${Stockcode}/${UrlFriendlyName}`}
+            >
+              {Name}
+            </Link>
+          </CardContent>
+          <ProductPrice
+            {...{
+              CupString,
+              InstorePrice,
+              InstoreHasCupPrice,
+              HideWasSavedPrice,
+              InstoreWasPrice,
+            }}
+          />
+        </div>
       </CardActionArea>
       <CardActions className={classes.cardActionButtonsContainer}>
         <AddToCartButton onClickCallback={() => {}} />

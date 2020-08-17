@@ -20,24 +20,6 @@ import Link from "../../../components/Common/Link";
 import Magnifier from "react-magnifier";
 import ReactImageMagnify from "react-image-magnify";
 import { useHistory } from "react-router-dom";
-/*
-Product.HeaderTag: {BackgroundColor: "#c20016", BorderColor: "#c20016", TextColor: "#fff",…}
-BackgroundColor: "#c20016"
-BorderColor: "#c20016"
-Content: "Low price <span class="u-semibold">always</span>"
-Promotion: "LowPrice"
-TagLink: null
-TextColor: "#fff"
-
-DetailsImagePaths: ["https://cdn0.woolworths.media/content/wowproductimages/large/961095.jpg",…]
-0: "https://cdn0.woolworths.media/content/wowproductimages/large/961095.jpg"
-1: "https://cdn0.woolworths.media/content/wowproductimages/large/961095_2.jpg"
-2: "https://cdn0.woolworths.media/content/wowproductimages/large/961095_3.jpg"
-3: "https://cdn0.woolworths.media/content/wowproductimages/large/961095_4.jpg"
-4: "https://cdn0.woolworths.media/content/wowproductimages/large/961095_5.jpg"
-5: "https://cdn0.woolworths.media/content/wowproductimages/large/961095_6.jpg"
-
-*/
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -203,6 +185,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const ProductMainDisplay = ({ productDetails }: any) => {
+  //todo: https://www.woolworths.com.au/shop/productdetails/95889/nobby-s-peanuts-salted
+  // label , prodcut list ... price dropped etc. h1 is missing in product category search
   const classes = useStyles();
   const [currentImage, setCurrentImage] = useState({
     medium: null,
@@ -215,7 +199,7 @@ const ProductMainDisplay = ({ productDetails }: any) => {
       large: productDetails.Product.LargeImageFile,
     });
   }, []);
-  console.log("productDetails", productDetails);
+
   return (
     <section className={classes.root}>
       <div

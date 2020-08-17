@@ -1,4 +1,5 @@
 export interface Product {
+  Name: string;
   Description: string;
   CupString: string;
   InstorePrice: number;
@@ -8,4 +9,15 @@ export interface Product {
   ImageTag: {
     TagContent: string;
   };
+  HeaderTag: {
+    BackgroundColor: string;
+    BorderColor: string;
+    Content: string;
+    Promotion: string;
+    TagLink: string;
+    TextColor: string;
+  };
+  HideWasSavedPrice: boolean;
+  InstoreWasPrice: number;
+  InstoreHasCupPrice: boolean;
 }

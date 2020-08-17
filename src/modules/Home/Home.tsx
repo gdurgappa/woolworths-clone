@@ -2,6 +2,11 @@ import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import ExploreThisWeeksSpecial from "../../components/Home/ExploreWeeksSpecial/ExploreThisWeeksSpecial";
+import LatestFromWoolworths from "../../components/Home/LatestFromWoolworths/LatestFromWoolworths";
+import ShoppingOnline from "../../components/Home/ShoppingOnline/ShoppingOnline";
+import MoreFromWoolworths from "../../components/Home/MoreFromWoolworths/MoreFromWoolworths";
+import HomeCooking from "../../components/Home/HomeCooking/HomeCooking";
 // import MainCarousel from "./MainCarousel";
 
 const useStyles = makeStyles((theme) => ({
@@ -50,17 +55,20 @@ const Home = (props: {}) => {
         welcomeSection
       </Grid>
       <Grid item xs={12} className={classes.weekSpecialSection}>
-        weekSpecialSection
+        {/* <ExploreThisWeeksSpecial /> */}
       </Grid>
       <Grid item xs={12} className={classes.latestSection}>
-        latestSection
+        {/* <LatestFromWoolworths /> */}
       </Grid>
       <Grid item xs={12} className={classes.homecookingSection}>
-        homecookingSection
+        <HomeCooking />
+      </Grid>
+      <Grid item xs={12} className={classes.homecookingSection}>
+        {/* <ShoppingOnline /> */}
       </Grid>
 
       <Grid item xs={12} className={classes.footer}>
-        homecookingSection
+        <MoreFromWoolworths />
       </Grid>
     </Grid>
   );

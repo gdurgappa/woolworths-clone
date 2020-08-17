@@ -21,4 +21,3 @@ var frame = {
   },
 };
 var companiesList = html().scrape(frame);
-console.log(companiesList); // Output the data in the terminal

@@ -26,7 +26,6 @@ request(
       jsonframe($);
 
       var companiesList = $("body").scrape(frame);
-      console.log("hi", companiesList); // Output the data in the terminal
     }
   }
 );

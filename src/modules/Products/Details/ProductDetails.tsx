@@ -33,7 +33,7 @@ const ProductDetails = (props: {}) => {
   const [productDetails, setProductDetails] = useState<any>(null);
   const params: any = useParams();
   const classes = useStyles();
-  console.log("params", params);
+
   const getProductDetailss = () => {
     // todo: use a hook
     fetch(

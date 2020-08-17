@@ -10,6 +10,8 @@ import ProductListContent from "../Products/ProductList/ProductListContent";
 import ProductFilter from "../../components/ProductList/ProductFilter";
 import ProductSortBy from "../../components/ProductList/ProductSortBy";
 import DynamicBanner from "../../components/ProductList/DynamicBanner";
+import { Grid } from "@material-ui/core";
+import ProductSearchLeftPanel from "./ProductSearchLeftPanel";
 
 // const useStyles = makeStyles((theme) => ({
 //   root: {
@@ -74,7 +76,12 @@ const useStyles = makeStyles((theme) => ({
   //sort
 
   //products
-  productsContainer: { display: "flex", flexFlow: "wrap" },
+  productsContainer: {
+    display: "flex",
+    flexFlow: "wrap",
+    marginLeft: "-10px",
+    marginRight: "-10px",
+  },
   adBanner: {},
   breadCrumbs: {},
 }));
@@ -117,53 +124,59 @@ function ProductsSearchResult() {
     });
   }, [params]);
 
-  console.log("searchProductsResultsList", searchProductsResultsList);
   return (
-    <div className={classes.root}>
-      <div className={classes.contentContainer}>
-        {ProductCount && (
-          <h1 className={classes.headingText}>
-            {`No results TBD... “${search.split("=")[1]}”`}
-          </h1>
-        )}
-        {SuggestedTerm && (
-          <h1 className={classes.headingText}>
-            {`Unfortunately, we couldn’t find results for “${
-              search.split("=")[1]
-            }”`}
-          </h1>
-        )}
-        {!SuggestedTerm && (
-          <h1 className={classes.headingText}>
-            {`Showing results for “${search.split("=")[1]}”`}
-          </h1>
-        )}
-        <ProductFilter />
-        <h4 className={classes.totalProductsText}>
-          {TotalRecordCount} Products
-        </h4>
+    <Grid container spacing={3}>
+      <Grid item xs={2}>
+        <ProductSearchLeftPanel />
+      </Grid>
+      <Grid item xs={9} style={{ margin: "0 auto" }}>
+        {/* <div className={classes.root}> */}
+        <div className={classes.contentContainer}>
+          {ProductCount && (
+            <h1 className={classes.headingText}>
+              {`No results TBD... “${search.split("=")[1]}”`}
+            </h1>
+          )}
+          {SuggestedTerm && (
+            <h1 className={classes.headingText}>
+              {`Unfortunately, we couldn’t find results for “${
+                search.split("=")[1]
+              }”`}
+            </h1>
+          )}
+          {!SuggestedTerm && (
+            <h1 className={classes.headingText}>
+              {`Showing results for “${search.split("=")[1]}”`}
+            </h1>
+          )}
+          <ProductFilter />
+          <h4 className={classes.totalProductsText}>
+            {TotalRecordCount} Products
+          </h4>
 
-        <ProductSortBy />
+          <ProductSortBy />
 
-        <div className={classes.productsContainer}>
-          {searchProductsResultsList.map((product: any) => {
-            return (
-              <Product
-                key={product.Products[0].Stockcode}
-                {...product.Products[0]}
-              />
-            );
-          })}
+          <div className={classes.productsContainer}>
+            {searchProductsResultsList.map((product: any) => {
+              return (
+                <Product
+                  key={product.Products[0].Stockcode}
+                  {...product.Products[0]}
+                />
+              );
+            })}
+          </div>
+
+          <Pagination
+            count={
+              page.totalProductsCount && page.totalProductsCount / page.limit
+            }
+            shape="rounded"
+          />
         </div>
-
-        <Pagination
-          count={
-            page.totalProductsCount && page.totalProductsCount / page.limit
-          }
-          shape="rounded"
-        />
-      </div>
-    </div>
+        {/* </div> */}
+      </Grid>
+    </Grid>
   );
 }
 

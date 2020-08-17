@@ -53,7 +53,9 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
 }));
+
 var lastScrollTop = 0;
+
 const Layout = (props: {}) => {
   const [isScrollDown, setIsScrollDown] = useState(false);
   const classes = useStyles({ isScrollDown });
@@ -64,6 +66,7 @@ const Layout = (props: {}) => {
     };
   }, []);
 
+  // todo: causing re-render..
   const callback = () => {
     var st = window.pageYOffset || document.documentElement.scrollTop;
     if (st > lastScrollTop) {

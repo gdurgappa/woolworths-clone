@@ -43,7 +43,13 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Helvetica,Arial,sans-serif",
   },
 }));
-const ProductPrice = ({ CupString, InstorePrice }: any) => {
+const ProductPrice = ({
+  CupString,
+  InstorePrice,
+  InstoreHasCupPrice,
+  HideWasSavedPrice,
+  InstoreWasPrice,
+}: any) => {
   const classes = useStyles();
   return (
     <div className={classes.priceContainer}>
@@ -55,8 +61,15 @@ const ProductPrice = ({ CupString, InstorePrice }: any) => {
         <span className={classes.productPriceInCents}>
           {getProductPriceInDollarsAndCents(InstorePrice).cents}
         </span>
+        {!HideWasSavedPrice && (
+          <div style={{ fontSize: "12px" }}>
+            Was ${InstoreWasPrice.toFixed(2)}
+          </div>
+        )}
       </div>
-      <span className={classes.cupPrice}>{CupString}</span>
+      {InstoreHasCupPrice && (
+        <span className={classes.cupPrice}>{CupString}</span>
+      )}
     </div>
   );
 };

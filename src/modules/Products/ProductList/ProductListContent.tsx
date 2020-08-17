@@ -40,7 +40,12 @@ const useStyles = makeStyles((theme) => ({
   //sort
 
   //products
-  productsContainer: { display: "flex", flexFlow: "wrap" },
+  productsContainer: {
+    display: "flex",
+    flexFlow: "wrap",
+    marginLeft: "-10px",
+    marginRight: "-10px",
+  },
   adBanner: {},
   breadCrumbs: {},
 }));
@@ -57,7 +62,7 @@ function ProductListContent({ params, categoryMappedId }: any) {
   const { filteredProducts: products, TotalRecordCount }: any = useSelector<
     any
   >((state) => state.products);
-
+  console.log("products", products);
   return (
     <div className={classes.root}>
       {Object.keys(categoryMappedId).length && (

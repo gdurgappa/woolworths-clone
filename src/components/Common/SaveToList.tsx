@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const SaveToList = ({ linkOverrideStyle, iconOverrideStyle }: any) => {
-  console.log("linkOverrideStyle", linkOverrideStyle);
   const classes = useStyles();
   return (
     <div style={{ width: "50%" }} className={classes.linkContainer}>
