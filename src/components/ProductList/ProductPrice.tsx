@@ -9,36 +9,38 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     MsFlexAlign: "start",
     alignItems: "center",
-    height: "56px",
-    margin: "0 20px",
-    marginTop: "27px",
+    padding: "0 20px 30px",
+    // height: "56px",//parent
+    // margin: "0 20px", //parent
+    // marginTop: "27px",//parent
   },
   productPriceContainer: {
     position: "relative",
   },
   productPriceDollarSymbol: {
     fontSize: "20px",
-    lineHeight: 1,
+    // lineHeight: 1,
     verticalAlign: "top",
   },
-  productPriceInDollar: { fontSize: "36px" },
+  productPriceInDollar: { fontSize: "36px", lineHeight: 1 },
   productPriceInCents: {
     // position: "absolute", //todo: bug
-    width: "1px",
-    height: "1px",
     margin: "-1px",
     padding: 0,
     overflow: "hidden",
     clip: "rect(0,0,0,0)",
     border: 0,
-    lineHeight: 1,
+    // lineHeight: 1,
     verticalAlign: "top",
+    fontSize: "20px",
   },
   cupPrice: {
+    fontSize: "14px",
     lineHeight: 2,
     color: "#3a474e",
     whiteSpace: "nowrap",
-    marginLeft: "5px",
+    marginLeft: "4px",
+    fontFamily: "Helvetica,Arial,sans-serif",
   },
 }));
 const ProductPrice = ({ CupString, InstorePrice }: any) => {

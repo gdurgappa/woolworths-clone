@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   //total
   totalProductsText: {
     display: "flex",
-    fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
+    // fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
     fontSize: "20px",
     marginRight: "18px",
   },

@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   buttonRoot: {
-    fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
+    // fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
     fontSize: "14px",
     fontWeight: 500,
     textAlign: "center",
@@ -51,10 +51,10 @@ const useStyles = makeStyles((theme) => ({
     color: "#fff",
   },
 }));
-const AddToCartButton = ({ onClickCallback }: any) => {
+const AddToCartButton = ({ onClickCallback, rootDivOverrideStyle }: any) => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <div style={rootDivOverrideStyle} className={classes.root}>
       <Button
         classes={{ root: classes.buttonRoot, label: classes.buttonLabel }}
       >

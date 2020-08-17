@@ -6,7 +6,6 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "70px",
     color: "#fff",
     padding: "0 10px",
-    fontFamily: `"Fresh Sans Medium",Helvetica,Arial,sans-serif`,
     whiteSpace: "nowrap",
   },
 }));

@@ -38,8 +38,6 @@ function* getAggregatedSearchProductsResults(action: any) {
     api.get,
     GET_AGGREGATED_SEARCH_PRODUCTS_RESULT_URL + "?searchTerm=" + action.payload
   );
-  console.log("action", action);
-  console.log("aggregatedResult", aggregatedResult);
   yield put({
     type: "PRODUCTS_SEARCH_AGGREGATED_RESULTS_SUCCESS",
     payload: aggregatedResult.SearchCount,

@@ -19,7 +19,13 @@ import {
 import { get } from "./api/request";
 import { firebaseConfig } from "./config/firebaseConfig";
 
-const theme = createMuiTheme({});
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: ['"Fresh Sans Md"', "Helvetica", "Arial", "sans-serif"].join(
+      ","
+    ),
+  },
+});
 
 interface Props {
   name: string;

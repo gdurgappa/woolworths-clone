@@ -37,7 +37,7 @@ const useStyles = makeStyles({
   title: {
     display: "block",
     fontSize: "14px",
-    fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
+    // fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
     color: "#3a474e",
     margin: "0 20px",
     lineHeight: "1.42857143",

@@ -1,30 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
-import { Chip } from "@material-ui/core";
-import Product from "../Product";
-import ProductJson from "../Product.json";
+
 import * as siteContent from "../../../constants/siteContent";
 import NutritionalInformation from "../../../components/Product/NutritionalInformation";
 import CountryOfOriginLabel from "../../../components/Product/CountryOfOriginLabel";
 import AdditionalInfo from "../../../components/Product/AdditionalInfo";
-import RatingSummary from "../../../components/Product/RatingSummary";
+import RatingSummary from "./RatingSummary";
 import Reviews from "../Reviews";
 import Rating from "../../../components/Product/Rating";
 import PeopleAlsoViewedProducts from "./PeopleAlsoViewedProducts";
+import ProductMainDisplay from "./ProductMainDisplay";
+import ProductInformation from "./ProductInformation";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    height: "100%",
   },
   chipRoot: {
     display: "flex",
@@ -34,21 +28,12 @@ const useStyles = makeStyles({
   },
 });
 
-/**
- *
- * configure redux
- * store categories
- * compute active categoriy in prodDetails component
- * make api call and get products for the category
- * render random 10 producgts for -- also viewed section
- */
-
 const ProductDetails = (props: {}) => {
   //   const [product, setProductDetails] = useState<any>([]);
   const [productDetails, setProductDetails] = useState<any>(null);
   const params: any = useParams();
   const classes = useStyles();
-
+  console.log("params", params);
   const getProductDetailss = () => {
     // todo: use a hook
     fetch(
@@ -74,68 +59,9 @@ const ProductDetails = (props: {}) => {
 
   return (
     productDetails && (
-      <>
-        <Card className={classes.root}>
-          <CardMedia
-            component="img"
-            alt="Contemplative Reptile"
-            height="140"
-            image={productDetails.Product.MediumImageFile}
-            title="Contemplative Reptile"
-          />
-        </Card>
-        <Card className={classes.root}>
-          <CardActionArea>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {productDetails.Product.Description}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                {productDetails.Product.InstorePrice}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                {productDetails.Product.CupString}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <Button size="small" color="primary">
-              Save to List
-            </Button>
-            <Button size="small" color="primary">
-              Add to Card
-            </Button>
-          </CardActions>
-        </Card>
-        <Chip icon={<LocationOnIcon />} label="Check Stock In out stores" />
-        {/* render prop? */}
-        <RatingSummary rating={productDetails.Product.Rating} />
-        <h2>Product Details</h2>
-        <div
-          dangerouslySetInnerHTML={{
-            __html:
-              productDetails.Product.AdditionalAttributes &&
-              productDetails.Product.AdditionalAttributes.description,
-          }}
-        />
-        <AdditionalInfo
-          title={"Allergen"}
-          description={productDetails.AdditionalAttributes.allergencontains}
-        />
-        <AdditionalInfo
-          title={"Ingredients"}
-          description={productDetails.AdditionalAttributes.ingredients}
-        />
-        <CountryOfOriginLabel
-          countryOfOriginInfo={productDetails.CountryOfOriginLabel}
-        />
-        <div>--------------</div>
-        <NutritionalInformation
-          nutritionalInformation={productDetails.NutritionalInformation}
-        />
-        <div>--------------</div>
-        <h2>Disclaimer</h2>
-        <div>{siteContent.productDisclaimer}</div>
+      <div className={classes.root}>
+        <ProductMainDisplay productDetails={productDetails} />
+        <ProductInformation productDetails={productDetails} />
         <h1>Ratings and Reviews</h1>
         {/* render prop? */}
         <Rating rating={productDetails.Product.Rating} />
@@ -151,7 +77,7 @@ const ProductDetails = (props: {}) => {
           }
         />
         <h1>People Who Bought This Item Also Bought</h1>
-      </>
+      </div>
     )
   );
 };

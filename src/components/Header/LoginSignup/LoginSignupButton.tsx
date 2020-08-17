@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "14px",
     textAlign: "center",
     alignItems: "center",
-    fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
+    // fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
     lineHeight: "15px",
     borderRadius: "28px",
     justifyContent: "center",

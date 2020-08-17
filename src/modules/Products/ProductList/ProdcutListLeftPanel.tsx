@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "0 0 5px rgba(0,0,0,.15)",
     height: "100wh",
     backgroundColor: "#fff",
-    fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
+    // fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
     width: "220px",
     flex: "0 0 220px",
   },

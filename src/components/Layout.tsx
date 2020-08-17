@@ -87,7 +87,7 @@ const Layout = (props: {}) => {
         <Categories />
       </Grid>
       <Grid item xs={12}>
-        <AnnouncementBanner content="Due to temporary supply disruptions in our network some products may be unavailable, and you may experience higher than usual out of stocks in your order. We apologise for any inconvenience caused." />
+        {/* <AnnouncementBanner content="Due to temporary supply disruptions in our network some products may be unavailable, and you may experience higher than usual out of stocks in your order. We apologise for any inconvenience caused." /> */}
       </Grid>
 
       <Grid container>

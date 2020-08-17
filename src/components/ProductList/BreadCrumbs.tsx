@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 0,
   },
   breadCrumbItemLi: {
-    font: "14px Fresh Sans,Helvetica,Arial,sans-serif",
+    fontSize: "14px",
     alignItems: "center",
     display: "flex",
   },
