@@ -179,3 +179,13 @@ table {
   background: #efefef;
   text-align: center;
 }
+
+/* product search result left hand panel related classes */
+.activeCategoryLink {
+  background-color: #3a474e;
+  color: #fff !important;
+}
+.activeCategoryLink:hover {
+  background-color: #3a474e;
+  color: #fff !important;
+}

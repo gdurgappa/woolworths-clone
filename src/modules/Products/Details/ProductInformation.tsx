@@ -7,40 +7,87 @@ import * as siteContent from "../../../constants/siteContent";
 
 const useStyles = makeStyles((theme) => ({
   productInfoContainer: {
-    alignItems: "center",
     display: "flex",
+    alignItems: "start",
+    justifyContent: "center",
+    flexDirection: "column",
+    background: "#eee",
+    paddingBottom: "40px",
+    width: "940px",
+    margin: "0 auto",
+    color: "#3a474e",
+    fontFamily: "Helvetica, Arial, sans-serif",
+    fontSize: "16px",
+    lineHeight: 1.625,
+    textSizeAdjust: " none",
+  },
+  heading: {
+    marginTop: "40px",
+    marginBottom: "22px",
+    fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
+    "& h2": {
+      fontSize: "28px",
+      fontWeight: 500,
+    },
+    "& div": {
+      marginBottom: "20px",
+      fontFamily: "Helvetica,Arial,sans-serif",
+    },
+  },
+  hr: {
+    width: "100%",
+    height: "1px",
+    margin: "14px 0",
+    border: "none",
+    backgroundImage: "linear-gradient(90deg,#3a474e 30%,#eee 0)",
+    backgroundPosition: "top",
+    backgroundSize: "6px 1px",
+    backgroundRepeat: "repeat-x",
+  },
+
+  disclaimer: {
+    fontSize: "12px",
+    marginBottom: "20px",
+    fontFamily: "Helvetica, Arial, sans-serif",
   },
 }));
 const ProductInformation = ({ productDetails }: any) => {
   const classes = useStyles();
   return (
     <section className={classes.productInfoContainer}>
-      <h2>Product Details</h2>
-      <div
-        dangerouslySetInnerHTML={{
-          __html:
-            productDetails.Product.AdditionalAttributes &&
-            productDetails.Product.AdditionalAttributes.description,
-        }}
+      <div className={classes.heading}>
+        <h2>Product Details</h2>
+        <div
+          dangerouslySetInnerHTML={{
+            __html:
+              productDetails.Product.AdditionalAttributes &&
+              productDetails.Product.AdditionalAttributes.description,
+          }}
+        />
+      </div>
+      <CountryOfOriginLabel
+        countryOfOriginInfo={productDetails.CountryOfOriginLabel}
       />
-      <AdditionalInfo
-        title={"Allergen"}
-        description={productDetails.AdditionalAttributes.allergencontains}
-      />
+      <div className={classes.hr} />
+
       <AdditionalInfo
         title={"Ingredients"}
         description={productDetails.AdditionalAttributes.ingredients}
       />
-      <CountryOfOriginLabel
-        countryOfOriginInfo={productDetails.CountryOfOriginLabel}
+
+      <AdditionalInfo
+        title={"Allergen"}
+        description={productDetails.AdditionalAttributes.allergencontains}
       />
-      <div>--------------</div>
+
       <NutritionalInformation
         nutritionalInformation={productDetails.NutritionalInformation}
       />
-      <div>--------------</div>
-      <h2>Disclaimer</h2>
-      <div>{siteContent.productDisclaimer}</div>
+
+      <p className={classes.disclaimer}>
+        <strong>Disclaimer: </strong>
+        {siteContent.productDisclaimer}
+      </p>
     </section>
   );
 };

@@ -43,12 +43,21 @@ const getData = (obj: any) => {
     Children,
     ProductCount,
     DisplayOrder,
+    IsBundle,
   } = obj;
   categoryMappedId[UrlFriendlyName] = {
     NodeId,
     Description,
     ProductCount,
     DisplayOrder,
+    IsBundle,
   };
-  return { NodeId, Description, UrlFriendlyName, Children, DisplayOrder };
+  return {
+    NodeId,
+    Description,
+    UrlFriendlyName,
+    Children,
+    DisplayOrder,
+    IsBundle,
+  };
 };

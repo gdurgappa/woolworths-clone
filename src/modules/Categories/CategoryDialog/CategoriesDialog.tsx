@@ -4,9 +4,11 @@ import Dialog from "@material-ui/core/Dialog";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import * as api from "../../../api/request";
 import { styled } from "@material-ui/core/styles";
-import CloseIcon from "@material-ui/icons/Close";
+
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import { light } from "@material-ui/core/styles/createPalette";
+import CategoryDialogInitialContent from "./CategoryDialogInitialContent";
+import CategoryDialogHeader from "./CategoryDialogHeader";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,19 +24,10 @@ const useStyles = makeStyles((theme) => ({
     margin: 0,
     maxWidth: "100%",
   },
-  dialogHeader: {
-    height: "110px",
-    color: "#3a474e",
-    borderBottom: "dotted",
-    padding: "0 70px",
-    display: "flex",
-    WebkitBoxPack: "justify",
-    justifyContent: "space-between",
-    WebkitBoxAlign: "center",
-    alignItems: "center",
-  },
+
   dialogLeftNavsContainer: {
     display: "flex",
+    maxWidth: "220px",
   },
   dialogContentNavLink: {
     color: "#178841",
@@ -72,8 +65,20 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "44px",
     width: "calc(100% - 20px)",
     marginBottom: "1px",
-    padding: "5px 20px",
     cursor: "pointer",
+    "& span": {
+      padding: "5px 20px",
+    },
+    "& svg": {
+      position: "absolute",
+      right: 0,
+      fontSize: "25px",
+    },
+  },
+  activeSubCategoryLink: {
+    backgroundColor: "#3a474e",
+    color: "#fff",
+    width: "100%",
   },
   subCategoryContainer: {},
   subCategoryItem: {},
@@ -91,18 +96,20 @@ const CategoriesDialog = ({
     any
   >([]);
   useEffect(() => {
+    activeCategory &&
+      import(
+        `../../../assets/images/${activeCategory.UrlFriendlyName}.svg`
+      ).then((res) => {
+        console.log("res", res);
+        setCategoryIcon(res.default);
+      });
     const url = `https://www.woolworths.com.au/apis/ui/banner?CategoryId=${activeCategory.NodeId}&IsSpecialRoot=false`;
     api.get(url).then((res) => {
       setCategoryBetbannerThumbnails(res.BannerResponses);
     });
-    import(`../../assets/images/${activeCategory.UrlFriendlyName}.svg`).then(
-      (res) => {
-        console.log("res", res);
-        setCategoryIcon(res.default);
-      }
-    );
   }, [activeCategory]);
-
+  console.log("activeSubCategory", activeSubCategory);
+  console.log("activeCategory", activeCategory);
   return (
     <Dialog
       onClose={handleClose}
@@ -110,41 +117,11 @@ const CategoriesDialog = ({
       open={open}
       classes={{ root: classes.root, paper: classes.paper }}
     >
-      <div className={classes.dialogHeader}>
-        {categoryIcon && (
-          <img src={categoryIcon} alt={activeCategory.Description} />
-        )}
-        <h2>{activeCategory.Description}</h2>
-        <ul>
-          {activeCategory.Children.filter(
-            (cat: any) => cat.DisplayOrder === -1
-          ).map((cat: any) => {
-            return (
-              <li onClick={() => handleClose(false)}>
-                <Link
-                  className={classes.dialogContentNavLink}
-                  to={`/shop/browse/${cat.UrlFriendlyName}`}
-                >
-                  <span>{"Show All " + cat.Description}</span>
-                  <ChevronRightIcon />
-                </Link>
-              </li>
-            );
-          })}
-          <li onClick={() => handleClose(false)}>
-            <Link
-              className={classes.dialogContentNavLink}
-              to={`/shop/browse/${activeCategory.UrlFriendlyName}`}
-            >
-              <span>{"Show All " + activeCategory.Description}</span>
-              <ChevronRightIcon />
-            </Link>
-          </li>
-        </ul>
-        <div>
-          Close <CloseIcon />
-        </div>
-      </div>
+      <CategoryDialogHeader
+        activeCategory={activeCategory}
+        categoryIcon={categoryIcon}
+        handleClose={handleClose}
+      />
       <div className={classes.dialogLeftNavsContainer}>
         <nav className={classes.dialogLeftNav}>
           <ul className={classes.categoryNavUl}>
@@ -153,8 +130,22 @@ const CategoriesDialog = ({
             ).map((cat: any) => {
               return (
                 <li
+                  // style={
+                  //   activeSubCategory &&
+                  //   activeSubCategory.UrlFriendlyName === cat.UrlFriendlyName
+                  //     ? {
+                  //         background: "red",
+                  //       }
+                  //     : {}
+                  // }
                   key={cat.NodeId}
-                  className={classes.categoryItem}
+                  className={[
+                    classes.categoryItem,
+                    activeSubCategory &&
+                      activeSubCategory.UrlFriendlyName ===
+                        cat.UrlFriendlyName &&
+                      classes.activeSubCategoryLink,
+                  ].join(" ")}
                   onClick={() => setActiveSubCategory(cat)}
                 >
                   <span> {cat.Description}</span>
@@ -165,16 +156,14 @@ const CategoriesDialog = ({
           </ul>
         </nav>
         {!activeSubCategory && categoryBannerThumbnails && (
-          <div>
-            {categoryBannerThumbnails.map((ban: any, index: any) => {
-              return <img src={ban.Image} />;
-            })}
-          </div>
+          <CategoryDialogInitialContent
+            categoryBannerThumbnails={categoryBannerThumbnails}
+          />
         )}
-        <div className={classes.dialoagContentNavs}>
-          <nav>
-            <ul>
-              {activeSubCategory && (
+        {activeSubCategory && (
+          <div className={classes.dialoagContentNavs}>
+            <nav>
+              <ul>
                 <li onClick={() => handleClose(false)}>
                   <Link
                     className={classes.dialogContentNavLink}
@@ -184,10 +173,9 @@ const CategoriesDialog = ({
                     <ChevronRightIcon />
                   </Link>
                 </li>
-              )}
-              <hr />
-              {activeSubCategory &&
-                activeSubCategory.Children.map((cat: any) => {
+                {activeSubCategory.Children.filter(
+                  (cat: any) => cat.IsBundle
+                ).map((cat: any) => {
                   return (
                     <li key={cat.NodeId} onClick={() => handleClose(false)}>
                       <Link
@@ -201,10 +189,28 @@ const CategoriesDialog = ({
                     </li>
                   );
                 })}
-            </ul>
-          </nav>
-        </div>
-        <div className={classes.dialoagContentBanner}>banner</div>
+                <hr />
+                {activeSubCategory.Children.filter(
+                  (cat: any) => !cat.IsBundle
+                ).map((cat: any) => {
+                  return (
+                    <li key={cat.NodeId} onClick={() => handleClose(false)}>
+                      <Link
+                        className={classes.dialogContentNavLink}
+                        to={`/shop/browse/${activeCategory.UrlFriendlyName}/${activeSubCategory.UrlFriendlyName}/${cat.UrlFriendlyName}`}
+                        // to={`/shop/browse/${activeCategory.UrlFriendlyName}/${activeSubCategory.UrlFriendlyName}/${cat.UrlFriendlyName}/${cat.NodeId}`}
+                      >
+                        <span> {cat.Description}</span>
+                        <ChevronRightIcon />
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+          </div>
+        )}
+        {/* <div className={classes.dialoagContentBanner}>banner</div> */}
       </div>
     </Dialog>
   );

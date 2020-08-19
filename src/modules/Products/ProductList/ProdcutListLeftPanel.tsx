@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { NavLink as Link } from "react-router-dom";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import { getUrlParamsToFetchProducts } from "../../../utils/commonHelper";
@@ -130,10 +130,31 @@ const ProductListLeftPanel = ({
         </div>
       )}
       <ul className={classes.leftPanelUl}>
+        {Object.keys(categoryMappedId).length && (
+          <li className={classes.leftPanelLi}>
+            <Link
+              activeClassName="activeCategoryLink"
+              exact
+              to={
+                getUrlParamsToFetchProducts(
+                  {
+                    category,
+                    subCategory,
+                  },
+                  categoryMappedId
+                ).url
+              }
+              className={classes.leftPanelLink}
+            >
+              Show All <ChevronRightIcon />
+            </Link>
+          </li>
+        )}
         {leftPanelItems.map((item: any) => {
           return (
             <li key={item.NodeId} className={classes.leftPanelLi}>
               <Link
+                activeClassName="activeCategoryLink"
                 to={
                   getUrlParamsToFetchProducts(
                     subCategory

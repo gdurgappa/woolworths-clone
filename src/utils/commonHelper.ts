@@ -6,20 +6,26 @@ export const getUrlParamsToFetchProducts = (
   if (subCategorySelected) {
     return {
       url: `/shop/browse/${category}/${subCategory}/${subCategorySelected}`,
-      categoryId: categoryMappedId[subCategorySelected].NodeId,
+      categoryId: categoryMappedId[subCategorySelected].NodeId.replace(
+        "_BUNDLES",
+        ""
+      ),
       formatObject: `{"name":"${categoryMappedId[subCategorySelected].Description}"}`,
+      isBundle: categoryMappedId[subCategorySelected].IsBundle,
     };
   } else if (subCategory) {
     return {
       url: `/shop/browse/${category}/${subCategory}/`,
-      categoryId: categoryMappedId[subCategory].NodeId,
+      categoryId: categoryMappedId[subCategory].NodeId.replace("_BUNDLES", ""),
       formatObject: `{"name":"${categoryMappedId[subCategory].Description}"}`,
+      isBundle: categoryMappedId[subCategory].IsBundle,
     };
   } else if (category) {
     return {
       url: `/shop/browse/${category}/`,
-      categoryId: categoryMappedId[category].NodeId,
+      categoryId: categoryMappedId[category].NodeId.replace("_BUNDLES", ""),
       formatObject: `{"name":"${categoryMappedId[category].Description}"}`,
+      isBundle: categoryMappedId[category].IsBundle,
     };
   }
 

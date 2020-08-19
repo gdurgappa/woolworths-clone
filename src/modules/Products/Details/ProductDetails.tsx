@@ -56,7 +56,7 @@ const ProductDetails = (props: {}) => {
     //       // setProductDetails(res.Product);
     //     });
   }, []);
-
+  console.log("productDetails", productDetails);
   return (
     productDetails && (
       <div className={classes.root}>

@@ -59,7 +59,6 @@ function ProductList() {
         location: urlParams?.url,
         // formatObject: '{"name":"Organic Fruit"}',
         isSpecial: false,
-        isBundle: false,
         isMobile: false,
         filters: null,
       };
