@@ -8,9 +8,9 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
-import { db } from "../../../App";
-import ExploreWeeksSpecialCard from "../AnimatedCard";
-import AnimatedCard from "../AnimatedCard";
+import { db } from "../../App";
+import ExploreWeeksSpecialCard from "./AnimatedCard";
+import AnimatedCard from "./AnimatedCard";
 
 const useStyles = makeStyles((theme) => ({
   sectionContainer: {
@@ -40,29 +40,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LatestFromWoolworths = ({}: any) => {
+const AnimatedCardsList = ({
+  sectionType,
+  sectionHeading,
+  sectionStyle,
+  contentStyle,
+}: any) => {
   const classes = useStyles();
-  const [latestFromWoolworthsList, setLatestFromWoolworthsList] = useState([]);
+  const [animatedCardDetails, setAnimatedCardDetails] = useState([]);
   useEffect(() => {
     const items: any = [];
-    db.collection("latestFromWoolworth")
+    db.collection(sectionType)
       .get()
       .then(({ docs }) => {
         docs.forEach((doc) => {
           items.push(doc.data());
         });
-        setLatestFromWoolworthsList(items);
+        setAnimatedCardDetails(items);
       });
   }, []);
-
   return (
-    <section className={classes.sectionContainer}>
+    <section style={sectionStyle} className={classes.sectionContainer}>
       <div className={classes.contentContainer}>
-        <h1 className={classes.heading}>
-          Check out the latest from Woolworths
-        </h1>
+        <h1 className={classes.heading}>{sectionHeading}</h1>
         <div className={classes.cardsContainer}>
-          {latestFromWoolworthsList.reverse().map((card, index) => {
+          {animatedCardDetails.map((card, index) => {
             return <AnimatedCard key={index} {...card} />;
           })}
         </div>
@@ -71,4 +73,4 @@ const LatestFromWoolworths = ({}: any) => {
   );
 };
 
-export default LatestFromWoolworths;
+export default AnimatedCardsList;

@@ -70,8 +70,8 @@ const SearchInput = ({
       getOptionLabel={(option: any) => option.title}
       onChange={onOptionSelect}
       className={classes.autoCompleteRoot}
-      onBlur={() => (setOpen(false)}
-      onFocus={() => (setOpen(true)}
+      onBlur={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
       renderInput={(params) => (
         <div ref={params.InputProps.ref}>
           <input

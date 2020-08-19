@@ -36,7 +36,7 @@ const HomeCooking = ({}: any) => {
         setHomeCookingList(items);
       });
   }, []);
-  console.log("homeCookingList", homeCookingList);
+
   return (
     <>
       <h2> Home cooking</h2>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Button } from "@material-ui/core";
+import Cheveron from "./Cheveron";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,53 +22,57 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "none",
     height: "40px",
     marginBottom: "5px",
-    width: "100%",
-    "&:hover": {
-      backgroundColor: "#1d6b18",
-      borderColor: "#1d6b18",
-      color: "#fff",
-    },
+    minWidth: "104px",
+    maxWidth: "344px",
+    opacity: 0,
+    transition: "opacity .35s ease-in-out .3s",
   },
   buttonRoot: {
-    // fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
+    lineHeight: "41px",
+    height: "41px",
     fontSize: "14px",
-    fontWeight: 500,
-    textAlign: "center",
+
+    backgroundColor: "#178841",
     color: "#fff",
-    padding: 0,
-    lineHeight: 2,
+    border: "none",
+    borderRadius: "28px",
+    fontWeight: 500,
+    cursor: "pointer",
+    textAlign: "left",
+    padding: "0 24px",
     textTransform: "none",
-    "&:hover": {
-      backgroundColor: "#1d6b18",
-      borderColor: "#1d6b18",
-      color: "#fff",
-    },
   },
   buttonLabel: {},
-  cartIcon: {
+  icon: {
     width: "20px",
     height: "20px",
     paddingLeft: "5px",
     color: "#fff",
   },
 }));
-const AddToCartButton = ({
+const ButtonWithIcon = ({
   onClickCallback,
   rootDivOverrideStyle,
-  title = "Add to cart",
+  buttonOverrideStyle,
+  title = "Discover More",
   renderIcon: Icon,
 }: any) => {
   const classes = useStyles();
   return (
-    <div style={rootDivOverrideStyle} className={classes.root}>
+    <div
+      style={rootDivOverrideStyle}
+      className={classes.root}
+      id="actionButton"
+    >
       <Button
+        style={buttonOverrideStyle}
         classes={{ root: classes.buttonRoot, label: classes.buttonLabel }}
       >
         {title}
       </Button>
-      {Icon ? Icon : <ShoppingCartIcon className={classes.cartIcon} />}
+      <Cheveron rootClassName={classes.icon} cheveronType="right" />
     </div>
   );
 };
 
-export default AddToCartButton;
+export default ButtonWithIcon;

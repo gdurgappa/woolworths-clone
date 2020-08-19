@@ -35,7 +35,7 @@ const MoreFromWoolworths = ({}: any) => {
         setMoreFromWoolworthsList(items);
       });
   }, []);
-  console.log("moreFromWoolworthsList", moreFromWoolworthsList);
+
   return (
     <>
       {moreFromWoolworthsList.map((card, index) => {

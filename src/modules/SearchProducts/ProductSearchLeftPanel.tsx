@@ -16,15 +16,41 @@ const useStyles = makeStyles((theme) => ({
 }));
 //background-color: #3a474e; -- is active color: #fff;
 //background-color: #ffda00; color: #3a474e; -- all special
-const ProductSearchLeftPanel = ({}: any) => {
+const ProductSearchLeftPanel = ({ productSearchCount, aggregations }: any) => {
   const classes = useStyles();
   return (
     <div className={classes.leftPanelRoot}>
       <nav>
         <Link to={"#"}>
           <span>Search: </span>
+
           <Cheveron cheveronType="right" />
         </Link>
+        <Link to={"#"}>
+          <span>All Products({productSearchCount.ProductCount})</span>
+          <Cheveron cheveronType="right" />
+        </Link>
+        <Link to={"#"}>
+          <span>All Specials({productSearchCount.SpecialProductCount})</span>
+          <Cheveron cheveronType="right" />
+        </Link>
+        <Link to={"#"}>
+          <span>All Recipies({productSearchCount.RecipeCount})</span>
+          <Cheveron cheveronType="right" />
+        </Link>
+        <Link to={"#"}>
+          <span>All Articles({productSearchCount.ArticleCount})</span>
+          <Cheveron cheveronType="right" />
+        </Link>
+        {aggregations.map((aggr: any, index: any) => (
+          <Link key={index} to={"#"}>
+            <span>
+              {aggr.ExtraOutputFields.description} ({aggr.Count})
+            </span>
+
+            <Cheveron cheveronType="right" />
+          </Link>
+        ))}
       </nav>
     </div>
   );

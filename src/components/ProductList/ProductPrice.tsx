@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { getProductPriceInDollarsAndCents } from "../../utils/commonHelper";
-
+//todo: gives to fixed error http://localhost:8080/shop/productdetails/197276/tip-top-9-grain-bread-original
+// http://localhost:8080/shop/ shows nothing
 const useStyles = makeStyles((theme) => ({
   priceContainer: {
     display: "flex",
@@ -51,6 +52,7 @@ const ProductPrice = ({
   InstoreWasPrice,
 }: any) => {
   const classes = useStyles();
+
   return (
     <div className={classes.priceContainer}>
       <div className={classes.productPriceContainer}>
@@ -61,7 +63,7 @@ const ProductPrice = ({
         <span className={classes.productPriceInCents}>
           {getProductPriceInDollarsAndCents(InstorePrice).cents}
         </span>
-        {!HideWasSavedPrice && (
+        {!HideWasSavedPrice && InstoreWasPrice && (
           <div style={{ fontSize: "12px" }}>
             Was ${InstoreWasPrice.toFixed(2)}
           </div>

@@ -91,7 +91,7 @@ const Product = (props: Product) => {
     HideWasSavedPrice,
     InstoreWasPrice,
   } = props;
-  console.log("HeaderTag", HeaderTag);
+
   const classes = useStyles(HeaderTag || {});
   return (
     <Card className={classes.productContainer}>

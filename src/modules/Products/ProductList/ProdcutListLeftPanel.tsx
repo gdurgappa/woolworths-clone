@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import { getUrlParamsToFetchProducts } from "../../../utils/commonHelper";
-
+// todo: gives error http://localhost:8080/shop/browse/meat-seafood-deli/fruit/plums-apricots
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",

@@ -3,7 +3,7 @@ import { allCategories } from "../../constants/allCategories";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import CategoriesDialog from "./CategoriesDialog";
+import CategoriesDialog from "./CategoryDialog/CategoriesDialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,6 +37,7 @@ const Categories = (props: {}) => {
 
   const handleCategoryClick = (cat: any) => {
     setActiveCategory(cat);
+    setActiveSubCategory(null);
     setOpen(true);
   };
   const handleClose = () => {

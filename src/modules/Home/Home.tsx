@@ -7,6 +7,8 @@ import LatestFromWoolworths from "../../components/Home/LatestFromWoolworths/Lat
 import ShoppingOnline from "../../components/Home/ShoppingOnline/ShoppingOnline";
 import MoreFromWoolworths from "../../components/Home/MoreFromWoolworths/MoreFromWoolworths";
 import HomeCooking from "../../components/Home/HomeCooking/HomeCooking";
+import { db } from "../../App";
+import AnimatedCardsList from "../../components/Home/AnimatedCardsList";
 // import MainCarousel from "./MainCarousel";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,21 +28,22 @@ const useStyles = makeStyles((theme) => ({
     background: "lightgreen",
   },
   weekSpecialSection: {
-    background: "orange",
+    background: "#fff",
   },
   latestSection: {
-    background: "#ccc",
+    // background: "#ccc",
   },
   homecookingSection: {
-    background: "green",
+    // background: "green",
   },
   footer: {
-    background: "red",
+    // background: "red",
   },
 }));
 
 const Home = (props: {}) => {
   const classes = useStyles();
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} className={classes.bannerContainer}>
@@ -55,20 +58,30 @@ const Home = (props: {}) => {
         welcomeSection
       </Grid>
       <Grid item xs={12} className={classes.weekSpecialSection}>
-        {/* <ExploreThisWeeksSpecial /> */}
+        <ExploreThisWeeksSpecial />
       </Grid>
       <Grid item xs={12} className={classes.latestSection}>
-        {/* <LatestFromWoolworths /> */}
+        <AnimatedCardsList
+          sectionType="latestFromWoolworth"
+          sectionHeading="Check out the latest from Woolworths"
+        />
       </Grid>
       <Grid item xs={12} className={classes.homecookingSection}>
-        <HomeCooking />
+        {/* <HomeCooking /> */}
       </Grid>
       <Grid item xs={12} className={classes.homecookingSection}>
-        {/* <ShoppingOnline /> */}
+        <AnimatedCardsList
+          sectionType="shopOnline"
+          sectionHeading="Shop Online"
+          stctionStyle={{ background: "#fff" }}
+        />
       </Grid>
 
       <Grid item xs={12} className={classes.footer}>
-        <MoreFromWoolworths />
+        <AnimatedCardsList
+          sectionType="moreFromWoolworth"
+          sectionHeading="More from woolworths"
+        />
       </Grid>
     </Grid>
   );

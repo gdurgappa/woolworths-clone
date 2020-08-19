@@ -8,6 +8,7 @@ const initialState = {
   searchProductsResultsList: [],
   TotalRecordCount: 0,
   SuggestedTerm: "",
+  Aggregations: [],
 };
 
 export default function searchProductsReducer(
@@ -21,6 +22,7 @@ export default function searchProductsReducer(
         searchProductsResultsList: action.payload.Products,
         TotalRecordCount: action.payload.SearchResultsCount,
         SuggestedTerm: action.payload.SuggestedTerm,
+        Aggregations: getSearchCategoriesAndCount(action.payload.Aggregations),
       };
     case "PRODUCTS_SEARCH_AGGREGATED_RESULTS_SUCCESS":
       return { ...state, aggregatedProductsResult: action.payload };
@@ -28,3 +30,8 @@ export default function searchProductsReducer(
       return state;
   }
 }
+
+const getSearchCategoriesAndCount = (aggregations: any) =>
+  aggregations
+    .find((aggr: any) => aggr.Name === "Category")
+    .Results.filter((cat: any) => cat.ExtraOutputFields.nodelevel === 1);

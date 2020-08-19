@@ -12,10 +12,29 @@ import { db } from "../../../App";
 import ExploreWeeksSpecialCard from "./ExploreWeeksSpecialCard";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    alignItems: "center",
+  sectionContainer: {
+    // background: "#fff",
+    maxWidth: "1200px",
+    margin: "0 auto",
+  },
+  contentContainer: {
     display: "flex",
-    height: "64px",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    padding: "70px 0",
+    // width: "100%",
+    // maxWidth: "1200px",
+  },
+  cardsContainer: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "450px",
+  },
+  heading: {
+    fontSize: "28px",
+    marginBottom: "16px",
   },
 }));
 const ExploreThisWeeksSpecial = ({}: any) => {
@@ -32,13 +51,18 @@ const ExploreThisWeeksSpecial = ({}: any) => {
         setExploreWeeksSpecialList(items);
       });
   }, []);
-  console.log("exploreWeeksSpecialList", exploreWeeksSpecialList);
+
   return (
-    <>
-      {exploreWeeksSpecialList.map((card, index) => {
-        return <ExploreWeeksSpecialCard key={index} {...card} />;
-      })}
-    </>
+    <section className={classes.sectionContainer}>
+      <div className={classes.contentContainer}>
+        <h1 className={classes.heading}>Explore this week’s specials</h1>
+        <div className={classes.cardsContainer}>
+          {exploreWeeksSpecialList.reverse().map((card, index) => {
+            return <ExploreWeeksSpecialCard key={index} {...card} />;
+          })}
+        </div>
+      </div>
+    </section>
   );
 };
 

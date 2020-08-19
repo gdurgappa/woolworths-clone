@@ -11,26 +11,58 @@ import { Link } from "react-router-dom";
 import AddToCartButton from "../../ProductList/AddToCartButton";
 
 const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
+  cardRoot: {
+    margin: "auto 4px",
+    borderRadius: "6px",
+    padding: "15px 15px 20px 15px",
+    textAlign: "center",
+    WebkitBoxShadow: "0px 4px 8px 0px rgba(58, 71, 78, 0.1)",
+    boxShadow: "0px 4px 8px 0px rgba(58, 71, 78, 0.1)",
+    WebkitTransition: "all .75s ease-out",
+    transition: "all .75s ease-out",
   },
-  productContainer: {
+  cardContainer: {
     display: "flex",
     flexDirection: "column",
-    // display: "inline-flex",
-    width: "220px",
-    height: "480px",
-    margin: "0 10px 20px",
-    verticalAlign: "top",
-    position: "relative",
-    background: "#fff",
-    boxShadow: "0 0 1px rgba(0,0,0,.3)",
-    outline: "none",
+    height: "430px",
+    width: "280px",
+    // margin: "0 10px 20px",
+    // verticalAlign: "top",
+    // position: "relative",
+    // outline: "none",
   },
-  cardContentRoot: {
+  cardContent: {
     padding: 0,
   },
-  image: { width: "150px", height: "150px", margin: "22px auto 18px" },
+  headerImgContainer: {
+    borderRadius: "6px",
+    display: "flex",
+    WebkitBoxAlign: "center",
+    MsFlexAlign: "center",
+    alignItems: "center",
+    height: "80px",
+    overflow: "hidden",
+    background: (props: any) => props.background,
+    "& img": {
+      padding: "5px",
+      width: "80px",
+      height: "80px",
+    },
+    "& div": {
+      padding: "5px",
+      width: "80px",
+      height: "80px",
+    },
+    "& span": {
+      color: "#3a474e",
+      marginLeft: "10px",
+    },
+  },
+  image: {
+    // width: "150px",
+    // height: "150px",
+    // margin: "22px auto 18px",
+  },
   title: {
     display: "block",
     fontSize: "14px",
@@ -47,13 +79,7 @@ const useStyles = makeStyles({
       textDecoration: "underline",
     },
   },
-  specialImageTag: {
-    width: "60px",
-    height: "60px",
-    position: "absolute",
-    top: "60px",
-    left: "10px",
-  },
+
   cardActionButtonsContainer: {
     display: "flex",
     alignItems: "center",
@@ -71,38 +97,71 @@ interface ExploreWeeksSpecialCardProps {
   image: string;
   headerText: string;
 }
+
+const headingStyleMapping: any = {
+  halfPrice: {
+    background: "#ffda00",
+  },
+  freshSpecial: {
+    background:
+      '#ffda00 url("https://cdn0.woolworths.media/content/homepage/fresh-wood-700x70-2.jpg") no-repeat left center',
+  },
+};
 const ExploreWeeksSpecialCard = ({
   description,
   headerImg,
   link,
   image,
   headerText,
+  headerType,
 }: any) => {
-  const classes = useStyles();
+  const classes = useStyles(headingStyleMapping[headerType]);
 
   return (
-    <Card className={classes.productContainer}>
-      {headerImg && <img className={classes.specialImageTag} src={headerImg} />}
-      <CardActionArea>
-        <CardMedia
-          classes={{ media: classes.image }}
-          component="img"
-          alt={description}
-          height="140"
-          image={image}
-          title={description}
-        />
+    <div className={classes.cardContainer}>
+      <Card className={classes.cardRoot}>
+        {headerImg ? (
+          <div className={classes.headerImgContainer}>
+            <img alt={description} src={headerImg} />
+            <span>{headerText}</span>
+          </div>
+        ) : (
+          <div
+            style={{
+              background: "#fff",
+              border: "1px solid #d6d6d6",
+              overflow: "hidden",
+            }}
+            className={classes.headerImgContainer}
+          >
+            <div
+              style={{
+                background: "#e6007e",
+                display: "flex",
+                textAlign: "center",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "18px",
+                color: "#fff",
+              }}
+            >
+              New
+            </div>
+            <span>{headerText}</span>
+          </div>
+        )}
+        <img className={classes.image} alt={description} src={image} />
 
-        <CardContent className={classes.cardContentRoot}>
+        <CardContent className={classes.cardContent}>
           <Link className={classes.title} to={"#"}>
             {description}
           </Link>
         </CardContent>
-      </CardActionArea>
-      <CardActions className={classes.cardActionButtonsContainer}>
-        <AddToCartButton onClickCallback={() => {}} />
-      </CardActions>
-    </Card>
+        <CardActions className={classes.cardActionButtonsContainer}>
+          <AddToCartButton onClickCallback={() => {}} />
+        </CardActions>
+      </Card>
+    </div>
   );
 };
 

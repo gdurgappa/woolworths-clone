@@ -34,7 +34,7 @@ const ShoppingOnline = ({}: any) => {
         setShoppingOnlineList(items);
       });
   }, []);
-  console.log("shoppingOnlineList", shoppingOnlineList);
+
   return (
     <>
       {shoppingOnlineList.map((card, index) => {

@@ -5,7 +5,7 @@ import CartSection from "./CartSection";
 import LoginSignupButton from "../../components/Header/LoginSignup/LoginSignupButton";
 import SearchProducts from "../SearchProducts/SearchProducts";
 import { makeStyles } from "@material-ui/core/styles";
-import LogoImage from "../../../src/assets/icon-header-logo.png";
+import LogoImage from "../../../src/assets/images/icon-header-logo.png";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",

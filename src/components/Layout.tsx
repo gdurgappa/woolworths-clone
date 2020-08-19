@@ -55,15 +55,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 var lastScrollTop = 0;
-
+//todo: scroll issue
 const Layout = (props: {}) => {
   const [isScrollDown, setIsScrollDown] = useState(false);
   const classes = useStyles({ isScrollDown });
   useEffect(() => {
-    document.addEventListener("scroll", callback);
-    return () => {
-      document.removeEventListener("scroll", callback);
-    };
+    // document.addEventListener("scroll", callback);
+    // return () => {
+    //   document.removeEventListener("scroll", callback);
+    // };
   }, []);
 
   // todo: causing re-render..

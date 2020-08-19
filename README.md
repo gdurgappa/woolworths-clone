@@ -1,8 +1,8 @@
-## BUGS
+## Feature
 
-- categories duplicates - left menu
-- People Who Viewed This Item Also Viewed - shows same all the time
+- People Who Viewed This Item Also Viewed
 
 ## TODO
 
-- del all
+- http://localhost:8080/shop/browse/freezer/frozen-meals/frozen-meals fix heading alignment
+- disable instore category

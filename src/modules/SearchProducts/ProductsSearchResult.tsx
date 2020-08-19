@@ -100,13 +100,14 @@ function ProductsSearchResult() {
 
   const dispatch = useDispatch();
 
-  const { ProductCount }: any = useSelector<any>(
+  const productSearchCount: any = useSelector<any>(
     (state) => state.search.aggregatedProductsResult
   );
   const {
     searchProductsResultsList,
     TotalRecordCount,
     SuggestedTerm,
+    Aggregations,
   }: any = useSelector<any>((state) => state.search);
 
   const categoryMappedId: any = useSelector<any>(
@@ -123,26 +124,33 @@ function ProductsSearchResult() {
       payload: query.get("searchTerm"),
     });
   }, [params]);
-
   return (
     <Grid container spacing={3}>
       <Grid item xs={2}>
-        <ProductSearchLeftPanel />
+        <ProductSearchLeftPanel
+          productSearchCount={productSearchCount}
+          aggregations={Aggregations}
+        />
       </Grid>
       <Grid item xs={9} style={{ margin: "0 auto" }}>
         {/* <div className={classes.root}> */}
         <div className={classes.contentContainer}>
-          {ProductCount && (
+          {productSearchCount.ProductCount === 0 && (
             <h1 className={classes.headingText}>
               {`No results TBD... “${search.split("=")[1]}”`}
             </h1>
           )}
           {SuggestedTerm && (
-            <h1 className={classes.headingText}>
-              {`Unfortunately, we couldn’t find results for “${
-                search.split("=")[1]
-              }”`}
-            </h1>
+            <div>
+              <h1 className={classes.headingText}>
+                {`Unfortunately, we couldn’t find results for “${
+                  search.split("=")[1]
+                }”`}
+              </h1>
+              <h3 className={classes.headingText}>
+                {`Showing results for “${SuggestedTerm}”`}
+              </h3>
+            </div>
           )}
           {!SuggestedTerm && (
             <h1 className={classes.headingText}>
