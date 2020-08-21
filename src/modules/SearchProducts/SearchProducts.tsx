@@ -14,12 +14,14 @@ const useStyles = makeStyles((theme) => ({
   container: {
     height: "40px",
     display: "flex",
+    flex: 1,
     background: "#fff",
     borderRadius: "20px",
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
     position: "relative",
+    margin: "0 11px 0 5px",
   },
   searchRoot: {},
   iconsContainer: {

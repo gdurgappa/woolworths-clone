@@ -13,18 +13,20 @@ import ExploreWeeksSpecialCard from "./ExploreWeeksSpecialCard";
 
 const useStyles = makeStyles((theme) => ({
   sectionContainer: {
-    // background: "#fff",
-    maxWidth: "1200px",
-    margin: "0 auto",
+    background: "#fff",
+    // maxWidth: "1200px",
+    // margin: "0 auto",
+    width: "100%",
   },
   contentContainer: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "start",
     justifyContent: "center",
     flexDirection: "column",
     padding: "70px 0",
-    // width: "100%",
-    // maxWidth: "1200px",
+    width: "100%",
+    maxWidth: "1200px",
+    margin: "0 auto",
   },
   cardsContainer: {
     display: "flex",

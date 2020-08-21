@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { db } from "../../App";
 import ExploreWeeksSpecialCard from "./AnimatedCard";
 import AnimatedCard from "./AnimatedCard";
+import ButtonWithIcon from "../Common/ButtonWithIcon";
 
 const useStyles = makeStyles((theme) => ({
   sectionContainer: {
@@ -38,6 +39,20 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "28px",
     marginBottom: "16px",
   },
+  recipieIntro: {
+    width: "100%",
+    maxWidth: "600px",
+    position: "relative",
+    margin: "auto",
+    marginBottom: "35px",
+    textAlign: "center",
+    "& p": {
+      fontFamily: "'Fresh Sans Regular', Helvetica, Arial, sans-serif",
+      fontSize: "16px",
+      lineHeight: "24px",
+      marginBottom: "20px",
+    },
+  },
 }));
 
 const AnimatedCardsList = ({
@@ -45,6 +60,9 @@ const AnimatedCardsList = ({
   sectionHeading,
   sectionStyle,
   contentStyle,
+  buttonStyle,
+  introPara1,
+  introPara2,
 }: any) => {
   const classes = useStyles();
   const [animatedCardDetails, setAnimatedCardDetails] = useState([]);
@@ -61,14 +79,26 @@ const AnimatedCardsList = ({
   }, []);
   return (
     <section style={sectionStyle} className={classes.sectionContainer}>
-      <div className={classes.contentContainer}>
+      <div style={contentStyle} className={classes.contentContainer}>
         <h1 className={classes.heading}>{sectionHeading}</h1>
+        {sectionType === "cooking" && (
+          <div className={classes.recipieIntro}>
+            <p>{introPara1}</p>
+            <p>{introPara2}</p>
+          </div>
+        )}
         <div className={classes.cardsContainer}>
           {animatedCardDetails.map((card, index) => {
             return <AnimatedCard key={index} {...card} />;
           })}
         </div>
       </div>
+      {sectionType === "cooking" && (
+        <ButtonWithIcon
+          buttonOverrideStyle={{ buttonStyle }}
+          title="Explore all recipes"
+        />
+      )}
     </section>
   );
 };

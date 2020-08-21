@@ -9,6 +9,8 @@ import MoreFromWoolworths from "../../components/Home/MoreFromWoolworths/MoreFro
 import HomeCooking from "../../components/Home/HomeCooking/HomeCooking";
 import { db } from "../../App";
 import AnimatedCardsList from "../../components/Home/AnimatedCardsList";
+import WelcomeSectionTabs from "../../components/Home/WelcomeSection/WelcomeSectionTabs";
+import MainCarousel from "./MainCarousel";
 // import MainCarousel from "./MainCarousel";
 
 const useStyles = makeStyles((theme) => ({
@@ -22,19 +24,20 @@ const useStyles = makeStyles((theme) => ({
     background: "lightblue",
   },
   welcomeSection: {
-    background: "yellow",
+    // background: "yellow",
+    // width: "100%",
   },
   bannerAd: {
-    background: "lightgreen",
+    // background: "lightgreen",
   },
   weekSpecialSection: {
-    background: "#fff",
+    // background: "#fff",
   },
   latestSection: {
     // background: "#ccc",
   },
   homecookingSection: {
-    // background: "green",
+    background: "#fff",
   },
   footer: {
     // background: "red",
@@ -50,12 +53,12 @@ const Home = (props: {}) => {
         bannerContainer
       </Grid>
       <Grid item xs={12} className={classes.mainCarousal}>
-        {/* <MainCarousel /> */}
+        <MainCarousel />
         main carousel
       </Grid>
 
       <Grid item xs={12} className={classes.welcomeSection}>
-        welcomeSection
+        <WelcomeSectionTabs />
       </Grid>
       <Grid item xs={12} className={classes.weekSpecialSection}>
         <ExploreThisWeeksSpecial />
@@ -67,7 +70,14 @@ const Home = (props: {}) => {
         />
       </Grid>
       <Grid item xs={12} className={classes.homecookingSection}>
-        {/* <HomeCooking /> */}
+        <AnimatedCardsList
+          sectionType="cooking"
+          sectionStyle={{ background: "#fff" }}
+          contentStyle={{ alignItems: "center" }}
+          sectionHeading="Home cooking"
+          introPara1="Discover +6,000 delicious recipes and fresh ideas for the whole family. From breakfast to dinner, snacks and dessert, we have every meal covered."
+          introPara2="See this week's featured recipes:"
+        />
       </Grid>
       <Grid item xs={12} className={classes.homecookingSection}>
         <AnimatedCardsList
@@ -81,6 +91,7 @@ const Home = (props: {}) => {
         <AnimatedCardsList
           sectionType="moreFromWoolworth"
           sectionHeading="More from woolworths"
+          buttonStyle={{ maxWidth: "200px", overflow: "hidden" }}
         />
       </Grid>
     </Grid>

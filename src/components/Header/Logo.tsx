@@ -4,20 +4,23 @@ import { CardMedia } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
-  logo: {
-    padding: "10px",
+  imageContainer: {
     overflow: "hidden",
-    width: "230px",
-    height: "50px",
-    paddingLeft: "10px",
     flexShrink: 0,
+    width: "250px",
+    // height: "70px",
+    padding: "10px",
+  },
+  logo: {
+    // padding: "10px",
+    width: "100%",
   },
 }));
 
 const Logo = ({ image, path }: any) => {
   const classes = useStyles();
   return (
-    <Link to={path}>
+    <Link className={classes.imageContainer} to={path}>
       <img
         className={classes.logo}
         src={

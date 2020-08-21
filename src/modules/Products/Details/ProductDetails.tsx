@@ -62,12 +62,16 @@ const ProductDetails = (props: {}) => {
       <div className={classes.root}>
         <ProductMainDisplay productDetails={productDetails} />
         <ProductInformation productDetails={productDetails} />
-        <h1>Ratings and Reviews</h1>
+
         {/* render prop? */}
-        <Rating rating={productDetails.Product.Rating} />
-        <Reviews stockCode={params.Stockcode} />
+        {productDetails.Product.Rating.RatingCount && (
+          <>
+            <h1>Ratings and Reviews</h1>
+            <Rating rating={productDetails.Product.Rating} />
+            <Reviews stockCode={params.Stockcode} />
+          </>
+        )}
         <PeopleAlsoViewedProducts
-          params={params}
           categoryId={
             productDetails.Product.AdditionalAttributes
               .PiesProductDepartmentNodeId

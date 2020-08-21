@@ -92,7 +92,7 @@ interface LatestFromWoolworthsCardProps {
   image: string;
   headerText: string;
 }
-const AnimatedCard = ({ description, link, image, title }: any) => {
+const AnimatedCard = ({ description, link, image, title, buttonText }: any) => {
   const classes = useStyles({ image });
 
   return (
@@ -102,7 +102,7 @@ const AnimatedCard = ({ description, link, image, title }: any) => {
           <h4>{title}</h4>
         </Link>
         <CardActions className={classes.cardActionButtonsContainer}>
-          <ButtonWithIcon />
+          <ButtonWithIcon animation={true} title={buttonText} />
         </CardActions>
       </div>
     </Card>

@@ -31,6 +31,42 @@ export const getUrlParamsToFetchProducts = (
 
   return { url: "", categoryId: "" };
 };
+export const getUrlParamsToFetchProductsNew = (
+  params: any,
+  // categoryMappedId: any,
+  urlMappedId: any
+) => {
+  const { category, subCategorySelected, subCategory } = params;
+  if (subCategorySelected) {
+    const url = [category, subCategory, subCategorySelected].join("/");
+    return {
+      url: `/shop/browse/${url}`,
+      categoryId: urlMappedId[url].NodeId.replace("_BUNDLES", ""),
+      formatObject: `{"name":"${urlMappedId[url].Description}"}`,
+      isBundle: urlMappedId[url].IsBundle,
+      isSpecial: urlMappedId[url].IsSpecial,
+    };
+  } else if (subCategory) {
+    const url = [category, subCategory].join("/");
+    return {
+      url: `/shop/browse/${url}`,
+      categoryId: urlMappedId[url].NodeId.replace("_BUNDLES", ""),
+      formatObject: `{"name":"${urlMappedId[url].Description}"}`,
+      isBundle: urlMappedId[url].IsBundle,
+      isSpecial: urlMappedId[url].IsSpecial,
+    };
+  } else if (category) {
+    return {
+      url: `/shop/browse/${category}/`,
+      categoryId: urlMappedId[category].NodeId.replace("_BUNDLES", ""),
+      formatObject: `{"name":"${urlMappedId[category].Description}"}`,
+      isBundle: urlMappedId[category].IsBundle,
+      isSpecial: urlMappedId[category].IsSpecial,
+    };
+  }
+
+  return { url: "", categoryId: "" };
+};
 
 export const getProductPriceInDollarsAndCents = (price: any) => {
   var formatter = new Intl.NumberFormat("en-US", {

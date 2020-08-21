@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const BreadCrumbs = ({ params, categoryMappedId }: any) => {
   const classes = useStyles();
+  console.log("params", params);
   const { category, subCategory, subCategorySelected } = params;
   return (
     <div className={classes.breadCrumbContainer}>

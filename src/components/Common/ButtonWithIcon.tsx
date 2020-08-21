@@ -24,8 +24,9 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "5px",
     minWidth: "104px",
     maxWidth: "344px",
-    opacity: 0,
-    transition: "opacity .35s ease-in-out .3s",
+    opacity: (props: any) => (props.animation ? 0 : 1),
+    transition: (props: any) =>
+      props.animation ? "opacity .35s ease-in-out .3s" : "",
   },
   buttonRoot: {
     lineHeight: "41px",
@@ -56,8 +57,10 @@ const ButtonWithIcon = ({
   buttonOverrideStyle,
   title = "Discover More",
   renderIcon: Icon,
+  cheveronType = "right",
+  animation = false,
 }: any) => {
-  const classes = useStyles();
+  const classes = useStyles({ animation });
   return (
     <div
       style={rootDivOverrideStyle}
@@ -70,7 +73,7 @@ const ButtonWithIcon = ({
       >
         {title}
       </Button>
-      <Cheveron rootClassName={classes.icon} cheveronType="right" />
+      <Cheveron rootClassName={classes.icon} cheveronType={cheveronType} />
     </div>
   );
 };

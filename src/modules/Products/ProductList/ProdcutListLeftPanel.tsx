@@ -102,7 +102,7 @@ const ProductListLeftPanel = ({
     }
   }, [category, subCategorySelected, subCategory, categoriesList]);
   const classes = useStyles();
-
+  console.log("leftPanelItems", leftPanelItems);
   return (
     <nav className={classes.leftPanelNav}>
       {leftPanelItems.length && (

@@ -4,6 +4,13 @@
 
 ## TODO
 
+- readme
+- granular
+- reusability, custom hooks etc
+-
+
+## Fix me
+
 - http://localhost:8080/shop/browse/freezer/frozen-meals/frozen-meals fix heading alignment
 - disable instore category
 - disable bundle links

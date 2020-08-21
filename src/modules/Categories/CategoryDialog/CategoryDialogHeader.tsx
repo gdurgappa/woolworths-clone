@@ -111,7 +111,9 @@ const CategoryDialogHeader = ({
                   key={cat.NodeId}
                   onClick={() => handleClose(false)}
                 >
-                  <Link to={`/shop/browse/${cat.UrlFriendlyName}`}>
+                  <Link
+                    to={`/shop/browse/${activeCategory.UrlFriendlyName}/${cat.UrlFriendlyName}`}
+                  >
                     <span>{cat.Description}</span>
                     <ChevronRightIcon />
                   </Link>

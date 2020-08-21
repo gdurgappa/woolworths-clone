@@ -16,7 +16,7 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.(css|scss)$/,
         use: [
           "style-loader",
           {
@@ -35,7 +35,7 @@ const config = {
       },
       {
         // test: /\.svg$/,
-        test: /\.(svg|woff|woff2|eot|ttf|otf)$/,
+        test: /\.(svg|gif|woff|woff2|eot|ttf|otf)$/,
         use: "file-loader",
       },
       {

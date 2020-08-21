@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   heading: {
     fontSize: "28px",
-    marginBottom: "16px",
+    marginBottom: "20px",
   },
 }));
 

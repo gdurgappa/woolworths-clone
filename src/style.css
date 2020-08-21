@@ -2,6 +2,8 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 @font-face {
   font-family: "Fresh Sans Md";
   src: url("assets/fonts/FreshSans-Medium.eot");
@@ -188,4 +190,24 @@ table {
 .activeCategoryLink:hover {
   background-color: #3a474e;
   color: #fff !important;
+}
+
+.small-window-dialog {
+  display: none;
+}
+@media only screen and (max-width: 1080px) {
+  .main-app {
+    display: none;
+  }
+  .small-window-dialog {
+    display: block;
+
+    width: 100vw;
+    height: 100vh;
+    background: red;
+    position: fixed;
+    top: 0;
+    z-index: 4;
+    color: blue;
+  }
 }

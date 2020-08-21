@@ -5,7 +5,10 @@ import Categories from "../../Categories/Categories";
 import { makeStyles } from "@material-ui/core/styles";
 import Pagination from "@material-ui/lab/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { getUrlParamsToFetchProducts } from "../../../utils/commonHelper";
+import {
+  getUrlParamsToFetchProducts,
+  getUrlParamsToFetchProductsNew,
+} from "../../../utils/commonHelper";
 import ProductListLeftPanel from "./ProdcutListLeftPanel";
 import ProductListContent from "./ProductListContent";
 import DynamicBanner from "../../../components/ProductList/DynamicBanner";
@@ -41,13 +44,16 @@ function ProductList() {
   const products: any = useSelector<any>(
     (state) => state.products.filteredProducts
   );
-  const categoryMappedId: any = useSelector<any>(
-    (state) => state.category.categoryMappedId
+  const { categoryMappedId, urlMappedId }: any = useSelector<any>(
+    (state) => state.category
   );
+
+  console.log("categoryMappedId", categoryMappedId);
+  console.log("urlMappedId", urlMappedId);
 
   useEffect(() => {
     if (Object.keys(categoryMappedId).length) {
-      const urlParams = getUrlParamsToFetchProducts(params, categoryMappedId);
+      const urlParams = getUrlParamsToFetchProductsNew(params, urlMappedId);
 
       const body = {
         ...urlParams,
@@ -58,7 +64,7 @@ function ProductList() {
         // url: url,
         location: urlParams?.url,
         // formatObject: '{"name":"Organic Fruit"}',
-        isSpecial: false,
+        // isSpecial: false,
         isMobile: false,
         filters: null,
       };

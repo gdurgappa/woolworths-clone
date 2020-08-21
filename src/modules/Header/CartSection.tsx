@@ -17,14 +17,16 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: "210px",
     marginRight: "10px",
-    paddingLeft: "44px",
-    border: "2px solid #fff",
+
+    // border: "2px solid #fff",
     borderRadius: "20px",
     fontSize: "11px",
     lineHeight: "normal",
     color: "#3a474e",
   },
-  cartTotalArea: {},
+  cartTotalArea: {
+    paddingLeft: "44px",
+  },
   cartAmount: {},
   cartIcon: {
     position: "absolute",
@@ -59,7 +61,7 @@ const CartSection = (props: {}) => {
         <p>Your Cart</p>
         <p className={classes.cartAmount}>$12.30</p>
       </div>
-      <ViewCartButton buttonStyle={classes.cartButton} name={"View Cart"} />
+      <ViewCartButton buttonStyle={classes.cartButton} name={"View cart"} />
     </div>
   );
 };

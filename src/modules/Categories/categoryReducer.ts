@@ -1,13 +1,14 @@
 const initialState = {
   allCategories: [],
   categoryMappedId: {},
+  urlMappedId: {},
 };
 
 export default function categoryReducer(state = initialState, action: any) {
   switch (action.type) {
     case "CATEGORIES_LIST":
       const result = getConsolidatedCategories(action.payload);
-      return { ...state, allCategories: result, categoryMappedId };
+      return { ...state, allCategories: result, categoryMappedId, urlMappedId };
     case "DECREMENT":
       return state;
     default:
@@ -16,16 +17,31 @@ export default function categoryReducer(state = initialState, action: any) {
 }
 
 const categoryMappedId: any = {};
+const urlMappedId: any = {};
 const getConsolidatedCategories = (categories: any) => {
+  let url = "";
   const res =
     categories &&
     categories.map((first: any) => {
-      const consolidatedCategories = getData(first);
+      url = first.UrlFriendlyName;
+      const consolidatedCategories = getData(first, url);
+      // urlMappedId[
+      //   consolidatedCategories.UrlFriendlyName
+      // ] = consolidatedCategories;
       consolidatedCategories["Children"] = first.Children.map((second: any) => {
-        const consolidatedCategories = getData(second);
+        url = `${first.UrlFriendlyName}/${second.UrlFriendlyName}`;
+        const consolidatedCategories = getData(second, url);
+        // urlMappedId[
+        //   `${first.UrlFriendlyName}/${second.UrlFriendlyName}`
+        // ] = consolidatedCategories;
         consolidatedCategories["Children"] = second.Children.map(
           (third: any) => {
-            return getData(third);
+            url = `${first.UrlFriendlyName}/${second.UrlFriendlyName}/${third.UrlFriendlyName}`;
+            const consolidatedCategories = getData(third, url);
+            // urlMappedId[
+            //   `${first.UrlFriendlyName}/${second.UrlFriendlyName}/${third.UrlFriendlyName}`
+            // ] = consolidatedCategories;
+            return consolidatedCategories;
           }
         );
         return consolidatedCategories;
@@ -35,7 +51,7 @@ const getConsolidatedCategories = (categories: any) => {
   return res;
 };
 
-const getData = (obj: any) => {
+const getData = (obj: any, url: string) => {
   const {
     NodeId,
     Description,
@@ -44,6 +60,7 @@ const getData = (obj: any) => {
     ProductCount,
     DisplayOrder,
     IsBundle,
+    IsSpecial,
   } = obj;
   categoryMappedId[UrlFriendlyName] = {
     NodeId,
@@ -51,7 +68,9 @@ const getData = (obj: any) => {
     ProductCount,
     DisplayOrder,
     IsBundle,
+    IsSpecial,
   };
+  urlMappedId[url] = categoryMappedId[UrlFriendlyName];
   return {
     NodeId,
     Description,
@@ -59,5 +78,6 @@ const getData = (obj: any) => {
     Children,
     DisplayOrder,
     IsBundle,
+    IsSpecial,
   };
 };
