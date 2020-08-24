@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   cheveron: {
     color: "#178841",
   },

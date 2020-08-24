@@ -1,13 +1,23 @@
-const initialState = {
+import {
+  CategoryMappedId,
+  UrlMappedId,
+  Category,
+  CategoryInitialState,
+} from "../../types/category";
+
+const initialState: CategoryInitialState = {
   allCategories: [],
   categoryMappedId: {},
   urlMappedId: {},
 };
 
-export default function categoryReducer(state = initialState, action: any) {
+export default function categoryReducer(
+  state: CategoryInitialState = initialState,
+  action: any
+): CategoryInitialState {
   switch (action.type) {
     case "CATEGORIES_LIST":
-      const result = getConsolidatedCategories(action.payload);
+      const result = flattenCategories(action.payload);
       return { ...state, allCategories: result, categoryMappedId, urlMappedId };
     case "DECREMENT":
       return state;
@@ -16,42 +26,36 @@ export default function categoryReducer(state = initialState, action: any) {
   }
 }
 
-const categoryMappedId: any = {};
-const urlMappedId: any = {};
-const getConsolidatedCategories = (categories: any) => {
+const categoryMappedId: CategoryMappedId = {};
+const urlMappedId: UrlMappedId = {};
+const flattenCategories = (categories: Category[]) => {
   let url = "";
   const res =
     categories &&
-    categories.map((first: any) => {
+    categories.map((first: Category) => {
       url = first.UrlFriendlyName;
       const consolidatedCategories = getData(first, url);
-      // urlMappedId[
-      //   consolidatedCategories.UrlFriendlyName
-      // ] = consolidatedCategories;
-      consolidatedCategories["Children"] = first.Children.map((second: any) => {
-        url = `${first.UrlFriendlyName}/${second.UrlFriendlyName}`;
-        const consolidatedCategories = getData(second, url);
-        // urlMappedId[
-        //   `${first.UrlFriendlyName}/${second.UrlFriendlyName}`
-        // ] = consolidatedCategories;
-        consolidatedCategories["Children"] = second.Children.map(
-          (third: any) => {
-            url = `${first.UrlFriendlyName}/${second.UrlFriendlyName}/${third.UrlFriendlyName}`;
-            const consolidatedCategories = getData(third, url);
-            // urlMappedId[
-            //   `${first.UrlFriendlyName}/${second.UrlFriendlyName}/${third.UrlFriendlyName}`
-            // ] = consolidatedCategories;
-            return consolidatedCategories;
-          }
-        );
-        return consolidatedCategories;
-      });
+      consolidatedCategories.Children = first.Children.map(
+        (second: Category) => {
+          url = `${first.UrlFriendlyName}/${second.UrlFriendlyName}`;
+          const consolidatedCategories = getData(second, url);
+          consolidatedCategories.Children = second.Children.map(
+            (third: Category) => {
+              url = `${first.UrlFriendlyName}/${second.UrlFriendlyName}/${third.UrlFriendlyName}`;
+              const consolidatedCategories = getData(third, url);
+              return consolidatedCategories;
+            }
+          );
+          return consolidatedCategories;
+        }
+      );
       return consolidatedCategories;
     });
   return res;
 };
 
-const getData = (obj: any, url: string) => {
+// todo: move this inside the above fun
+const getData = (obj: Category, url: string): Category => {
   const {
     NodeId,
     Description,
@@ -79,5 +83,6 @@ const getData = (obj: any, url: string) => {
     DisplayOrder,
     IsBundle,
     IsSpecial,
+    ProductCount,
   };
 };

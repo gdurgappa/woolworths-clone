@@ -1,21 +1,12 @@
-import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { db } from "../../../App";
 import ExploreWeeksSpecialCard from "./ExploreWeeksSpecialCard";
+import * as homepageData from "../../../constants/firestoreData/homePageData";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   sectionContainer: {
     background: "#fff",
-    // maxWidth: "1200px",
-    // margin: "0 auto",
     width: "100%",
   },
   contentContainer: {
@@ -39,21 +30,26 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "16px",
   },
 }));
-const ExploreThisWeeksSpecial = ({}: any) => {
-  const classes = useStyles();
-  const [exploreWeeksSpecialList, setExploreWeeksSpecialList] = useState([]);
-  useEffect(() => {
-    const items: any = [];
-    db.collection("exploreWeeksSpecial")
-      .get()
-      .then(({ docs }) => {
-        docs.forEach((doc) => {
-          items.push(doc.data());
-        });
-        setExploreWeeksSpecialList(items);
-      });
-  }, []);
 
+interface ExploreThisWeeksSpecialItem = {
+
+}
+
+const ExploreThisWeeksSpecial = () => {
+  const classes = useStyles();
+  // const [exploreWeeksSpecialList, setExploreWeeksSpecialList] = useState([]);
+  // useEffect(() => {
+  //   const items: any = [];
+  //   db.collection("exploreWeeksSpecial")
+  //     .get()
+  //     .then(({ docs }) => {
+  //       docs.forEach((doc) => {
+  //         items.push(doc.data());
+  //       });
+  //       setExploreWeeksSpecialList(items);
+  //     });
+  // }, []);
+  const exploreWeeksSpecialList = homepageData.exploreThisWeekSpecials
   return (
     <section className={classes.sectionContainer}>
       <div className={classes.contentContainer}>

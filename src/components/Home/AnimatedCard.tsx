@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
       "& #actionButton": {
         opacity: 1,
       },
+      "& #description": {
+        opacity: 1,
+      },
     },
   },
   cardContainer: {},
@@ -55,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "0px 25px",
     transition: "all .35s ease-out",
     height: "100%",
-    transform: "translateY(170px)",
+    transform: "translateY(185px)",
     cursor: "pointer",
     background:
       "linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 16%, rgba(0, 0, 0, 0.51) 17%, rgba(0, 0, 0, 0.66) 37%, rgba(0, 0, 0, 0.7) 43%)",
@@ -63,6 +66,14 @@ const useStyles = makeStyles((theme) => ({
     // "&:hover": {
     //   transform: "translateY(-100px)",
     // },
+    "& p": {
+      marginBottom: "15px",
+      fontFamily: "Helvetica",
+      color: "#fff",
+      textAlign: "left",
+      fontSize: "14px",
+      opacity: 0,
+    },
   },
   title: {
     marginTop: "16px",
@@ -101,6 +112,7 @@ const AnimatedCard = ({ description, link, image, title, buttonText }: any) => {
         <Link className={classes.title} to={"#"}>
           <h4>{title}</h4>
         </Link>
+        {description && <p id="description">{description}</p>}
         <CardActions className={classes.cardActionButtonsContainer}>
           <ButtonWithIcon animation={true} title={buttonText} />
         </CardActions>

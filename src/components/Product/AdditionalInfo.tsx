@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Card, CardMedia, makeStyles } from "@material-ui/core";
-const useStyles = makeStyles((theme) => ({
+import { makeStyles } from "@material-ui/core";
+import React from "react";
+
+const useStyles = makeStyles(() => ({
   headingText: {
     fontSize: "22px",
     marginBottom: "20px",
@@ -10,7 +11,13 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Helvetica, Arial, sans-serif",
   },
 }));
-const AdditionalInfo = ({ title, description }: any) => {
+
+interface AdditionalInfoProps {
+  title: string;
+  description: string;
+}
+
+const AdditionalInfo = ({ title, description }: AdditionalInfoProps) => {
   const classes = useStyles();
   return description ? (
     <>

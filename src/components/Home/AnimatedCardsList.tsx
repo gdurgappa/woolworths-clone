@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
-import { db } from "../../App";
-import ExploreWeeksSpecialCard from "./AnimatedCard";
-import AnimatedCard from "./AnimatedCard";
+import React from "react";
+import {
+  cooking,
+  latestFromWoolworth,
+  moreFromWoolworth,
+  shopOnline,
+} from "../../constants/firestoreData/homePageData";
 import ButtonWithIcon from "../Common/ButtonWithIcon";
+import AnimatedCard from "./AnimatedCard";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   sectionContainer: {
     // background: "#fff",
     maxWidth: "1200px",
@@ -54,7 +50,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
+interface AnimatedCardsListPropType {
+  sectionType: string;
+  sectionHeading: string;
+  sectionStyle?: string; //todo: object of style
+  contentStyle?: string;
+  buttonStyle?: string;
+  introPara1?: string;
+  introPara2?: string;
+}
 const AnimatedCardsList = ({
   sectionType,
   sectionHeading,
@@ -63,20 +67,16 @@ const AnimatedCardsList = ({
   buttonStyle,
   introPara1,
   introPara2,
-}: any) => {
+}: AnimatedCardsListPropType) => {
   const classes = useStyles();
-  const [animatedCardDetails, setAnimatedCardDetails] = useState([]);
-  useEffect(() => {
-    const items: any = [];
-    db.collection(sectionType)
-      .get()
-      .then(({ docs }) => {
-        docs.forEach((doc) => {
-          items.push(doc.data());
-        });
-        setAnimatedCardDetails(items);
-      });
-  }, []);
+
+  const dataMapping: any = {
+    shopOnline,
+    moreFromWoolworth,
+    latestFromWoolworth,
+    cooking,
+  };
+  const animatedCardDetails = dataMapping[sectionType];
   return (
     <section style={sectionStyle} className={classes.sectionContainer}>
       <div style={contentStyle} className={classes.contentContainer}>
@@ -95,7 +95,7 @@ const AnimatedCardsList = ({
       </div>
       {sectionType === "cooking" && (
         <ButtonWithIcon
-          buttonOverrideStyle={{ buttonStyle }}
+          rootDivOverrideStyle={buttonStyle}
           title="Explore all recipes"
         />
       )}

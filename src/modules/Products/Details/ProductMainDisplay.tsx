@@ -122,8 +122,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     color: "#178841",
-    cursor: "pointer",
     "& button": {
+      cursor: "pointer",
       color: "#178841",
       background: 0,
     },
@@ -305,7 +305,7 @@ const ProductMainDisplay = ({ productDetails }: any) => {
                 />
               )}
               <h1 className={classes.cardHeading}>
-                {productDetails.Product.Description}
+                {productDetails.Product.FullDescription}
               </h1>
               <ProductPrice
                 InstorePrice={productDetails.Product.InstorePrice}

@@ -27,11 +27,12 @@ const useStyles = makeStyles((theme) => ({
 
   dialogLeftNavsContainer: {
     display: "flex",
-    maxWidth: "220px",
   },
   dialogContentNavLink: {
     color: "#178841",
     textDecoration: "none",
+    display: "flex",
+    alignItems: "center",
   },
   dialoagContentBanner: {
     padding: "40px 10px",
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "40px 0 40px 70px",
     background: "#eee",
     WebkitBoxFlex: 0,
+    maxWidth: "220px",
     // flex: "0 0 290px",
   },
   categoryNavUl: {
@@ -100,7 +102,6 @@ const CategoriesDialog = ({
       import(
         `../../../assets/images/${activeCategory.UrlFriendlyName}.svg`
       ).then((res) => {
-        console.log("res", res);
         setCategoryIcon(res.default);
       });
     const url = `https://www.woolworths.com.au/apis/ui/banner?CategoryId=${activeCategory.NodeId}&IsSpecialRoot=false`;
@@ -108,8 +109,7 @@ const CategoriesDialog = ({
       setCategoryBetbannerThumbnails(res.BannerResponses);
     });
   }, [activeCategory]);
-  console.log("activeSubCategory", activeSubCategory);
-  console.log("activeCategory", activeCategory);
+
   return (
     <Dialog
       onClose={handleClose}

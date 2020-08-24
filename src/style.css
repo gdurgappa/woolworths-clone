@@ -16,6 +16,17 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "wwfoodicons";
+  src: url("assets/fonts/wwfoodicons.eot");
+  src: url("assets/fonts/wwfoodicons.eot?#iefix") format("embedded-opentype"),
+    url("assets/fonts/wwfoodicons.woff2") format("woff2"),
+    url("assets/fonts/wwfoodicons.woff") format("woff"),
+    url("assets/fonts/wwfoodicons.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 body {
   font-family: "Fresh Sans Md", Helvetica, Arial, sans-serif;
   box-sizing: border-box;
@@ -149,13 +160,15 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
+/* product category search dynamic image banner */
 .visible-xs {
   display: none !important;
+  width: 100%;
 }
 
 .hidden-xs {
   display: block !important;
+  width: 100%;
 }
 @media only screen and (max-width: 768px) {
     .visible-xs {
@@ -210,4 +223,56 @@ table {
     z-index: 4;
     color: blue;
   }
+}
+
+.slickprev,
+.slicknext {
+  color: #a2cfb3;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  height: 80px;
+  font-size: 28px;
+  color: #178841;
+  background: #eee;
+  opacity: 0.8;
+  margin: auto;
+  border: none;
+  cursor: pointer;
+  font-family: wwfoodicons;
+  background: #eee;
+
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  justify-content: center;
+}
+
+.slicknext {
+  right: -5px;
+  border-radius: 40px 0 0 40px;
+}
+.slickprev {
+  left: -5px;
+  border-radius: 0 40px 40px 0;
+}
+.prevButton::before {
+  content: "\E932" !important;
+  font-family: wwfoodicons;
+}
+
+.nextButton::before {
+  content: "\E933" !important;
+  font-family: wwfoodicons;
+}
+
+/* .slicknext::before {
+  content: "\E933" !important;
+  font-family: wwfoodicons;
+} */
+
+.slick-dots {
+  bottom: 0;
 }

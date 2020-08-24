@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "0",
     cursor: "pointer",
     display: "flex",
+    alignItems: "center",
     transition: "border .3s",
     "&:hover": {
       border: "1px solid #178841",

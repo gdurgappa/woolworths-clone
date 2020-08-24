@@ -6,7 +6,7 @@ import Cheveron from "../../components/Common/Cheveron";
 const useStyles = makeStyles((theme) => ({
   leftPanelNav: {
     boxShadow: "0 0 5px rgba(0,0,0,.15)",
-    height: "100wh",
+    minHeight: "100%",
     backgroundColor: "#fff",
     // fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
     width: "220px",
@@ -130,8 +130,9 @@ const ProductSearchLeftPanel = ({ productSearchCount, aggregations }: any) => {
             <Cheveron cheveronType="right" />
           </Link>
         </li>
-        {aggregations.map((aggr: any, index: any) => (
+        {aggregations.map((aggr: any, index: number) => (
           <li
+            key={index}
             className={classes.leftPanelLi}
             onClick={() => setActiveLink(aggr.Name)}
           >

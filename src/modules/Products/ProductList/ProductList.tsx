@@ -1,70 +1,49 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Product from "../Product";
-import Categories from "../../Categories/Categories";
 import { makeStyles } from "@material-ui/core/styles";
-import Pagination from "@material-ui/lab/Pagination";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getUrlParamsToFetchProducts,
-  getUrlParamsToFetchProductsNew,
-} from "../../../utils/commonHelper";
+import { useParams } from "react-router-dom";
+
+import { getUrlParamsToFetchProductsNew } from "../../../utils/commonHelper";
 import ProductListLeftPanel from "./ProdcutListLeftPanel";
 import ProductListContent from "./ProductListContent";
-import DynamicBanner from "../../../components/ProductList/DynamicBanner";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      marginTop: theme.spacing(2),
-    },
-  },
+const useStyles = makeStyles(() => ({
   pageContainer: {
     display: "flex",
     width: "100%",
   },
-  contentContainer: {},
-  adBanner: {},
-  breadCrumbs: {},
-  breadCrumbItem: {},
 }));
 
+//  todo: common types
+export type UrlParamsType = {
+  category: string;
+  subCategory: string;
+  subCategorySelected: string;
+};
+
+interface Category {
+  categoryMappedId: string;
+}
 function ProductList() {
   const classes = useStyles();
-  const [page, setPage] = useState({
-    currentPage: 1,
-    totalProductsCount: 0,
-    limit: 10,
-  });
-  const params: any = useParams<any>();
+
+  const params = useParams<UrlParamsType>();
   const { category, subCategorySelected, subCategory } = params;
-  //path="/shop/browse/:category/:subCategory/:subCategorySelected"
   const dispatch = useDispatch();
 
-  const products: any = useSelector<any>(
-    (state) => state.products.filteredProducts
-  );
   const { categoryMappedId, urlMappedId }: any = useSelector<any>(
     (state) => state.category
   );
 
-  console.log("categoryMappedId", categoryMappedId);
-  console.log("urlMappedId", urlMappedId);
-
   useEffect(() => {
     if (Object.keys(categoryMappedId).length) {
       const urlParams = getUrlParamsToFetchProductsNew(params, urlMappedId);
-
       const body = {
         ...urlParams,
-        // categoryId: urlParams.,
-        pageNumber: page.currentPage,
-        pageSize: page.limit,
+        pageNumber: 1,
+        pageSize: 15, //  todo: move it to config
         sortType: "TraderRelevance",
-        // url: url,
         location: urlParams?.url,
-        // formatObject: '{"name":"Organic Fruit"}',
-        // isSpecial: false,
         isMobile: false,
         filters: null,
       };

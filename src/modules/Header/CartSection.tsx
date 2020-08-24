@@ -49,6 +49,11 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-block",
     verticalAlign: "middle",
     textTransform: "none",
+    "&:hover": {
+      backgroundColor: "#126c34",
+      borderColor: "#126c34",
+      color: "#fff",
+    },
   },
 }));
 

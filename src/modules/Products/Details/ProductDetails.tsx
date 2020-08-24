@@ -56,7 +56,7 @@ const ProductDetails = (props: {}) => {
     //       // setProductDetails(res.Product);
     //     });
   }, []);
-  console.log("productDetails", productDetails);
+
   return (
     productDetails && (
       <div className={classes.root}>
@@ -64,13 +64,13 @@ const ProductDetails = (props: {}) => {
         <ProductInformation productDetails={productDetails} />
 
         {/* render prop? */}
-        {productDetails.Product.Rating.RatingCount && (
+        {/* {productDetails.Product.Rating.RatingCount && (
           <>
             <h1>Ratings and Reviews</h1>
             <Rating rating={productDetails.Product.Rating} />
             <Reviews stockCode={params.Stockcode} />
           </>
-        )}
+        )} */}
         <PeopleAlsoViewedProducts
           categoryId={
             productDetails.Product.AdditionalAttributes
@@ -80,7 +80,6 @@ const ProductDetails = (props: {}) => {
             productDetails.Product.AdditionalAttributes.piescategorynamesjson
           }
         />
-        <h1>People Who Bought This Item Also Bought</h1>
       </div>
     )
   );

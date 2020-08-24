@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { db } from "../../../App";
 import { makeStyles } from "@material-ui/core/styles";
+import React, { useEffect, useState } from "react";
+import { db } from "../../../App";
 import WelcomeSectionTab from "./WelcomeSectionTab";
+import * as homepageData from "../../../constants/firestoreData/homePageData";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   sectionContainer: {
     background: "#eee",
     maxWidth: "1200px",
@@ -32,21 +32,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 const WelcomeSectionTabs = ({}: any) => {
   const classes = useStyles();
-  const [welcomeTabs, setWelcomeTabs] = useState<any>([]);
-  useEffect(() => {
-    const items: any = [];
-    db.collection("welcomeToWoolworthTabs")
-      .get()
-      .then(({ docs }) => {
-        docs.forEach((doc) => {
-          items.push(doc.data());
-        });
-        setWelcomeTabs(items);
-      });
-
-    // setWelcomeTabs(homePageTabs);
-  }, []);
-  console.log("welcomeTabs", welcomeTabs);
+  // const [welcomeTabs, setWelcomeTabs] = useState<any>([]);
+  // useEffect(() => {
+  //   const items: any = [];
+  //   db.collection("welcomeToWoolworthTabs")
+  //     .get()
+  //     .then(({ docs }) => {
+  //       docs.forEach((doc) => {
+  //         items.push(doc.data());
+  //       });
+  //       setWelcomeTabs(items);
+  //     });
+  // }, []);
+  const welcomeTabs = homepageData.welcomeTabs;
   return (
     <section className={classes.sectionContainer}>
       <div className={classes.contentContainer}>

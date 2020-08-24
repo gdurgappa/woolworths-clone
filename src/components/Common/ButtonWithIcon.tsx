@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "5px",
     minWidth: "104px",
     maxWidth: "344px",
+    color: "#fff",
+    padding: "0 24px",
+    overflow: "hidden",
     opacity: (props: any) => (props.animation ? 0 : 1),
     transition: (props: any) =>
       props.animation ? "opacity .35s ease-in-out .3s" : "",
@@ -40,7 +43,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     cursor: "pointer",
     textAlign: "left",
-    padding: "0 24px",
+    // padding: "0 24px",
+    padding: 0,
     textTransform: "none",
   },
   buttonLabel: {},
@@ -48,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     width: "20px",
     height: "20px",
     paddingLeft: "5px",
-    color: "#fff",
+    // color: "#fff",
   },
 }));
 const ButtonWithIcon = ({

@@ -24,10 +24,10 @@ const useStyles = makeStyles((theme) => ({
   headerNavItems: {
     position: "sticky",
     top: 0,
-    zIndex: 2,
+    zIndex: 4,
   },
   categories: {
-    zIndex: 1,
+    zIndex: 3,
     position: (props: any) => (props.isScrollDown ? "static" : "sticky"),
     top: (props: any) => (props.isScrollDown ? "" : "70px"),
   },
@@ -99,12 +99,12 @@ const Layout = (props: {}) => {
             {/* <Grid item xs={1} className={classes.leftPanel}>
           <>left panel</>
         </Grid> */}
-            <Grid item xs={11} className={classes.mainPanel}>
+            <Grid item xs={12} className={classes.mainPanel}>
               <Routes />
             </Grid>
-            <Grid item xs={1} className={classes.rightPanel}>
+            {/* <Grid item xs={1} className={classes.rightPanel}>
               <Paper>right panel</Paper>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Grid>
       </div>

@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { allCategories } from "../../constants/allCategories";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+// import { allCategories } from "../../constants/allCategories";
 import CategoriesDialog from "./CategoryDialog/CategoriesDialog";
+import { Category } from "../../types/category";
+import { RootState } from "../../store/store";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     alignItems: "center",
@@ -27,15 +28,22 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#126c34",
     },
   },
+  specialCategory: {
+    color: "#3a474e",
+    backgroundColor: "#ffda00",
+    "&:hover": {
+      backgroundColor: "#f7d300",
+    },
+  },
 }));
-const Categories = (props: {}) => {
+const Categories = () => {
   const classes = useStyles();
-  const [categories, setCategories] = useState<any>([]);
-  const [activeCategory, setActiveCategory] = useState<any>();
-  const [activeSubCategory, setActiveSubCategory] = useState<any>();
-  const [open, setOpen] = React.useState(false);
+  // const [categories, setCategories] = useState<Category[]>([]);
+  const [activeCategory, setActiveCategory] = useState<Category>();
+  const [activeSubCategory, setActiveSubCategory] = useState<Category | null>();
+  const [open, setOpen] = React.useState<boolean>(false);
 
-  const handleCategoryClick = (cat: any) => {
+  const handleCategoryClick = (cat: Category) => {
     setActiveCategory(cat);
     setActiveSubCategory(null);
     setOpen(true);
@@ -44,21 +52,25 @@ const Categories = (props: {}) => {
     setOpen(false);
   };
   const dispatch = useDispatch();
-  const categoriesList: any = useSelector<any>(
-    (state) => state.category.allCategories
+  // todo: check this
+  const categoriesList: Category[] = useSelector(
+    (state: RootState) => state.category.allCategories
   );
 
   useEffect(() => {
     dispatch({ type: "CATEGORIES_REQUESTED" });
-    setCategories(allCategories);
+    // setCategories(allCategories);
   }, []);
 
   return (
     <div className={classes.root}>
-      {categoriesList.map((cat: any) => (
+      {categoriesList.map((cat: Category) => (
         <div
           key={cat.NodeId}
-          className={classes.category}
+          className={[
+            classes.category,
+            cat.Description === "Specials" && classes.specialCategory,
+          ].join(" ")}
           onClick={() => handleCategoryClick(cat)}
         >
           {cat.Description}

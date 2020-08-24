@@ -1,3 +1,4 @@
+// eslint-disable
 let cheerio = require("cheerio");
 let jsonframe = require("jsonframe-cheerio");
 let html = cheerio.load(

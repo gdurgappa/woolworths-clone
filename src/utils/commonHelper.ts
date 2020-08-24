@@ -69,7 +69,7 @@ export const getUrlParamsToFetchProductsNew = (
 };
 
 export const getProductPriceInDollarsAndCents = (price: any) => {
-  var formatter = new Intl.NumberFormat("en-US", {
+  const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "AUD",
   });

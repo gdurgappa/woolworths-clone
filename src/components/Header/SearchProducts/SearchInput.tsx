@@ -61,17 +61,21 @@ const SearchInput = ({
       });
     setOpen(false);
   };
+  const handleOptionSelect = (e: any, selection: any) => {
+    onOptionSelect(e, selection);
+    setOpen(false);
+  };
   return (
     <Autocomplete
       id="combo-box-demo"
       open={open}
       options={suggestions}
-      openOnFocus
+      openOnFocus={searchTerm.length > 0}
       getOptionLabel={(option: any) => option.title}
-      onChange={onOptionSelect}
+      onChange={handleOptionSelect}
       className={classes.autoCompleteRoot}
       onBlur={() => setOpen(false)}
-      onFocus={() => setOpen(true)}
+      onFocus={() => setOpen(searchTerm.length > 0)}
       renderInput={(params) => (
         <div ref={params.InputProps.ref}>
           <input
@@ -79,7 +83,7 @@ const SearchInput = ({
             {...params.inputProps}
             className={classes.textField}
             onChange={(e) => {
-              setOpen(true);
+              setOpen(searchTerm.length > 0);
               setSearchTerm(e.target.value);
               requestSuggestions(e.target.value);
             }}

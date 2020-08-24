@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Card, CardMedia, makeStyles } from "@material-ui/core";
-const useStyles = makeStyles((theme) => ({
+import { CardMedia, makeStyles } from "@material-ui/core";
+import React from "react";
+
+const useStyles = makeStyles(() => ({
   imageRoot: {
     margin: "10px 0",
     width: "100%",
@@ -12,7 +13,17 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const CountryOfOriginLabel = ({ countryOfOriginInfo }: any) => {
+
+interface CountryOfOriginLabelProps {
+  countryOfOriginInfo: {
+    AltText: string;
+    SvgImageFile: string;
+  };
+}
+
+const CountryOfOriginLabel = ({
+  countryOfOriginInfo,
+}: CountryOfOriginLabelProps) => {
   const classes = useStyles();
   return (
     countryOfOriginInfo && (

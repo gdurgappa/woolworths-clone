@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   leftPanelNav: {
     boxShadow: "0 0 5px rgba(0,0,0,.15)",
-    height: "100wh",
+    minHeight: "100%",
     backgroundColor: "#fff",
     // fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
     width: "220px",
@@ -102,7 +102,7 @@ const ProductListLeftPanel = ({
     }
   }, [category, subCategorySelected, subCategory, categoriesList]);
   const classes = useStyles();
-  console.log("leftPanelItems", leftPanelItems);
+
   return (
     <nav className={classes.leftPanelNav}>
       {leftPanelItems.length && (

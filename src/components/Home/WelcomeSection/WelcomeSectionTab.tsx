@@ -25,6 +25,10 @@ const useStyles = makeStyles({
     animation: "slideIn 350ms backwards",
     transition: "box-shadow 350ms ease-out, border 350ms ease-out",
     border: "1px solid transparent",
+    "&:hover": {
+      boxShadow: "4px 4px 8px rgba(0, 0, 0, 0.3)",
+      border: "1px solid #178841",
+    },
   },
   tab: {
     padding: 0,
@@ -53,9 +57,21 @@ const useStyles = makeStyles({
     textAlign: "left",
     textDecoration: "none",
   },
+  newLabel: {
+    right: "10px",
+    position: "absolute",
+    width: "75px",
+    lineHeight: "20px",
+    fontSize: "12px",
+    textAlign: "center",
+    top: "-9px",
+    borderRadius: "4px",
+    color: "rgb(255, 255, 255)",
+    backgroundColor: "rgb(230, 0, 126)",
+  },
 });
 
-const WelcomeSectionTab = ({ description, image }: any) => {
+const WelcomeSectionTab = ({ description, image, new: newLabel }: any) => {
   const classes = useStyles();
 
   return (
@@ -64,6 +80,7 @@ const WelcomeSectionTab = ({ description, image }: any) => {
         <div dangerouslySetInnerHTML={{ __html: image }} />
         <h3 className={classes.title}>{description}</h3>
       </Link>
+      {newLabel && <div className={classes.newLabel}>NEW</div>}
     </li>
   );
 };

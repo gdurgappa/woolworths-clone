@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     height: "64px",
+    width: "50%",
     "&:hover": {
       textDecoration: "underline",
     },
@@ -22,10 +23,10 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 8px",
   },
 }));
-const SaveToList = ({ linkOverrideStyle, iconOverrideStyle }: any) => {
+const SaveToList = ({ containerOverrideStyle, iconOverrideStyle }: any) => {
   const classes = useStyles();
   return (
-    <div style={{ width: "50%" }} className={classes.linkContainer}>
+    <div style={containerOverrideStyle} className={classes.linkContainer}>
       <Link to={"#"} className={classes.link}>
         Save to list
       </Link>

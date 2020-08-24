@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
+import ReactPlaceholder from "react-placeholder";
 import { Link } from "react-router-dom";
-import { Product } from "./types/product";
-import { getProductPriceInDollarsAndCents } from "../../utils/commonHelper";
-import ProductPrice from "../../components/ProductList/ProductPrice";
+import SaveToList from "../../components/Common/SaveToList";
 import AddToCartButton from "../../components/ProductList/AddToCartButton";
+import ProductPrice from "../../components/ProductList/ProductPrice";
+import { Product } from "../../types/product";
 
 const useStyles = makeStyles({
   root: {
@@ -94,65 +93,93 @@ const Product = (props: Product) => {
 
   const classes = useStyles(HeaderTag || {});
   return (
-    <Card className={classes.productContainer}>
-      {HeaderTag && (
-        <div
-          style={{
-            backgroundColor: HeaderTag.BackgroundColor,
-            color: HeaderTag.TextColor,
-            textAlign: "center",
-            width: "100%",
-            textTransform: "uppercase",
-            padding: "4px 0px",
-            fontSize: "14px",
-          }}
-          dangerouslySetInnerHTML={{
-            __html: HeaderTag.Content && HeaderTag.Content,
-          }}
-        />
-      )}
-      <CardActionArea>
-        <CardMedia
-          classes={{ media: classes.image }}
-          component="img"
-          alt={Description}
-          height="140"
-          image={MediumImageFile}
-          title={Description}
-        />
-        {ImageTag && ImageTag.TagContent && (
-          <img
-            className={classes.specialImageTag}
-            src={`https://woolworths.com.au/${ImageTag.TagContent}`}
-          />
-        )}
-        <div className={classes.titleAndPriceContainer}>
-          <CardContent className={classes.cardContentRoot}>
-            <Link
-              className={classes.title}
-              to={`/shop/productdetails/${Stockcode}/${UrlFriendlyName}`}
-            >
-              {Name}
-            </Link>
-          </CardContent>
-          <ProductPrice
-            {...{
-              CupString,
-              InstorePrice,
-              InstoreHasCupPrice,
-              HideWasSavedPrice,
-              InstoreWasPrice,
+    <ReactPlaceholder
+      ready={true}
+      // showLoadingAnimation
+      // ready={products.length > 0}
+      type="rect"
+      className={classes.productContainer}
+      style={{ width: "500px", height: "500px", background: "red" }}
+      // customPlaceholder={<ProductListSkeleton />}
+    >
+      <Card className={classes.productContainer}>
+        {HeaderTag && (
+          <div
+            style={{
+              backgroundColor: HeaderTag.BackgroundColor,
+              color: HeaderTag.TextColor,
+              textAlign: "center",
+              width: "100%",
+              textTransform: "uppercase",
+              padding: "4px 0px",
+              fontSize: "14px",
+            }}
+            dangerouslySetInnerHTML={{
+              __html: HeaderTag.Content && HeaderTag.Content,
             }}
           />
-        </div>
-      </CardActionArea>
-      <CardActions className={classes.cardActionButtonsContainer}>
-        <AddToCartButton onClickCallback={() => {}} />
-        <Button size="small" color="primary">
+        )}
+        <CardActionArea>
+          {/* <ReactPlaceholder
+          ready={false}
+          showLoadingAnimation
+          // ready={products.length > 0}
+          type="rect"
+          className={classes.productContainer}
+          style={{
+            zIndex: 1,
+            width: "100px",
+            height: "100px",
+            background: "blue",
+          }}
+          // customPlaceholder={<ProductListSkeleton />}
+        > */}
+          <CardMedia
+            classes={{ media: classes.image }}
+            component="img"
+            alt={Description}
+            height="140"
+            image={MediumImageFile}
+            title={Description}
+          />
+          {ImageTag && ImageTag.TagContent && (
+            <img
+              className={classes.specialImageTag}
+              src={`https://woolworths.com.au/${ImageTag.TagContent}`}
+            />
+          )}
+          {/* </ReactPlaceholder> */}
+          <div className={classes.titleAndPriceContainer}>
+            <CardContent className={classes.cardContentRoot}>
+              <Link
+                className={classes.title}
+                to={`/shop/productdetails/${Stockcode}/${UrlFriendlyName}`}
+              >
+                {Name}
+              </Link>
+            </CardContent>
+            <ProductPrice
+              {...{
+                CupString,
+                InstorePrice,
+                InstoreHasCupPrice,
+                HideWasSavedPrice,
+                InstoreWasPrice,
+              }}
+            />
+          </div>
+        </CardActionArea>
+        <CardActions className={classes.cardActionButtonsContainer}>
+          <AddToCartButton onClickCallback={() => {}} />
+          <SaveToList
+            containerOverrideStyle={{ width: "100%", justifyContent: "center" }}
+          />
+          {/* <Button className={classes.root} size="small" color="primary">
           Save to List
-        </Button>
-      </CardActions>
-    </Card>
+        </Button> */}
+        </CardActions>
+      </Card>
+    </ReactPlaceholder>
   );
 };
 

@@ -7,6 +7,10 @@ const useStyles = makeStyles((theme) => ({
     color: "#fff",
     padding: "0 10px",
     whiteSpace: "nowrap",
+    cursor: "pointer",
+    "&:hover": {
+      background: "#0d3e23",
+    },
   },
 }));
 const HeaderNavItem = ({ nav }: any) => {
