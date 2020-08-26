@@ -15,7 +15,7 @@ export default function productsReducer(
     case "PRODUCTS_LIST_SUCCESS":
       return {
         ...state,
-        filteredProducts: action.payload.Bundles,
+        filteredProducts: action.payload.products,
         TotalRecordCount: action.payload.TotalRecordCount,
       };
     case "DECREMENT":

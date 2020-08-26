@@ -2,7 +2,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { fetchProducts } from "../../../api/request";
-import { ProductType, FetchProductsReqBody } from "../../../types/product";
+import {
+  ProductType,
+  FetchProductsReqBody,
+  ProductsListType,
+} from "../../../types/product";
 import Product from "../Product";
 import { GET_PRODUCTS_URL } from "../../../api/urls";
 const settings = {
@@ -98,11 +102,8 @@ const PeopleAlsoViewedProducts = ({
       isBundle: false,
       isMobile: false,
     };
-    fetchProducts<FetchProductsReqBody, ProductType[]>(
-      GET_PRODUCTS_URL,
-      body
-    ).then((res) => {
-      setProductsList(res);
+    fetchProducts<FetchProductsReqBody>(GET_PRODUCTS_URL, body).then((res) => {
+      setProductsList(res.products);
     });
   };
   useEffect(() => {

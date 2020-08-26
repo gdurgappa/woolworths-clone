@@ -39,12 +39,12 @@ const Categories = () => {
   const classes = useStyles();
   // const [categories, setCategories] = useState<Category[]>([]);
   const [activeCategory, setActiveCategory] = useState<Category>();
-  const [activeSubCategory, setActiveSubCategory] = useState<Category | null>();
+  const [activeSubCategory, setActiveSubCategory] = useState<Category>();
   const [open, setOpen] = React.useState<boolean>(false);
 
   const handleCategoryClick = (cat: Category) => {
     setActiveCategory(cat);
-    setActiveSubCategory(null);
+    setActiveSubCategory(undefined);
     setOpen(true);
   };
   const handleClose = () => {

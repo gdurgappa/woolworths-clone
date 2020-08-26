@@ -17,7 +17,7 @@ type CheveronsType = {
 };
 // todo: implement code splitting
 
-const cheverons = {
+const cheverons: any = {
   left: ChevronLeftIcon,
   right: ChevronRightIcon,
 };

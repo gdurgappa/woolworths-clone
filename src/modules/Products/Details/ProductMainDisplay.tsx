@@ -164,17 +164,17 @@ const useStyles = makeStyles(() => ({
     },
   },
 }));
-const ProductMainDisplay = ({
-  productDetails,
-}: {
+
+interface ProductMainDisplayProps {
   productDetails: ProductDetailsType;
-}) => {
+}
+const ProductMainDisplay = ({ productDetails }: ProductMainDisplayProps) => {
   //todo: https://www.woolworths.com.au/shop/productdetails/95889/nobby-s-peanuts-salted
   // label , prodcut list ... price dropped etc. h1 is missing in product category search
   const classes = useStyles();
   const [currentImage, setCurrentImage] = useState({
-    medium: null,
-    large: null,
+    medium: "",
+    large: "",
   });
   const history = useHistory();
   useEffect(() => {
@@ -230,14 +230,21 @@ const ProductMainDisplay = ({
                       return (
                         <li key={index} className={classes.detailImage}>
                           <img
-                            onClick={(e: any) =>
+                            onClick={(
+                              e: React.MouseEvent<HTMLImageElement, MouseEvent>
+                            ) => {
+                              const targetAttribute =
+                                (e.target as HTMLImageElement).getAttribute(
+                                  "src"
+                                ) || "";
                               setCurrentImage({
-                                medium: e.target
-                                  .getAttribute("src")
-                                  .replace("large", "medium"),
-                                large: e.target.getAttribute("src"),
-                              })
-                            }
+                                medium: targetAttribute.replace(
+                                  "large",
+                                  "medium"
+                                ),
+                                large: targetAttribute,
+                              });
+                            }}
                             src={img}
                           />
                         </li>
@@ -292,12 +299,7 @@ const ProductMainDisplay = ({
                 CupString={productDetails.Product.CupString}
               />
               <CardActions className={classes.cardActionButtonsContainer}>
-                <SaveToList
-                  linkOverrideStyle={{
-                    width: "134px",
-                    height: "36px",
-                  }}
-                />
+                <SaveToList />
                 <AddToCartButton
                   rootDivOverrideStyle={{ width: "134px", height: "36px" }}
                 />

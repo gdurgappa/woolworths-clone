@@ -44,11 +44,12 @@ const getSearchCategoriesAndCount = (
   const obj: AggregationType | undefined = aggregations.find(
     (aggr: AggregationType) => aggr.Name === "Category"
   );
-  if (obj && obj !== undefined) {
+  if (!obj) {
+    return [];
+  } else {
+    // return obj[0].Results.filter(
     return obj.Results.filter(
       (cat: AggregationsResultType) => cat.ExtraOutputFields.nodelevel === 1
     );
-  } else {
-    return [];
   }
 };

@@ -1,21 +1,19 @@
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Pagination from "@material-ui/lab/Pagination";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import ProductFilter from "../../components/ProductList/ProductFilter";
 import ProductSortBy from "../../components/ProductList/ProductSortBy";
-import Product from "../Products/Product";
-import ProductSearchLeftPanel from "./ProductSearchLeftPanel";
+import { RootState } from "../../store/store";
 import { UrlParams } from "../../types/commonTypes";
 import {
-  ProductReducerType,
-  SearchProductsReducerType,
   AggregatedProductsResult,
   ProductType,
+  SearchProductsReducerType,
 } from "../../types/product";
-import { RootState } from "../../store/store";
+import Product from "../Products/Product";
+import ProductSearchLeftPanel from "./ProductSearchLeftPanel";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -58,11 +56,7 @@ const useStyles = makeStyles(() => ({
 
 function ProductsSearchResult() {
   const classes = useStyles();
-  const [page, setPage] = useState({
-    currentPage: 1,
-    totalProductsCount: 0,
-    limit: 10,
-  });
+
   const params: UrlParams = useLocation<UrlParams>();
   const query = new URLSearchParams(params.search);
 
@@ -70,16 +64,17 @@ function ProductsSearchResult() {
 
   const dispatch = useDispatch();
 
-  const productSearchCount: AggregatedProductsResult = useSelector<RootState>(
-    (state) => state.search.aggregatedProductsResult
-  );
+  const productSearchCount: AggregatedProductsResult = useSelector<
+    RootState,
+    AggregatedProductsResult
+  >((state) => state.search.aggregatedProductsResult);
   const {
     searchProductsResultsList,
     TotalRecordCount,
     SuggestedTerm,
     Aggregations,
-  } = useSelector<RootState>(
-    (state) => state.search as SearchProductsReducerType
+  } = useSelector<RootState, SearchProductsReducerType>(
+    (state) => state.search
   );
 
   useEffect(() => {
@@ -103,12 +98,12 @@ function ProductsSearchResult() {
       <Grid item xs={9} style={{ margin: "0 auto" }}>
         {/* <div className={classes.root}> */}
         <div className={classes.contentContainer}>
-          {productSearchCount.ProductCount === 0 && (
+          {productSearchCount.ProductCount === 0 && search && (
             <h1 className={classes.headingText}>
               {`No results TBD... “${search.split("=")[1]}”`}
             </h1>
           )}
-          {SuggestedTerm && (
+          {SuggestedTerm && search && (
             <div>
               <h1 className={classes.headingText}>
                 {`Unfortunately, we couldn’t find results for “${
@@ -120,7 +115,7 @@ function ProductsSearchResult() {
               </h3>
             </div>
           )}
-          {!SuggestedTerm && (
+          {!SuggestedTerm && search && (
             <h1 className={classes.headingText}>
               {`Showing results for “${search.split("=")[1]}”`}
             </h1>
@@ -134,21 +129,9 @@ function ProductsSearchResult() {
 
           <div className={classes.productsContainer}>
             {searchProductsResultsList.map((product: ProductType) => {
-              return (
-                <Product
-                  key={product.Products[0].Stockcode}
-                  {...product.Products[0]}
-                />
-              );
+              return <Product key={product.Stockcode} {...product} />;
             })}
           </div>
-
-          <Pagination
-            count={
-              page.totalProductsCount && page.totalProductsCount / page.limit
-            }
-            shape="rounded"
-          />
         </div>
         {/* </div> */}
       </Grid>

@@ -32,7 +32,7 @@ interface SearchInputProps {
   suggestions: Suggestion[];
   searchTerm: string;
   setSearchTerm: (val: string) => void;
-  onOptionSelect: (event: React.ChangeEvent, value: Suggestion | null) => void;
+  onOptionSelect: (value: Suggestion | null) => void;
 }
 // todo put it in common place
 export interface Suggestion {
@@ -49,20 +49,20 @@ const SearchInput = ({
 }: SearchInputProps) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  // const handleEnterPress = (e: ChangeEvent<HTMLInputElement>) => {
   const handleEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.keyCode === 13 &&
-      onOptionSelect(e as any, {
+      onOptionSelect({
         title: (e.target as HTMLInputElement).value,
         value: (e.target as HTMLInputElement).value,
       });
     setOpen(false);
   };
   const handleOptionSelect = (
-    e: ChangeEvent<{}>,
+    // eslint-disable-next-line
+    e: React.ChangeEvent<any>,
     selection: Suggestion | null
   ) => {
-    onOptionSelect(e, selection);
+    onOptionSelect(selection);
     setOpen(false);
   };
   return (

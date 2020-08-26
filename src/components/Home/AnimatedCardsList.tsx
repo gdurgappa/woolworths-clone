@@ -7,7 +7,7 @@ import {
   shopOnline,
 } from "../../constants/firestoreData/homePageData";
 import ButtonWithIcon from "../Common/ButtonWithIcon";
-import HomepageCard from "./AnimatedCard";
+import HomepageCard, { HomePageCardProps } from "./AnimatedCard";
 
 const useStyles = makeStyles(() => ({
   sectionContainer: {
@@ -70,7 +70,7 @@ const HomepageCardsList = ({
 }: HomepageCardsListPropType) => {
   const classes = useStyles();
 
-  const dataMapping: any = {
+  const dataMapping: { [key: string]: HomePageCardProps[] } = {
     shopOnline,
     moreFromWoolworth,
     latestFromWoolworth,
@@ -88,7 +88,7 @@ const HomepageCardsList = ({
           </div>
         )}
         <div className={classes.cardsContainer}>
-          {homepageCardDetails.map((card, index) => {
+          {homepageCardDetails.map((card, index: number) => {
             return <HomepageCard key={index} {...card} />;
           })}
         </div>

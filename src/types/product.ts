@@ -1,6 +1,27 @@
 import { Action } from "redux";
+//extends { [key:string]: value: string }
+export interface ProductsApiBundleData {
+  Products: ProductType[];
+  Name: string;
+}
+export interface ProductsListType {
+  products: ProductType[];
+  TotalRecordCount: number;
+}
 
-export interface ProductType {
+export interface ProductsApiBundleExtraData {
+  AdditionalAttribute: string;
+  PiesProductDepartmentNodeId: string;
+  description: string;
+  TagContent: string;
+  BackgroundColor: string;
+  BorderColor: string;
+  Content: string;
+  Promotion: string;
+  TagLink: string;
+  TextColor: string;
+}
+export interface ProductType extends ProductsApiBundleExtraData {
   Name: string;
   Description: string;
   CupString: string;
@@ -33,7 +54,7 @@ export interface ProductType {
 }
 
 export interface RatingType {
-  RatingCount: string;
+  RatingCount: number;
   Average: number;
 }
 export interface CountryOfOriginLabelType {
@@ -84,7 +105,7 @@ export interface AggregatedProductsResult {
 
 export interface AggregationType {
   Name: string;
-  Results?: AggregationType[];
+  Results: AggregationsResultType[];
 }
 
 export interface AggregationsResultType {
@@ -113,11 +134,11 @@ export interface FetchProductsReqBody {
 }
 
 export interface ProductPriceType {
-  CupString: number;
+  CupString: string;
   InstorePrice: number;
-  InstoreHasCupPrice: boolean;
-  HideWasSavedPrice: number;
-  InstoreWasPrice: number;
+  InstoreHasCupPrice?: boolean;
+  HideWasSavedPrice?: boolean;
+  InstoreWasPrice?: number;
 }
 
 export interface IAction<T> extends Action<string> {

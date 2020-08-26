@@ -69,7 +69,7 @@ const SearchProducts = () => {
     );
   };
 
-  const onOptionSelect = (event: any, value: Suggestion | null) => {
+  const onOptionSelect = (value: Suggestion | null) => {
     if (value) {
       history.push({
         pathname: "/shop/search/products",
@@ -96,8 +96,8 @@ const SearchProducts = () => {
         )}
 
         <SearchIcon
-          onClick={(e) =>
-            onOptionSelect(e, { title: searchTerm, value: searchTerm })
+          onClick={() =>
+            onOptionSelect({ title: searchTerm, value: searchTerm })
           }
           className={classes.searchIcon}
         />

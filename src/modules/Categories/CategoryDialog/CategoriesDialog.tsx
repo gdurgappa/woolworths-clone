@@ -92,7 +92,7 @@ export interface ThumbnailsImage {
 }
 interface CategoriesDialogProps {
   activeCategory: Category;
-  activeSubCategory: Category;
+  activeSubCategory?: Category;
   setActiveSubCategory: (arg: Category) => void;
   handleClose: () => void;
   open: boolean;

@@ -1,5 +1,9 @@
 import axios from "axios";
-import { ProductType } from "../types/product";
+import {
+  ProductType,
+  ProductsListType,
+  ProductsApiBundleData,
+} from "../types/product";
 axios.defaults.headers.common["authority"] = "www.woolworths.com.au";
 axios.defaults.headers.common["scheme"] = "https";
 
@@ -19,66 +23,70 @@ export const post = async <Body, T>(url: string, body: Body): Promise<T> => {
   return response.data;
 };
 
-export const fetchProducts = async <Body, T>(
+export const fetchProducts = async <Body>(
   url: string,
   body: Body
-): Promise<T> => {
+): Promise<ProductsListType> => {
   const response = await axios.post(url, body);
-  return response.data.Bundles.map((bun: any) => {
-    return (({
-      Name,
-      Description,
-      CupString,
-      InstorePrice,
-      MediumImageFile,
-      LargeImageFile,
-      UrlFriendlyName,
-      Stockcode,
-      FullDescription,
-      Rating,
-      AdditionalAttribute,
-      PiesProductDepartmentNodeId,
-      description,
-      ImageTag,
-      TagContent,
-      HeaderTag,
-      BackgroundColor,
-      BorderColor,
-      Content,
-      Promotion,
-      TagLink,
-      TextColor,
-      HideWasSavedPrice,
-      InstoreWasPrice,
-      InstoreHasCupPrice,
-    }) => ({
-      Name,
-      Description,
-      CupString,
-      InstorePrice,
-      MediumImageFile,
-      LargeImageFile,
-      UrlFriendlyName,
-      Stockcode,
-      FullDescription,
-      Rating,
-      AdditionalAttribute,
-      PiesProductDepartmentNodeId,
-      description,
-      ImageTag,
-      TagContent,
-      HeaderTag,
-      BackgroundColor,
-      BorderColor,
-      Content,
-      Promotion,
-      TagLink,
-      TextColor,
-      HideWasSavedPrice,
-      InstoreWasPrice,
-      InstoreHasCupPrice,
-    }))(bun.Products[0]);
-  });
+  const products: ProductType[] = response.data.Bundles.map(
+    (bun: ProductsApiBundleData) => {
+      return (({
+        Name,
+        Description,
+        CupString,
+        InstorePrice,
+        MediumImageFile,
+        LargeImageFile,
+        UrlFriendlyName,
+        Stockcode,
+        FullDescription,
+        Rating,
+        AdditionalAttribute,
+        PiesProductDepartmentNodeId,
+        description,
+        ImageTag,
+        TagContent,
+        HeaderTag,
+        BackgroundColor,
+        BorderColor,
+        Content,
+        Promotion,
+        TagLink,
+        TextColor,
+        HideWasSavedPrice,
+        InstoreWasPrice,
+        InstoreHasCupPrice,
+      }) => ({
+        Name,
+        Description,
+        CupString,
+        InstorePrice,
+        MediumImageFile,
+        LargeImageFile,
+        UrlFriendlyName,
+        Stockcode,
+        FullDescription,
+        Rating,
+        AdditionalAttribute,
+        PiesProductDepartmentNodeId,
+        description,
+        ImageTag,
+        TagContent,
+        HeaderTag,
+        BackgroundColor,
+        BorderColor,
+        Content,
+        Promotion,
+        TagLink,
+        TextColor,
+        HideWasSavedPrice,
+        InstoreWasPrice,
+        InstoreHasCupPrice,
+      }))(bun.Products[0]);
+    }
+  );
+
+  return { products, TotalRecordCount: response.data.TotalRecordCount };
 };
 // export const post = async (url: any, body: any) => {
 //   const initialResponse = await fetch(url, {

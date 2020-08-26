@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
-import LogoImage from "../../../src/assets/images/icon-header-logo.png";
+// import LogoImage from "../../../src/assets/images/icon-header-logo.png";
 import HeaderNavItems from "../../components/Header/HeaderNavItems";
 import LoginSignupButton from "../../components/Header/LoginSignup/LoginSignupButton";
 import Logo from "../../components/Header/Logo";
@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <div className={classes.root}>
-      <Logo path="/" image={LogoImage} />
+      <Logo path="/" />
       <HeaderNavItems />
       <SearchProducts />
       <LoginSignupButton />

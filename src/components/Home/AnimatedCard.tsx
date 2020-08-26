@@ -88,7 +88,7 @@ const useStyles = makeStyles(() => ({
 
 export interface HomePageCardProps {
   title: string;
-  buttonText: string;
+  buttonText?: string;
   description?: string;
   link?: string;
   headerImg?: string;
@@ -101,7 +101,7 @@ const HomepageCard = ({
   description,
   image = "",
   title,
-  buttonText,
+  buttonText = "",
 }: HomePageCardProps) => {
   const classes = useStyles({ image });
 

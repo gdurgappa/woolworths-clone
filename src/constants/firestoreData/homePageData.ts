@@ -37,7 +37,7 @@ export interface WelcomeTab {
   image: string;
   new?: boolean;
 }
-export const welcomeTabs = [
+export const welcomeTabs: WelcomeTab[] = [
   {
     new: true,
     image:
@@ -73,7 +73,7 @@ export const welcomeTabs = [
     link: "/shop/discover/everyday-rewards?icmpid=sm-hp-ribbon4:earn-rewards",
   },
 ];
-export const latestFromWoolworth = [
+export const latestFromWoolworth: HomePageCardProps[] = [
   {
     link:
       "/shop/discover/woolworths-australian-first-sourcing-policy?icmpid=sm-hp-right:other:generic:marketing:wk07",
@@ -102,7 +102,7 @@ export const latestFromWoolworth = [
     title: "More ways to help your money go further",
   },
 ];
-export const cooking = [
+export const cooking: HomePageCardProps[] = [
   {
     buttonText: "View recipes",
     link:
@@ -131,7 +131,7 @@ export const cooking = [
       "https://cdn0.woolworths.media/content/new-homepage/wk7-homepage-recipe-middle.jpg",
   },
 ];
-export const shopOnline = [
+export const shopOnline: HomePageCardProps[] = [
   {
     image:
       "https://cdn0.woolworths.media/content/new-homepage/wk16-b2b-tile.png",
@@ -160,7 +160,7 @@ export const shopOnline = [
     description: "Min spend $100. T&Cs apply.",
   },
 ];
-export const moreFromWoolworth = [
+export const moreFromWoolworth: HomePageCardProps[] = [
   {
     image:
       "https://cdn0.woolworths.media/content/new-homepage/wk47-tile-mobile.jpg",

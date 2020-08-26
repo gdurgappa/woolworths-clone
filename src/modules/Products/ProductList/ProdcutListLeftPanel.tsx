@@ -137,6 +137,7 @@ const ProductListLeftPanel = ({
             {subCategory && <ChevronLeftIcon />}
             <h3 className={classes.leftPanelHeadingText}>
               {Object.keys(categoryMappedId).length &&
+                category &&
                 ((subCategory && categoryMappedId[subCategory].Description) ||
                   categoryMappedId[category].Description)}
             </h3>

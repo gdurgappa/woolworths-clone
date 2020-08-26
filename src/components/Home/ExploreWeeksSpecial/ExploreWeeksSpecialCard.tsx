@@ -78,7 +78,7 @@ const useStyles = makeStyles({
 });
 
 const headingStyleMapping = (headerType: string) => {
-  return {
+  const headerBackgroundObj: { [key: string]: any } = {
     halfPrice: {
       background: "#ffda00",
     },
@@ -86,7 +86,8 @@ const headingStyleMapping = (headerType: string) => {
       background:
         '#ffda00 url("https://cdn0.woolworths.media/content/homepage/fresh-wood-700x70-2.jpg") no-repeat left center',
     },
-  }[headerType];
+  };
+  return headerBackgroundObj[headerType];
 };
 
 const ExploreWeeksSpecialCard = ({

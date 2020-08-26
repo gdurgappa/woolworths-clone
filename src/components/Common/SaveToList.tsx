@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 interface SaveToListProps {
-  containerOverrideStyle: React.CSSProperties;
+  containerOverrideStyle?: React.CSSProperties;
   iconOverrideStyle?: React.CSSProperties;
 }
 const SaveToList = ({
