@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import * as api from "../../api/request";
 import { GET_DYNAMIC_CONTENT_URL } from "../../api/urls";
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   dynamicBannerContainer: {
     "& .visible-xs": {
       margin: "0px",
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
   dynamicBannerContent: {},
 }));
-const DynamicBanner = ({ url }: any) => {
+const DynamicBanner = ({ url }: { url: string }) => {
   const [dynamicHtml, setDynamicHtml] = useState<any>();
 
   const classes = useStyles();
@@ -28,7 +28,7 @@ const DynamicBanner = ({ url }: any) => {
     //https://www.woolworths.com.au/Shop/DynamicContent2Panel?scheduleKey=/shop/browse/fruit-veg/vegetables
     //https://www.woolworths.com.au/Shop/DynamicContent2Panel?scheduleKey=/shop/search/products
     if (url) {
-      api.get(GET_DYNAMIC_CONTENT_URL + url).then((res) => {
+      api.get<HTMLElement>(GET_DYNAMIC_CONTENT_URL + url).then((res) => {
         setDynamicHtml(res);
       });
     }

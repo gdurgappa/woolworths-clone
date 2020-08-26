@@ -1,4 +1,10 @@
-const initialState = {
+import {
+  AggregationsResultType,
+  AggregationType,
+  SearchProductsReducerType,
+} from "../../types/product";
+
+const initialState: SearchProductsReducerType = {
   aggregatedProductsResult: {
     ProductCount: 0,
     SpecialProductCount: 0,
@@ -12,7 +18,7 @@ const initialState = {
 };
 
 export default function searchProductsReducer(
-  state = initialState,
+  state: SearchProductsReducerType = initialState,
   action: any
 ) {
   switch (action.type) {
@@ -31,7 +37,18 @@ export default function searchProductsReducer(
   }
 }
 
-const getSearchCategoriesAndCount = (aggregations: any) =>
-  aggregations
-    .find((aggr: any) => aggr.Name === "Category")
-    .Results.filter((cat: any) => cat.ExtraOutputFields.nodelevel === 1);
+// todo: check undefined
+const getSearchCategoriesAndCount = (
+  aggregations: AggregationType[]
+): AggregationsResultType[] => {
+  const obj: AggregationType | undefined = aggregations.find(
+    (aggr: AggregationType) => aggr.Name === "Category"
+  );
+  if (obj && obj !== undefined) {
+    return obj.Results.filter(
+      (cat: AggregationsResultType) => cat.ExtraOutputFields.nodelevel === 1
+    );
+  } else {
+    return [];
+  }
+};

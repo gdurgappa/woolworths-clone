@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-const useStyles = makeStyles((theme) => ({
+import React from "react";
+const useStyles = makeStyles(() => ({
   root: {
     display: "block",
     lineHeight: "70px",
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const HeaderNavItem = ({ nav }: any) => {
+const HeaderNavItem = ({ nav }: { nav: { name: string } }) => {
   const classes = useStyles();
   return <div className={classes.root}>{nav.name}</div>;
 };

@@ -1,27 +1,17 @@
-import React, { useState, useEffect } from "react";
+import { Card, CardActions, Chip } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Paper,
-  Card,
-  CardMedia,
-  CardContent,
-  CardHeader,
-  Button,
-  CardActions,
-} from "@material-ui/core";
-import { Chip } from "@material-ui/core";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-import RatingSummary from "./RatingSummary";
-import ProductPrice from "../../../components/ProductList/ProductPrice";
-import AddToCartButton from "../../../components/ProductList/AddToCartButton";
-import SaveToList from "../../../components/Common/SaveToList";
-import Cheveron from "../../../components/Common/Cheveron";
-import Link from "../../../components/Common/Link";
-import Magnifier from "react-magnifier";
+import React, { useEffect, useState } from "react";
 import ReactImageMagnify from "react-image-magnify";
 import { useHistory } from "react-router-dom";
+import Cheveron from "../../../components/Common/Cheveron";
+import SaveToList from "../../../components/Common/SaveToList";
+import AddToCartButton from "../../../components/ProductList/AddToCartButton";
+import ProductPrice from "../../../components/ProductList/ProductPrice";
+import RatingSummary from "./RatingSummary";
+import { ProductDetailsType } from "../../../types/product";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     flexDirection: "column",
@@ -47,10 +37,6 @@ const useStyles = makeStyles((theme) => ({
     WebkitBoxPack: "justify",
     justifyContent: "space-between",
   },
-  // mainDisplayContainer: {
-  //   display: "flex",
-  //   justifyContent: "space-evenly",
-  // },
   displaySummaryContainer: {
     display: "flex",
     flexDirection: "column",
@@ -81,13 +67,8 @@ const useStyles = makeStyles((theme) => ({
     "& .magnifying-glass": {
       border: "1px solid black",
     },
-    // "& .magnifier-image": {
-    //   width: "220px",
-    //   height: "220px",
-    // },
   },
   image: {
-    // height: "auto",
     width: "220px",
     height: "220px",
   },
@@ -166,7 +147,6 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "340px",
     marginBottom: "16px",
     border: "1px solid #e0e0e0",
-
     textAlign: "center",
     verticalAlign: "middle",
     lineHeight: "40px",
@@ -184,7 +164,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const ProductMainDisplay = ({ productDetails }: any) => {
+const ProductMainDisplay = ({
+  productDetails,
+}: {
+  productDetails: ProductDetailsType;
+}) => {
   //todo: https://www.woolworths.com.au/shop/productdetails/95889/nobby-s-peanuts-salted
   // label , prodcut list ... price dropped etc. h1 is missing in product category search
   const classes = useStyles();
@@ -219,18 +203,14 @@ const ProductMainDisplay = ({ productDetails }: any) => {
                   alt: "Wristwatch by Ted Baker London",
                   isFluidWidth: true,
                   src: currentImage.medium,
-                  // src: productDetails.Product.MediumImageFile,
                 },
                 largeImage: {
                   src: currentImage.large,
-                  // src: productDetails.Product.LargeImageFile,
                   width: 1200,
                   height: 1800,
                 },
                 lensStyle: {
-                  // background: "hsla(0, 0%, 100%, .3)",
                   background: 0,
-                  // border: "1px solid #ccc",//not working
                 },
                 enlargedImageContainerStyle: {
                   zIndex: 2,
@@ -320,7 +300,6 @@ const ProductMainDisplay = ({ productDetails }: any) => {
                 />
                 <AddToCartButton
                   rootDivOverrideStyle={{ width: "134px", height: "36px" }}
-                  onClickCallback={() => {}}
                 />
               </CardActions>
             </Card>

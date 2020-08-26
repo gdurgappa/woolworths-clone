@@ -1,14 +1,7 @@
-import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import React from "react";
 import { Link } from "react-router-dom";
-import AddToCartButton from "../../ProductList/AddToCartButton";
+import { WelcomeTab } from "../../../constants/firestoreData/homePageData";
 
 const useStyles = makeStyles({
   cardContainer: {
@@ -43,9 +36,6 @@ const useStyles = makeStyles({
       backgroundSize: "36px 54px",
       backgroundRepeat: "no-repeat",
     },
-    // backgroundImage:
-    //   "url(https://cdn0.woolworths.media/content/news-portal/newsroom-icon-ceo-updates.svg)",
-    // backgroundPosition: "center center",
     margin: "0",
     padding: "0",
   },
@@ -71,7 +61,11 @@ const useStyles = makeStyles({
   },
 });
 
-const WelcomeSectionTab = ({ description, image, new: newLabel }: any) => {
+const WelcomeSectionTab = ({
+  description,
+  image,
+  new: newLabel,
+}: WelcomeTab) => {
   const classes = useStyles();
 
   return (

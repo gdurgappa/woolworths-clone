@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { Button } from "@material-ui/core";
+import React from "react";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     alignItems: "center",
@@ -51,12 +51,17 @@ const useStyles = makeStyles((theme) => ({
     color: "#fff",
   },
 }));
+interface AddToCartButtonProps {
+  rootDivOverrideStyle?: React.CSSProperties;
+  title?: string;
+  renderIcon?: React.ElementType;
+}
+
 const AddToCartButton = ({
-  onClickCallback,
   rootDivOverrideStyle,
   title = "Add to cart",
   renderIcon: Icon,
-}: any) => {
+}: AddToCartButtonProps) => {
   const classes = useStyles();
   return (
     <div style={rootDivOverrideStyle} className={classes.root}>

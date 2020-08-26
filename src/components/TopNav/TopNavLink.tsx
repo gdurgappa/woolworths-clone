@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-const useStyles = makeStyles((theme) => ({
+import React from "react";
+import { Link } from "react-router-dom";
+const useStyles = makeStyles(() => ({
   root: {
     display: "block",
     position: "relative",
     margin: "0 10px",
-    color: (props: any) => (props.isActive ? "#fff" : "#a5c84d"),
+    color: (props: { isActive: boolean }) =>
+      props.isActive ? "#fff" : "#a5c84d",
     fontSize: "12px",
     height: "100%",
     lineHeight: "30px",
@@ -27,8 +28,13 @@ const useStyles = makeStyles((theme) => ({
     transform: "translateX(-50%)",
   },
 }));
-
-const TopNavLink = ({ nav, isActive }: any) => {
+interface TopNavLinkProps {
+  nav: {
+    name: string;
+  };
+  isActive: boolean;
+}
+const TopNavLink = ({ nav, isActive }: TopNavLinkProps) => {
   const classes = useStyles({ isActive });
   return (
     <Link className={classes.root} to={"#"}>

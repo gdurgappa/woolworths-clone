@@ -1,29 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Product from "../Product";
-import Categories from "../../Categories/Categories";
 import { makeStyles } from "@material-ui/core/styles";
-import Pagination from "@material-ui/lab/Pagination";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getUrlParamsToFetchProducts,
-  getUrlParamsToFetchProductsNew,
-} from "../../../utils/commonHelper";
-import ProductListLeftPanel from "./ProdcutListLeftPanel";
-import ProductListContent from "./ProductListContent";
-import DynamicBanner from "../../../components/ProductList/DynamicBanner";
-import ReactPlaceholder from "react-placeholder";
-
-import {
-  TextBlock,
-  MediaBlock,
-  TextRow,
-  RectShape,
-  RoundShape,
-} from "react-placeholder/lib/placeholders";
+import React from "react";
+import { RectShape, TextBlock } from "react-placeholder/lib/placeholders";
 import ProductFilter from "../../../components/ProductList/ProductFilter";
 import ProductSortBy from "../../../components/ProductList/ProductSortBy";
-const useStyles = makeStyles((theme) => ({
+
+const useStyles = makeStyles(() => ({
   pageContainer: {
     display: "flex",
     width: "100%",
@@ -46,21 +27,15 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 1.05263158,
     fontWeight: 500,
   },
-  //total
   totalProductsText: {
     display: "flex",
-    // fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
     fontSize: "20px",
-    // margin: '"180px pxpx'",
   },
-  //sort
 
-  //products
   productsContainer: {
     display: "flex",
     flexFlow: "wrap",
     marginLeft: "-10px",
-    // margin: '0px "-'px10px",
   },
   adBanner: {},
   breadCrumbs: {},
@@ -68,11 +43,6 @@ const useStyles = makeStyles((theme) => ({
 
 function ProductListSkeleton() {
   const classes = useStyles();
-  const [page, setPage] = useState({
-    currentPage: 1,
-    totalProductsCount: 0,
-    limit: 10,
-  });
 
   return (
     <div
@@ -122,24 +92,16 @@ function ProductListSkeleton() {
           <ProductSortBy />
 
           <div className={classes.productsContainer}>
-            {[...Array(4)].map((product: any) => {
+            {[...Array(4)].map((_, index: number) => {
               return (
-                <RectShape color="blue" style={{ width: 100, height: 400 }} />
-                // <Product
-                //   key={product.Products[0].Stockcode}
-                //   {...product.Products[0]}
-                //   category={{ category, subCategorySelected, subCategory }}
-                // />
+                <RectShape
+                  key={index}
+                  color="blue"
+                  style={{ width: 100, height: 400 }}
+                />
               );
             })}
           </div>
-
-          <Pagination
-            count={
-              page.totalProductsCount && page.totalProductsCount / page.limit
-            }
-            shape="rounded"
-          />
         </div>
       </div>
     </div>

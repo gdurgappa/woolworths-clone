@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 import { getProductPriceInDollarsAndCents } from "../../utils/commonHelper";
+import { ProductPriceType } from "../../types/product";
 //todo: gives to fixed error http://localhost:8080/shop/productdetails/197276/tip-top-9-grain-bread-original
 // http://localhost:8080/shop/ shows nothing
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   priceContainer: {
     display: "flex",
     MsFlexPack: "justify",
@@ -11,16 +12,12 @@ const useStyles = makeStyles((theme) => ({
     MsFlexAlign: "start",
     alignItems: "center",
     padding: "0 20px 30px",
-    // height: "56px",//parent
-    // margin: "0 20px", //parent
-    // marginTop: "27px",//parent
   },
   productPriceContainer: {
     position: "relative",
   },
   productPriceDollarSymbol: {
     fontSize: "20px",
-    // lineHeight: 1,
     verticalAlign: "top",
   },
   productPriceInDollar: { fontSize: "36px", lineHeight: 1 },
@@ -31,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
     clip: "rect(0,0,0,0)",
     border: 0,
-    // lineHeight: 1,
     verticalAlign: "top",
     fontSize: "20px",
   },
@@ -44,13 +40,14 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Helvetica,Arial,sans-serif",
   },
 }));
+
 const ProductPrice = ({
   CupString,
   InstorePrice,
   InstoreHasCupPrice,
   HideWasSavedPrice,
   InstoreWasPrice,
-}: any) => {
+}: ProductPriceType) => {
   const classes = useStyles();
 
   return (

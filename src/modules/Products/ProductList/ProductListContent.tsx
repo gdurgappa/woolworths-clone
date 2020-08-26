@@ -1,6 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import Pagination from "@material-ui/lab/Pagination";
-import React, { useState } from "react";
+import React from "react";
 import ReactPlaceholder from "react-placeholder";
 import "react-placeholder/lib/reactPlaceholder.css";
 import { useSelector } from "react-redux";
@@ -8,6 +7,9 @@ import BreadCrumbs from "../../../components/ProductList/BreadCrumbs";
 import DynamicBanner from "../../../components/ProductList/DynamicBanner";
 import ProductFilter from "../../../components/ProductList/ProductFilter";
 import ProductSortBy from "../../../components/ProductList/ProductSortBy";
+import { RootState } from "../../../store/store";
+import { CategoryMappedId } from "../../../types/category";
+import { ProductReducerType, ProductType } from "../../../types/product";
 import { getUrlParamsToFetchProducts } from "../../../utils/commonHelper";
 import Product from "../Product";
 import { UrlParamsType } from "./ProductList";
@@ -31,16 +33,11 @@ const useStyles = makeStyles(() => ({
     lineHeight: 1.05263158,
     fontWeight: 500,
   },
-  //total
   totalProductsText: {
     display: "flex",
-    // fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
     fontSize: "20px",
     marginRight: "18px",
   },
-  //sort
-
-  //products
   productsContainer: {
     display: "flex",
     flexFlow: "wrap",
@@ -53,25 +50,29 @@ const useStyles = makeStyles(() => ({
 
 interface ProductListContentProps {
   params: UrlParamsType;
+  categoryMappedId: CategoryMappedId;
 }
-function ProductListContent({ params, categoryMappedId }: any) {
+
+function ProductListContent({
+  params,
+  categoryMappedId,
+}: ProductListContentProps) {
   const classes = useStyles();
-  const [page, setPage] = useState({
-    currentPage: 1,
-    totalProductsCount: 0,
-    limit: 10,
-  });
+
   const { category, subCategorySelected, subCategory } = params;
 
-  const { filteredProducts: products, TotalRecordCount }: any = useSelector<
-    any
-  >((state) => state.products);
-
+  // todo: unknown
+  const {
+    filteredProducts: products,
+    TotalRecordCount,
+  }: ProductReducerType = useSelector<RootState, ProductReducerType>(
+    (state) => state.products
+  );
+  console.log("products", products);
   return (
     <ReactPlaceholder
       showLoadingAnimation
-      ready={products.length}
-      // ready={products.length > 0}
+      ready={products.length > 0}
       customPlaceholder={<ProductListSkeleton />}
     >
       <div className={classes.root}>
@@ -89,7 +90,7 @@ function ProductListContent({ params, categoryMappedId }: any) {
         <div className={classes.contentContainer}>
           <BreadCrumbs
             params={{ category, subCategory, subCategorySelected }}
-            categoryMappedId={categoryMappedId}
+            // categoryMappedId={categoryMappedId}
           />
           <h1 className={classes.headingText}>
             {categoryMappedId[subCategorySelected]?.Description}
@@ -100,35 +101,20 @@ function ProductListContent({ params, categoryMappedId }: any) {
           </h4>
 
           <ProductSortBy />
-          {/* <ReactPlaceholder
-            showLoadingAnimation
-            ready={true}
-            // ready={products.length > 0}
-            type="rect"
-            className={classes.productsContainer}
-            style={{ background: "red" }}
-            // customPlaceholder={<ProductListSkeleton />}
-          > */}
+
           <div className={classes.productsContainer}>
             {/* todo: extract this to product list list */}
-            {products.map((product: any) => {
+            {products.map((product: ProductType) => {
               return (
                 // todo: use a selector insteadof product.produt[0]..flatten it .. see if it can be done in teh reducer or us a selector(reselect)
                 <Product
-                  key={product.Products[0].Stockcode}
-                  {...product.Products[0]}
-                  category={{ category, subCategorySelected, subCategory }}
+                  key={product.Stockcode}
+                  {...product}
+                  // category={{ category, subCategorySelected, subCategory }}
                 />
               );
             })}
           </div>
-          {/* </ReactPlaceholder> */}
-          <Pagination
-            count={
-              page.totalProductsCount && page.totalProductsCount / page.limit
-            }
-            shape="rounded"
-          />
         </div>
       </div>
     </ReactPlaceholder>

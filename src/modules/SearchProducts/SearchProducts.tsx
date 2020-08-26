@@ -52,26 +52,24 @@ const useStyles = makeStyles(() => ({
 }));
 
 const SearchProducts = () => {
-  const [suggestions, setSuggestions] = useState<Array<Suggestion>>([]);
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const classes = useStyles(searchTerm.length > 0);
   const history = useHistory();
+
   const requestSuggestions = async (searchKey: string) => {
-    const apiSuggestions = await api.get(
+    const apiSuggestions = await api.get<{ SearchSuggestion: string[] }>(
       GET_SUGGESTIONS_URL + `?Key=${searchKey}`
     );
     setSuggestions(
-      apiSuggestions.SearchSuggestion.map((s: Suggestion) => ({
+      apiSuggestions.SearchSuggestion.map((s: string) => ({
         title: s,
         value: s,
       }))
     );
   };
 
-  const onOptionSelect = (
-    event: React.ChangeEvent<{}>,
-    value: Suggestion | null
-  ) => {
+  const onOptionSelect = (event: any, value: Suggestion | null) => {
     if (value) {
       history.push({
         pathname: "/shop/search/products",

@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 import AdditionalInfo from "../../../components/Product/AdditionalInfo";
 import CountryOfOriginLabel from "../../../components/Product/CountryOfOriginLabel";
 import NutritionalInformation from "../../../components/Product/NutritionalInformation";
 import * as siteContent from "../../../constants/siteContent";
+import { ProductDetailsType } from "../../../types/product";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   productInfoContainer: {
     display: "flex",
     alignItems: "start",
@@ -51,7 +52,11 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Helvetica, Arial, sans-serif",
   },
 }));
-const ProductInformation = ({ productDetails }: any) => {
+const ProductInformation = ({
+  productDetails,
+}: {
+  productDetails: ProductDetailsType;
+}) => {
   const classes = useStyles();
   return (
     <section className={classes.productInfoContainer}>

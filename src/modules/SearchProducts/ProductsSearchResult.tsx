@@ -1,53 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
-import Categories from "../Categories/Categories";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Pagination from "@material-ui/lab/Pagination";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUrlParamsToFetchProducts } from "../../utils/commonHelper";
-import Product from "../Products/Product";
-import ProductListContent from "../Products/ProductList/ProductListContent";
+import { useLocation } from "react-router-dom";
 import ProductFilter from "../../components/ProductList/ProductFilter";
 import ProductSortBy from "../../components/ProductList/ProductSortBy";
-import DynamicBanner from "../../components/ProductList/DynamicBanner";
-import { Grid } from "@material-ui/core";
+import Product from "../Products/Product";
 import ProductSearchLeftPanel from "./ProductSearchLeftPanel";
+import { UrlParams } from "../../types/commonTypes";
+import {
+  ProductReducerType,
+  SearchProductsReducerType,
+  AggregatedProductsResult,
+  ProductType,
+} from "../../types/product";
+import { RootState } from "../../store/store";
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     display: "flex",
-//     flexDirection: "column",
-//     width: "100%",
-//   },
-//   contentContainer: {
-//     margin: "0 auto",
-//     width: "960px",
-//   },
-//   breadCrumbContainer: {},
-//   breadCrumbItem: {},
-//   headingText: {
-//     marginBottom: "32px",
-//     textTransform: "capitalize",
-//     fontSize: "38px",
-//     lineHeight: 1.05263158,
-//     fontWeight: 500,
-//   },
-//   //total
-//   totalProductsText: {
-//     display: "flex",
-//     fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
-//     fontSize: "20px",
-//     marginRight: "18px",
-//   },
-//   //sort
-
-//   //products
-//   productsContainer: { display: "flex", flexFlow: "wrap" },
-//   adBanner: {},
-//   breadCrumbs: {},
-// }));
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     flexDirection: "column",
@@ -93,14 +63,14 @@ function ProductsSearchResult() {
     totalProductsCount: 0,
     limit: 10,
   });
-  const params: any = useLocation<any>();
+  const params: UrlParams = useLocation<UrlParams>();
   const query = new URLSearchParams(params.search);
 
   const { search } = params;
 
   const dispatch = useDispatch();
 
-  const productSearchCount: any = useSelector<any>(
+  const productSearchCount: AggregatedProductsResult = useSelector<RootState>(
     (state) => state.search.aggregatedProductsResult
   );
   const {
@@ -108,10 +78,8 @@ function ProductsSearchResult() {
     TotalRecordCount,
     SuggestedTerm,
     Aggregations,
-  }: any = useSelector<any>((state) => state.search);
-
-  const categoryMappedId: any = useSelector<any>(
-    (state) => state.category.categoryMappedId
+  } = useSelector<RootState>(
+    (state) => state.search as SearchProductsReducerType
   );
 
   useEffect(() => {
@@ -165,7 +133,7 @@ function ProductsSearchResult() {
           <ProductSortBy />
 
           <div className={classes.productsContainer}>
-            {searchProductsResultsList.map((product: any) => {
+            {searchProductsResultsList.map((product: ProductType) => {
               return (
                 <Product
                   key={product.Products[0].Stockcode}

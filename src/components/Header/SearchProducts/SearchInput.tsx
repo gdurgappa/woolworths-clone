@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { TextField } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import { makeStyles } from "@material-ui/styles";
+import React, { useState, ChangeEvent } from "react";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     alignItems: "center",
@@ -33,17 +32,14 @@ interface SearchInputProps {
   suggestions: Suggestion[];
   searchTerm: string;
   setSearchTerm: (val: string) => void;
-  onOptionSelect: (
-    event: React.ChangeEvent<{}>,
-    value: Suggestion | null
-  ) => void;
+  onOptionSelect: (event: React.ChangeEvent, value: Suggestion | null) => void;
 }
 // todo put it in common place
 export interface Suggestion {
   title: string;
   value: string;
 }
-// todo: suggestion should close after enter key
+
 const SearchInput = ({
   requestSuggestions,
   suggestions,
@@ -53,15 +49,19 @@ const SearchInput = ({
 }: SearchInputProps) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const handleEnterPress = (e: any) => {
+  // const handleEnterPress = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.keyCode === 13 &&
-      onOptionSelect(e, {
-        title: e.target.value,
-        value: e.target.value,
+      onOptionSelect(e as any, {
+        title: (e.target as HTMLInputElement).value,
+        value: (e.target as HTMLInputElement).value,
       });
     setOpen(false);
   };
-  const handleOptionSelect = (e: any, selection: any) => {
+  const handleOptionSelect = (
+    e: ChangeEvent<{}>,
+    selection: Suggestion | null
+  ) => {
     onOptionSelect(e, selection);
     setOpen(false);
   };
@@ -71,7 +71,7 @@ const SearchInput = ({
       open={open}
       options={suggestions}
       openOnFocus={searchTerm.length > 0}
-      getOptionLabel={(option: any) => option.title}
+      getOptionLabel={(option: Suggestion) => option.title}
       onChange={handleOptionSelect}
       className={classes.autoCompleteRoot}
       onBlur={() => setOpen(false)}

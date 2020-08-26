@@ -7,7 +7,7 @@ import {
   shopOnline,
 } from "../../constants/firestoreData/homePageData";
 import ButtonWithIcon from "../Common/ButtonWithIcon";
-import AnimatedCard from "./AnimatedCard";
+import HomepageCard from "./AnimatedCard";
 
 const useStyles = makeStyles(() => ({
   sectionContainer: {
@@ -50,16 +50,16 @@ const useStyles = makeStyles(() => ({
     },
   },
 }));
-interface AnimatedCardsListPropType {
+interface HomepageCardsListPropType {
   sectionType: string;
   sectionHeading: string;
-  sectionStyle?: string; //todo: object of style
-  contentStyle?: string;
-  buttonStyle?: string;
+  sectionStyle?: React.CSSProperties; //todo: object of style
+  contentStyle?: React.CSSProperties;
+  buttonStyle?: React.CSSProperties;
   introPara1?: string;
   introPara2?: string;
 }
-const AnimatedCardsList = ({
+const HomepageCardsList = ({
   sectionType,
   sectionHeading,
   sectionStyle,
@@ -67,7 +67,7 @@ const AnimatedCardsList = ({
   buttonStyle,
   introPara1,
   introPara2,
-}: AnimatedCardsListPropType) => {
+}: HomepageCardsListPropType) => {
   const classes = useStyles();
 
   const dataMapping: any = {
@@ -76,7 +76,7 @@ const AnimatedCardsList = ({
     latestFromWoolworth,
     cooking,
   };
-  const animatedCardDetails = dataMapping[sectionType];
+  const homepageCardDetails = dataMapping[sectionType];
   return (
     <section style={sectionStyle} className={classes.sectionContainer}>
       <div style={contentStyle} className={classes.contentContainer}>
@@ -88,8 +88,8 @@ const AnimatedCardsList = ({
           </div>
         )}
         <div className={classes.cardsContainer}>
-          {animatedCardDetails.map((card, index) => {
-            return <AnimatedCard key={index} {...card} />;
+          {homepageCardDetails.map((card, index) => {
+            return <HomepageCard key={index} {...card} />;
           })}
         </div>
       </div>
@@ -103,4 +103,4 @@ const AnimatedCardsList = ({
   );
 };
 
-export default AnimatedCardsList;
+export default HomepageCardsList;

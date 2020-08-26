@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-// import TuneSharpIcon from "@material-ui/icons/TuneSharp";
 import TuneSharpIcon from "@material-ui/icons/Tune";
+import React from "react";
 import { Link } from "react-router-dom";
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {},
   filterSearchContainer: {
     marginBottom: "20px",
@@ -38,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   filterCheveronDown: {},
 }));
-const ProductFilter = ({}: any) => {
+const ProductFilter = () => {
   const classes = useStyles();
   return (
     <div className={classes.filterSearchContainer}>

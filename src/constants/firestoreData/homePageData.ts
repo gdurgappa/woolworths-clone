@@ -1,4 +1,11 @@
-export const carousel = [
+import { HomePageCardProps } from "../../components/Home/AnimatedCard";
+
+export interface Carousel {
+  background: string;
+  button: string;
+  image?: string;
+}
+export const carousel: Carousel[] = [
   {
     background: `rgba(0, 0, 0, 0) url("https://cdn0.woolworths.media/content/new-homepage/carousel-cartology-table-2000x115.png") repeat scroll 0% 0px / cover padding-box border-box`,
     button: "Shop now",
@@ -24,6 +31,12 @@ export const carousel = [
     button: "Boost now",
   },
 ];
+export interface WelcomeTab {
+  description?: string;
+  link?: string;
+  image: string;
+  new?: boolean;
+}
 export const welcomeTabs = [
   {
     new: true,
@@ -175,7 +188,7 @@ export const moreFromWoolworth = [
       "https://cdn0.woolworths.media/content/new-homepage/wk47-tile-gift-cards.png",
   },
 ];
-export const exploreThisWeekSpecials = [
+export const exploreThisWeekSpecials: HomePageCardProps[] = [
   {
     description:
       "Connoisseur Ice Cream Sticks Pk 4, Mr Chen's Yum Cha 204-300g",
@@ -186,10 +199,10 @@ export const exploreThisWeekSpecials = [
     headerImg:
       "https://cdn0.woolworths.media/content/new-homepage/half-price-roundel.svg",
     headerType: "halfPrice",
-    headerText: "Freezer",
+    title: "Freezer",
   },
   {
-    headerText: "Drinks & Snacks",
+    title: "Drinks & Snacks",
     headerImg:
       "https://cdn0.woolworths.media/content/new-homepage/half-price-roundel.svg",
     headerType: "halfPrice",
@@ -208,10 +221,10 @@ export const exploreThisWeekSpecials = [
       "https://cdn0.woolworths.media/content/new-homepage/2019-roundel-fresh-special-200x200.png",
     image:
       "https://cdn0.woolworths.media/content/new-homepage/offertile-special-fruit-veg-strawberries.jpg",
-    headerText: "Fruit & Veg",
+    title: "Fruit & Veg",
   },
   {
-    headerText: "Easy Meals",
+    title: "Easy Meals",
     image:
       "https://cdn0.woolworths.media/content/new-homepage/wk7-offertile-new-easy-meals-non-liquor-stores.png",
     headerType: "new",

@@ -10,9 +10,8 @@ import { Link } from "react-router-dom";
 import SaveToList from "../../components/Common/SaveToList";
 import AddToCartButton from "../../components/ProductList/AddToCartButton";
 import ProductPrice from "../../components/ProductList/ProductPrice";
-import { Product } from "../../types/product";
-
-const useStyles = makeStyles({
+import { ProductType } from "../../types/product";
+const useStyles = makeStyles(() => ({
   root: {
     maxWidth: 345,
   },
@@ -28,9 +27,9 @@ const useStyles = makeStyles({
     background: "#fff",
     boxShadow: "0 0 1px rgba(0,0,0,.3)",
     outline: "none",
-    border: (props: any) => props && props.BorderColor && "2px solid",
-    borderColor: (props: any) =>
-      props && props.BorderColor && props.BorderColor,
+    // border: (borderColor) => borderColor && "2px solid",//todo error
+    borderColor: "black",
+    // borderColor: (borderColor) => borderColor && borderColor, //todo error
   },
   titleAndPriceContainer: {
     display: "flex",
@@ -73,9 +72,9 @@ const useStyles = makeStyles({
     flexDirection: "column",
     padding: 0,
   },
-});
+}));
 
-const Product = (props: Product) => {
+const Product = (props: ProductType) => {
   const {
     Description,
     CupString,
@@ -91,7 +90,7 @@ const Product = (props: Product) => {
     InstoreWasPrice,
   } = props;
 
-  const classes = useStyles(HeaderTag || {});
+  const classes = useStyles(HeaderTag ? HeaderTag.BorderColor : "");
   return (
     <ReactPlaceholder
       ready={true}
@@ -120,20 +119,6 @@ const Product = (props: Product) => {
           />
         )}
         <CardActionArea>
-          {/* <ReactPlaceholder
-          ready={false}
-          showLoadingAnimation
-          // ready={products.length > 0}
-          type="rect"
-          className={classes.productContainer}
-          style={{
-            zIndex: 1,
-            width: "100px",
-            height: "100px",
-            background: "blue",
-          }}
-          // customPlaceholder={<ProductListSkeleton />}
-        > */}
           <CardMedia
             classes={{ media: classes.image }}
             component="img"
@@ -170,7 +155,7 @@ const Product = (props: Product) => {
           </div>
         </CardActionArea>
         <CardActions className={classes.cardActionButtonsContainer}>
-          <AddToCartButton onClickCallback={() => {}} />
+          <AddToCartButton />
           <SaveToList
             containerOverrideStyle={{ width: "100%", justifyContent: "center" }}
           />

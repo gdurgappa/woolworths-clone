@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-
-import { CardMedia } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-const useStyles = makeStyles((theme) => ({
+import React from "react";
+import { Link } from "react-router-dom";
+
+const useStyles = makeStyles(() => ({
   imageContainer: {
     overflow: "hidden",
     flexShrink: 0,
@@ -17,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Logo = ({ image, path }: any) => {
+const Logo = ({ path }: { path: string }) => {
   const classes = useStyles();
   return (
     <Link className={classes.imageContainer} to={path}>

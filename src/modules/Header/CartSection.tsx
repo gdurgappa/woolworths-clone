@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import ViewCartButton from "../../components/CartSection/ViewCartButton";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { makeStyles } from "@material-ui/core/styles";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import React from "react";
+import ViewCartButton from "../../components/CartSection/ViewCartButton";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     height: "40px",
     display: "flex",
@@ -17,8 +17,6 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     width: "210px",
     marginRight: "10px",
-
-    // border: "2px solid #fff",
     borderRadius: "20px",
     fontSize: "11px",
     lineHeight: "normal",
@@ -57,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CartSection = (props: {}) => {
+const CartSection = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Cheveron from "../../components/Common/Cheveron";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   leftPanelNav: {
     boxShadow: "0 0 5px rgba(0,0,0,.15)",
     minHeight: "100%",

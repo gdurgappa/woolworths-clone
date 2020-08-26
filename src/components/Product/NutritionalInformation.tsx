@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Card, CardMedia, makeStyles } from "@material-ui/core";
-const useStyles = makeStyles((theme) => ({
+import { makeStyles } from "@material-ui/core";
+import React from "react";
+import { NutritionalInformationType } from "../../types/product";
+const useStyles = makeStyles(() => ({
   headingText: {
     fontSize: "22px",
     marginBottom: "20px",
@@ -35,7 +36,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NutritionalInformation = ({ nutritionalInformation }: any) => {
+const NutritionalInformation = ({
+  nutritionalInformation,
+}: {
+  nutritionalInformation: NutritionalInformationType[];
+}) => {
   const classes = useStyles();
   return nutritionalInformation && nutritionalInformation.length ? (
     <>
@@ -49,7 +54,7 @@ const NutritionalInformation = ({ nutritionalInformation }: any) => {
           </tr>
         </thead>
         <tbody>
-          {nutritionalInformation.map((info: any) => (
+          {nutritionalInformation.map((info: NutritionalInformationType) => (
             <tr key={info.Name}>
               <td>{info.Name}</td>
               <td>{info.Values["Avg Qty Per 100g"]}</td>

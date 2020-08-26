@@ -19,8 +19,14 @@ export interface Category extends CategoryMapping {
   Children: Category[];
 }
 
-export interface CategoryInitialState {
+export interface CategoryReducerType {
   allCategories: Category[];
   categoryMappedId: CategoryMappedId;
   urlMappedId: UrlMappedId;
+}
+
+export interface LeftPanelCategoryType {
+  Description: string;
+  UrlFriendlyName: string;
+  NodeId: string;
 }

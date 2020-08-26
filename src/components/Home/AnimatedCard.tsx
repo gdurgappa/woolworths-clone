@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 import { Link } from "react-router-dom";
-import AddToCartButton from "../ProductList/AddToCartButton";
-import Cheveron from "../Common/Cheveron";
 import ButtonWithIcon from "../Common/ButtonWithIcon";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   cardRoot: {
     margin: "auto 4px",
     borderRadius: "6px",
@@ -27,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
     // height: "430px",
     width: "32%",
     minHeight: "220px",
-    background: (props: any) => (props ? `url(${props.image}) no-repeat` : ""),
+    background: (props: { image: string }) =>
+      props ? `url(${props.image}) no-repeat` : "",
     backgroundSize: "cover !important",
     backgroundPosition: "center",
     position: "relative",
@@ -62,10 +56,6 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     background:
       "linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 16%, rgba(0, 0, 0, 0.51) 17%, rgba(0, 0, 0, 0.66) 37%, rgba(0, 0, 0, 0.7) 43%)",
-    // transition: "all .75s ease-out",
-    // "&:hover": {
-    //   transform: "translateY(-100px)",
-    // },
     "& p": {
       marginBottom: "15px",
       fontFamily: "Helvetica",
@@ -96,14 +86,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface LatestFromWoolworthsCardProps {
-  description: string;
-  link: string;
-  headerImg: string;
-  image: string;
-  headerText: string;
+export interface HomePageCardProps {
+  title: string;
+  buttonText: string;
+  description?: string;
+  link?: string;
+  headerImg?: string;
+  image?: string;
+  headerText?: string;
+  headerType?: string;
+  new?: boolean;
 }
-const AnimatedCard = ({ description, link, image, title, buttonText }: any) => {
+const HomepageCard = ({
+  description,
+  image = "",
+  title,
+  buttonText,
+}: HomePageCardProps) => {
   const classes = useStyles({ image });
 
   return (
@@ -121,4 +120,4 @@ const AnimatedCard = ({ description, link, image, title, buttonText }: any) => {
   );
 };
 
-export default AnimatedCard;
+export default HomepageCard;

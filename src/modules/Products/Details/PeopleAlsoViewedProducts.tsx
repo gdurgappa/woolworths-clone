@@ -1,7 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
+import { fetchProducts } from "../../../api/request";
+import { ProductType, FetchProductsReqBody } from "../../../types/product";
 import Product from "../Product";
+import { GET_PRODUCTS_URL } from "../../../api/urls";
 const settings = {
   dots: true,
   infinite: true,
@@ -44,8 +47,16 @@ const useStyles = makeStyles(() => ({
     marginBottom: "20px",
   },
 }));
-export function SampleNextArrow(props: any) {
-  const { className, classes, style, onClick } = props;
+
+export interface NextPrevArrowProps {
+  className?: string;
+  classes?: string;
+  style?: string;
+  nextIconClassname?: string;
+  onClick?: () => void;
+}
+export function SampleNextArrow(props: NextPrevArrowProps) {
+  const { classes, onClick } = props;
 
   return (
     <div className={classes || "slicknext"} onClick={onClick}>
@@ -54,51 +65,46 @@ export function SampleNextArrow(props: any) {
   );
 }
 
-export function SamplePrevArrow(props: any) {
-  const { className, classes, nextIconClassname, style, onClick } = props;
+export function SamplePrevArrow(props: NextPrevArrowProps) {
+  const { classes, onClick } = props;
   return (
-    <div
-      className={classes || "slickprev"}
-      // style={{ ...style, display: "block", background: "green" }}
-      onClick={onClick}
-    >
+    <div className={classes || "slickprev"} onClick={onClick}>
       <i className={"prevButton"}></i>
     </div>
   );
 }
-const PeopleAlsoViewedProducts = ({ categoryId }: any) => {
-  const [productsList, setProductsList] = useState<any>([]);
+
+interface PeopleAlsoViewedProductsProps {
+  categoryId: string;
+  categoryName: string;
+}
+
+const PeopleAlsoViewedProducts = ({
+  categoryId,
+  categoryName,
+}: PeopleAlsoViewedProductsProps) => {
+  const [productsList, setProductsList] = useState<ProductType[]>([]);
   const classes = useStyles();
   const getAlsoViewedItemsProductList = () => {
-    const body = JSON.stringify({
+    const body: FetchProductsReqBody = {
       categoryId: categoryId,
       pageNumber: 1,
       pageSize: 10,
       sortType: "TraderRelevance",
       url: `/shop/browse/${categoryId}`,
       location: `/shop/browse/${categoryId}`,
-      formatObject: '{"name":"Organic Fruit"}',
+      formatObject: `{"name":"${categoryName}"}`,
       isSpecial: false,
       isBundle: false,
       isMobile: false,
-      filters: null,
+    };
+    fetchProducts<FetchProductsReqBody, ProductType[]>(
+      GET_PRODUCTS_URL,
+      body
+    ).then((res) => {
+      setProductsList(res);
     });
-    fetch("https://www.woolworths.com.au/apis/ui/browse/category", {
-      method: "post",
-
-      body,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        mode: "no-cors",
-      },
-    })
-      .then((res: any) => res.json())
-      .then((res: any) => {
-        setProductsList(res.Bundles);
-      });
   };
-  const getAlsoBroughtItemsProductList = () => {};
   useEffect(() => {
     getAlsoViewedItemsProductList();
   }, []);
@@ -107,32 +113,27 @@ const PeopleAlsoViewedProducts = ({ categoryId }: any) => {
     let i = -1;
     const setOne = (
       <div className={classes.carouselContainer}>
-        {[...Array(5)].map((_, ind) => {
+        {[...Array(5)].map(() => {
           i = i + 1;
           return (
-            <Product
-              key={productsList[i].Products[0].Stockcode}
-              {...productsList[i].Products[0]}
-            />
+            <Product key={productsList[i].Stockcode} {...productsList[i]} />
           );
         })}
       </div>
     );
     const setTwo = (
       <div className={classes.carouselContainer}>
-        {[...Array(5)].map((_, ind) => {
+        {[...Array(5)].map(() => {
           i = i + 1;
           return (
-            <Product
-              key={productsList[i].Products[0].Stockcode}
-              {...productsList[i].Products[0]}
-            />
+            <Product key={productsList[i].Stockcode} {...productsList[i]} />
           );
         })}
       </div>
     );
     return [setOne, setTwo];
   };
+  console.log("productsList", productsList);
   return (
     <div>
       <>

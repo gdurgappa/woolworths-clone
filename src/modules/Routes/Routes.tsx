@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
 import Home from "../Home/Home";
-import { Switch } from "react-router-dom";
-import ProductList from "../Products/ProductList/ProductList";
 import ProductDetails from "../Products/Details/ProductDetails";
+import ProductList from "../Products/ProductList/ProductList";
 import ProductsSearchResult from "../SearchProducts/ProductsSearchResult";
 
-const Routes = (props: {}) => {
+const Routes = () => {
   return (
     <Switch>
       <Route path="/" exact component={Home} />

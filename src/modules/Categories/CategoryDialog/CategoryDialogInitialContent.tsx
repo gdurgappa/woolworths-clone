@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import React from "react";
 import { Link } from "react-router-dom";
-const useStyles = makeStyles((theme) => ({
+import { ThumbnailsImage } from "./CategoriesDialog";
+const useStyles = makeStyles(() => ({
   initialContentContainer: {
     alignItems: "start",
     display: "flex",
@@ -28,7 +29,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const CategoryDialogInitialContent = ({ categoryBannerThumbnails }: any) => {
+const CategoryDialogInitialContent = ({
+  categoryBannerThumbnails,
+}: {
+  categoryBannerThumbnails: ThumbnailsImage[];
+}) => {
   const classes = useStyles();
   return (
     <div className={classes.initialContentContainer}>
@@ -37,7 +42,7 @@ const CategoryDialogInitialContent = ({ categoryBannerThumbnails }: any) => {
         <span>Select from the categories on the left.</span>
       </div>
       <div className={classes.bannerThumbnailContainer}>
-        {categoryBannerThumbnails.map((ban: any, index: any) => {
+        {categoryBannerThumbnails.map((ban: ThumbnailsImage, index: number) => {
           return (
             <Link key={index} to={"#"}>
               <img src={ban.Image} />

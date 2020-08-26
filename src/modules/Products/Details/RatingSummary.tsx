@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
+import React from "react";
+import { RatingType } from "../../../types/product";
 const useStyles = makeStyles({
   ratingContainer: {
     display: "flex",
@@ -35,7 +36,7 @@ const useStyles = makeStyles({
     },
   },
 });
-const RatingSummary = ({ rating }: any) => {
+const RatingSummary = ({ rating }: { rating: RatingType }) => {
   const classes = useStyles();
   return rating ? (
     <div className={classes.ratingContainer}>

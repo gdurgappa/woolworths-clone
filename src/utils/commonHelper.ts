@@ -1,6 +1,9 @@
+import { CategoryMappedId, UrlMappedId } from "../types/category";
+import { UrlParams } from "../types/commonTypes";
+
 export const getUrlParamsToFetchProducts = (
-  params: any,
-  categoryMappedId: any
+  params: UrlParams,
+  categoryMappedId: CategoryMappedId
 ) => {
   const { category, subCategorySelected, subCategory } = params;
   if (subCategorySelected) {
@@ -32,9 +35,8 @@ export const getUrlParamsToFetchProducts = (
   return { url: "", categoryId: "" };
 };
 export const getUrlParamsToFetchProductsNew = (
-  params: any,
-  // categoryMappedId: any,
-  urlMappedId: any
+  params: UrlParams,
+  urlMappedId: UrlMappedId
 ) => {
   const { category, subCategorySelected, subCategory } = params;
   if (subCategorySelected) {
@@ -65,10 +67,16 @@ export const getUrlParamsToFetchProductsNew = (
     };
   }
 
-  return { url: "", categoryId: "" };
+  return {
+    url: "",
+    categoryId: "",
+    formatObject: "",
+    isBundle: false,
+    isSpecial: false,
+  };
 };
 
-export const getProductPriceInDollarsAndCents = (price: any) => {
+export const getProductPriceInDollarsAndCents = (price: number) => {
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "AUD",

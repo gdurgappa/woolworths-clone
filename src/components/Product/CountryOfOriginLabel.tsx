@@ -1,5 +1,6 @@
 import { CardMedia, makeStyles } from "@material-ui/core";
 import React from "react";
+import { CountryOfOriginLabelType } from "../../types/product";
 
 const useStyles = makeStyles(() => ({
   imageRoot: {
@@ -15,10 +16,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 interface CountryOfOriginLabelProps {
-  countryOfOriginInfo: {
-    AltText: string;
-    SvgImageFile: string;
-  };
+  countryOfOriginInfo: CountryOfOriginLabelType;
 }
 
 const CountryOfOriginLabel = ({

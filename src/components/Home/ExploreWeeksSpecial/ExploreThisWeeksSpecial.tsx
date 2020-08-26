@@ -1,8 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
-import React, { useEffect, useState } from "react";
-import { db } from "../../../App";
-import ExploreWeeksSpecialCard from "./ExploreWeeksSpecialCard";
+import React from "react";
 import * as homepageData from "../../../constants/firestoreData/homePageData";
+import ExploreWeeksSpecialCard from "./ExploreWeeksSpecialCard";
 
 const useStyles = makeStyles(() => ({
   sectionContainer: {
@@ -31,25 +30,10 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-interface ExploreThisWeeksSpecialItem = {
-
-}
-
 const ExploreThisWeeksSpecial = () => {
   const classes = useStyles();
-  // const [exploreWeeksSpecialList, setExploreWeeksSpecialList] = useState([]);
-  // useEffect(() => {
-  //   const items: any = [];
-  //   db.collection("exploreWeeksSpecial")
-  //     .get()
-  //     .then(({ docs }) => {
-  //       docs.forEach((doc) => {
-  //         items.push(doc.data());
-  //       });
-  //       setExploreWeeksSpecialList(items);
-  //     });
-  // }, []);
-  const exploreWeeksSpecialList = homepageData.exploreThisWeekSpecials
+
+  const exploreWeeksSpecialList = homepageData.exploreThisWeekSpecials;
   return (
     <section className={classes.sectionContainer}>
       <div className={classes.contentContainer}>

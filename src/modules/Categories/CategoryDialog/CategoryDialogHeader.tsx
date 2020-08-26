@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import CloseIcon from "@material-ui/icons/Close";
-const useStyles = makeStyles((theme) => ({
+import React from "react";
+import { Link } from "react-router-dom";
+import { Category } from "../../../types/category";
+const useStyles = makeStyles(() => ({
   dialogHeaderContainer: {
     minHeight: "110px",
     color: "#3a474e",
@@ -83,11 +84,17 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+interface CategoryDialogHeaderProps {
+  activeCategory: Category;
+  categoryIcon: string;
+  handleClose: () => void;
+}
+
 const CategoryDialogHeader = ({
   activeCategory,
   categoryIcon,
   handleClose,
-}: any) => {
+}: CategoryDialogHeaderProps) => {
   const classes = useStyles();
   return (
     <div className={classes.dialogHeaderContainer}>
@@ -103,13 +110,13 @@ const CategoryDialogHeader = ({
         <nav>
           <ul>
             {activeCategory.Children.filter(
-              (cat: any) => cat.DisplayOrder === -1
-            ).map((cat: any) => {
+              (cat: Category) => cat.DisplayOrder === -1
+            ).map((cat: Category) => {
               return (
                 <li
                   className={classes.breadCrumb}
                   key={cat.NodeId}
-                  onClick={() => handleClose(false)}
+                  onClick={handleClose}
                 >
                   <Link
                     to={`/shop/browse/${activeCategory.UrlFriendlyName}/${cat.UrlFriendlyName}`}
@@ -120,10 +127,7 @@ const CategoryDialogHeader = ({
                 </li>
               );
             })}
-            <li
-              className={classes.breadCrumb}
-              onClick={() => handleClose(false)}
-            >
+            <li className={classes.breadCrumb} onClick={handleClose}>
               <Link to={`/shop/browse/${activeCategory.UrlFriendlyName}`}>
                 <span>{"Show All " + activeCategory.Description}</span>
                 <ChevronRightIcon />
@@ -132,10 +136,7 @@ const CategoryDialogHeader = ({
           </ul>
         </nav>
       </div>
-      <button
-        className={classes.closeButton}
-        onClick={() => handleClose(false)}
-      >
+      <button className={classes.closeButton} onClick={handleClose}>
         Close <CloseIcon />
       </button>
     </div>

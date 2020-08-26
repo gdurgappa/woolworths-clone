@@ -1,11 +1,13 @@
 import { makeStyles } from "@material-ui/core/styles";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-
 import { getUrlParamsToFetchProductsNew } from "../../../utils/commonHelper";
 import ProductListLeftPanel from "./ProdcutListLeftPanel";
 import ProductListContent from "./ProductListContent";
+import { RootState } from "../../../store/store";
+import { CategoryReducerType } from "../../../types/category";
+import { FetchProductsReqBody } from "../../../types/product";
 
 const useStyles = makeStyles(() => ({
   pageContainer: {
@@ -31,14 +33,15 @@ function ProductList() {
   const { category, subCategorySelected, subCategory } = params;
   const dispatch = useDispatch();
 
-  const { categoryMappedId, urlMappedId }: any = useSelector<any>(
-    (state) => state.category
-  );
+  const { categoryMappedId, urlMappedId }: CategoryReducerType = useSelector<
+    RootState,
+    CategoryReducerType
+  >((state) => state.category);
 
   useEffect(() => {
     if (Object.keys(categoryMappedId).length) {
       const urlParams = getUrlParamsToFetchProductsNew(params, urlMappedId);
-      const body = {
+      const body: FetchProductsReqBody = {
         ...urlParams,
         pageNumber: 1,
         pageSize: 15, //  todo: move it to config

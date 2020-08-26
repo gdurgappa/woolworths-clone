@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
 import AddIcon from "@material-ui/icons/Add";
-const useStyles = makeStyles((theme) => ({
+import React from "react";
+import { Link } from "react-router-dom";
+const useStyles = makeStyles(() => ({
   linkContainer: {
     display: "flex",
     alignItems: "center",
@@ -23,7 +23,15 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 8px",
   },
 }));
-const SaveToList = ({ containerOverrideStyle, iconOverrideStyle }: any) => {
+
+interface SaveToListProps {
+  containerOverrideStyle: React.CSSProperties;
+  iconOverrideStyle?: React.CSSProperties;
+}
+const SaveToList = ({
+  containerOverrideStyle,
+  iconOverrideStyle,
+}: SaveToListProps) => {
   const classes = useStyles();
   return (
     <div style={containerOverrideStyle} className={classes.linkContainer}>

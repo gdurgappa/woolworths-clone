@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 import { topNavLinks } from "../../constants/menus";
 import TopNavLink from "./TopNavLink";
-import { makeStyles } from "@material-ui/core/styles";
-const useStyles = makeStyles((theme) => ({
+
+const useStyles = makeStyles(() => ({
   root: {
     background: "#125430",
     borderBottom: "2px solid #126c34",
@@ -18,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
     background: "gray",
   },
 }));
-const TopNavLinks = (props: {}) => {
-  const [isActive, setIsActive] = useState(false);
+
+const TopNavLinks = () => {
   const classes = useStyles();
 
   return (

@@ -12,12 +12,15 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-interface AdditionalInfoProps {
+export interface AdditionalInfoIngredientsProps {
   title: string;
   description: string;
 }
 
-const AdditionalInfo = ({ title, description }: AdditionalInfoProps) => {
+const AdditionalInfo = ({
+  title,
+  description,
+}: AdditionalInfoIngredientsProps) => {
   const classes = useStyles();
   return description ? (
     <>

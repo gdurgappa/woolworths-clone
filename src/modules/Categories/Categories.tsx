@@ -1,7 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { allCategories } from "../../constants/allCategories";
 import CategoriesDialog from "./CategoryDialog/CategoriesDialog";
 import { Category } from "../../types/category";
 import { RootState } from "../../store/store";

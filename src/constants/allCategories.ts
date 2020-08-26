@@ -1,4 +1,4 @@
-const x = {
+export const x = {
   Categories: [
     {
       NodeId: "specialsgroup",

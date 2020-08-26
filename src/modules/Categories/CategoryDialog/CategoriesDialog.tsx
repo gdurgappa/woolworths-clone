@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Dialog from "@material-ui/core/Dialog";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import * as api from "../../../api/request";
-import { styled } from "@material-ui/core/styles";
-
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import { light } from "@material-ui/core/styles/createPalette";
-import CategoryDialogInitialContent from "./CategoryDialogInitialContent";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import * as api from "../../../api/request";
 import CategoryDialogHeader from "./CategoryDialogHeader";
+import CategoryDialogInitialContent from "./CategoryDialogInitialContent";
+import { Category } from "../../../types/category";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     position: "relative",
   },
@@ -48,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
     background: "#eee",
     WebkitBoxFlex: 0,
     maxWidth: "220px",
-    // flex: "0 0 290px",
   },
   categoryNavUl: {
     minWidth: "200px",
@@ -85,17 +82,33 @@ const useStyles = makeStyles((theme) => ({
   subCategoryContainer: {},
   subCategoryItem: {},
 }));
+
+interface CategoryBannerThumbnails {
+  BannerResponses: ThumbnailsImage[];
+}
+
+export interface ThumbnailsImage {
+  Image: string;
+}
+interface CategoriesDialogProps {
+  activeCategory: Category;
+  activeSubCategory: Category;
+  setActiveSubCategory: (arg: Category) => void;
+  handleClose: () => void;
+  open: boolean;
+}
+
 const CategoriesDialog = ({
   activeCategory,
   activeSubCategory,
   setActiveSubCategory,
   handleClose,
   open,
-}: any) => {
+}: CategoriesDialogProps) => {
   const classes = useStyles();
-  const [categoryIcon, setCategoryIcon] = useState<any>(null);
+  const [categoryIcon, setCategoryIcon] = useState("");
   const [categoryBannerThumbnails, setCategoryBetbannerThumbnails] = useState<
-    any
+    ThumbnailsImage[]
   >([]);
   useEffect(() => {
     activeCategory &&
@@ -105,11 +118,10 @@ const CategoriesDialog = ({
         setCategoryIcon(res.default);
       });
     const url = `https://www.woolworths.com.au/apis/ui/banner?CategoryId=${activeCategory.NodeId}&IsSpecialRoot=false`;
-    api.get(url).then((res) => {
+    api.get<CategoryBannerThumbnails>(url).then((res) => {
       setCategoryBetbannerThumbnails(res.BannerResponses);
     });
   }, [activeCategory]);
-
   return (
     <Dialog
       onClose={handleClose}
@@ -126,18 +138,10 @@ const CategoriesDialog = ({
         <nav className={classes.dialogLeftNav}>
           <ul className={classes.categoryNavUl}>
             {activeCategory.Children.filter(
-              (cat: any) => cat.DisplayOrder !== -1
-            ).map((cat: any) => {
+              (cat: Category) => cat.DisplayOrder !== -1
+            ).map((cat: Category) => {
               return (
                 <li
-                  // style={
-                  //   activeSubCategory &&
-                  //   activeSubCategory.UrlFriendlyName === cat.UrlFriendlyName
-                  //     ? {
-                  //         background: "red",
-                  //       }
-                  //     : {}
-                  // }
                   key={cat.NodeId}
                   className={[
                     classes.categoryItem,
@@ -164,7 +168,7 @@ const CategoriesDialog = ({
           <div className={classes.dialoagContentNavs}>
             <nav>
               <ul>
-                <li onClick={() => handleClose(false)}>
+                <li onClick={handleClose}>
                   <Link
                     className={classes.dialogContentNavLink}
                     to={`/shop/browse/${activeCategory.UrlFriendlyName}/${activeSubCategory.UrlFriendlyName}`}
@@ -174,10 +178,10 @@ const CategoriesDialog = ({
                   </Link>
                 </li>
                 {activeSubCategory.Children.filter(
-                  (cat: any) => cat.IsBundle
-                ).map((cat: any) => {
+                  (cat: Category) => cat.IsBundle
+                ).map((cat: Category) => {
                   return (
-                    <li key={cat.NodeId} onClick={() => handleClose(false)}>
+                    <li key={cat.NodeId} onClick={handleClose}>
                       <Link
                         className={classes.dialogContentNavLink}
                         to={`/shop/browse/${activeCategory.UrlFriendlyName}/${activeSubCategory.UrlFriendlyName}/${cat.UrlFriendlyName}`}
@@ -191,14 +195,13 @@ const CategoriesDialog = ({
                 })}
                 <hr />
                 {activeSubCategory.Children.filter(
-                  (cat: any) => !cat.IsBundle
-                ).map((cat: any) => {
+                  (cat: Category) => !cat.IsBundle
+                ).map((cat: Category) => {
                   return (
-                    <li key={cat.NodeId} onClick={() => handleClose(false)}>
+                    <li key={cat.NodeId} onClick={handleClose}>
                       <Link
                         className={classes.dialogContentNavLink}
                         to={`/shop/browse/${activeCategory.UrlFriendlyName}/${activeSubCategory.UrlFriendlyName}/${cat.UrlFriendlyName}`}
-                        // to={`/shop/browse/${activeCategory.UrlFriendlyName}/${activeSubCategory.UrlFriendlyName}/${cat.UrlFriendlyName}/${cat.NodeId}`}
                       >
                         <span> {cat.Description}</span>
                         <ChevronRightIcon />
@@ -210,7 +213,6 @@ const CategoriesDialog = ({
             </nav>
           </div>
         )}
-        {/* <div className={classes.dialoagContentBanner}>banner</div> */}
       </div>
     </Dialog>
   );

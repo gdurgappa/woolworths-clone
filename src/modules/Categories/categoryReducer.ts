@@ -2,19 +2,19 @@ import {
   CategoryMappedId,
   UrlMappedId,
   Category,
-  CategoryInitialState,
+  CategoryReducerType,
 } from "../../types/category";
 
-const initialState: CategoryInitialState = {
+const initialState: CategoryReducerType = {
   allCategories: [],
   categoryMappedId: {},
   urlMappedId: {},
 };
 
 export default function categoryReducer(
-  state: CategoryInitialState = initialState,
+  state: CategoryReducerType = initialState,
   action: any
-): CategoryInitialState {
+): CategoryReducerType {
   switch (action.type) {
     case "CATEGORIES_LIST":
       const result = flattenCategories(action.payload);

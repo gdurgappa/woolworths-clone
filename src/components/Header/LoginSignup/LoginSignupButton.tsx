@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import PersonIcon from "@material-ui/icons/Person";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import PersonIcon from "@material-ui/icons/Person";
+import React from "react";
+import { Link } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     color: "#fff",
     height: "40px",
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // todo move this to modules
-const LoginSignupButton = (props: {}) => {
+const LoginSignupButton = () => {
   const classes = useStyles();
   return (
     // <Link to="#">

@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 import { Link } from "react-router-dom";
 import AddToCartButton from "../../ProductList/AddToCartButton";
+import { HomePageCardProps } from "../AnimatedCard";
 
 const useStyles = makeStyles({
   cardRoot: {
@@ -26,10 +23,6 @@ const useStyles = makeStyles({
     flexDirection: "column",
     height: "430px",
     width: "280px",
-    // margin: "0 10px 20px",
-    // verticalAlign: "top",
-    // position: "relative",
-    // outline: "none",
   },
   cardContent: {
     padding: 0,
@@ -42,7 +35,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     height: "80px",
     overflow: "hidden",
-    background: (props: any) => props.background,
+    background: (props: { background: string }) => props.background,
     "& img": {
       padding: "5px",
       width: "80px",
@@ -58,15 +51,9 @@ const useStyles = makeStyles({
       marginLeft: "10px",
     },
   },
-  image: {
-    // width: "150px",
-    // height: "150px",
-    // margin: "22px auto 18px",
-  },
   title: {
     display: "block",
     fontSize: "14px",
-    // fontFamily: "Fresh Sans,Helvetica,Arial,sans-serif",
     color: "#3a474e",
     margin: "0 20px",
     lineHeight: "1.42857143",
@@ -90,32 +77,26 @@ const useStyles = makeStyles({
   },
 });
 
-interface ExploreWeeksSpecialCardProps {
-  description: string;
-  link: string;
-  headerImg: string;
-  image: string;
-  headerText: string;
-}
-
-const headingStyleMapping: any = {
-  halfPrice: {
-    background: "#ffda00",
-  },
-  freshSpecial: {
-    background:
-      '#ffda00 url("https://cdn0.woolworths.media/content/homepage/fresh-wood-700x70-2.jpg") no-repeat left center',
-  },
+const headingStyleMapping = (headerType: string) => {
+  return {
+    halfPrice: {
+      background: "#ffda00",
+    },
+    freshSpecial: {
+      background:
+        '#ffda00 url("https://cdn0.woolworths.media/content/homepage/fresh-wood-700x70-2.jpg") no-repeat left center',
+    },
+  }[headerType];
 };
+
 const ExploreWeeksSpecialCard = ({
   description,
   headerImg,
-  link,
   image,
-  headerText,
-  headerType,
-}: any) => {
-  const classes = useStyles(headingStyleMapping[headerType]);
+  title,
+  headerType = "",
+}: HomePageCardProps) => {
+  const classes = useStyles(headingStyleMapping(headerType));
 
   return (
     <div className={classes.cardContainer}>
@@ -123,7 +104,7 @@ const ExploreWeeksSpecialCard = ({
         {headerImg ? (
           <div className={classes.headerImgContainer}>
             <img alt={description} src={headerImg} />
-            <span>{headerText}</span>
+            <span>{title}</span>
           </div>
         ) : (
           <div
@@ -147,10 +128,10 @@ const ExploreWeeksSpecialCard = ({
             >
               New
             </div>
-            <span>{headerText}</span>
+            <span>{title}</span>
           </div>
         )}
-        <img className={classes.image} alt={description} src={image} />
+        <img alt={description} src={image} />
 
         <CardContent className={classes.cardContent}>
           <Link className={classes.title} to={"#"}>
@@ -158,7 +139,7 @@ const ExploreWeeksSpecialCard = ({
           </Link>
         </CardContent>
         <CardActions className={classes.cardActionButtonsContainer}>
-          <AddToCartButton onClickCallback={() => {}} />
+          <AddToCartButton />
         </CardActions>
       </Card>
     </div>

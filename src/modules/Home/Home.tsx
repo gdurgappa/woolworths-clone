@@ -1,10 +1,10 @@
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
-import AnimatedCardsList from "../../components/Home/AnimatedCardsList";
 import ExploreThisWeeksSpecial from "../../components/Home/ExploreWeeksSpecial/ExploreThisWeeksSpecial";
 import WelcomeSectionTabs from "../../components/Home/WelcomeSection/WelcomeSectionTabs";
 import MainCarousel from "./MainCarousel";
+import HomepageCardsList from "../../components/Home/AnimatedCardsList";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -40,13 +40,13 @@ const Home = () => {
         <ExploreThisWeeksSpecial />
       </Grid>
       <Grid item xs={12}>
-        <AnimatedCardsList
+        <HomepageCardsList
           sectionType="latestFromWoolworth"
           sectionHeading="Check out the latest from Woolworths"
         />
       </Grid>
       <Grid item xs={12} className={classes.homecookingSection}>
-        <AnimatedCardsList
+        <HomepageCardsList
           sectionType="cooking"
           sectionStyle={{ background: "#fff" }}
           contentStyle={{ alignItems: "center" }}
@@ -57,14 +57,14 @@ const Home = () => {
         />
       </Grid>
       <Grid item xs={12} className={classes.homecookingSection}>
-        <AnimatedCardsList
+        <HomepageCardsList
           sectionType="shopOnline"
           sectionHeading="Shop Online"
-          stctionStyle={{ background: "#fff" }}
+          sectionStyle={{ background: "#fff" }}
         />
       </Grid>
       <Grid item xs={12}>
-        <AnimatedCardsList
+        <HomepageCardsList
           sectionType="moreFromWoolworth"
           sectionHeading="More from woolworths"
           buttonStyle={{ maxWidth: "200px", overflow: "hidden" }}

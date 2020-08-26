@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 import { headerMenuItems } from "../../constants/menus";
 import HeaderNavItem from "./HeaderNavItem";
-import { makeStyles } from "@material-ui/core/styles";
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     alignItems: "center",
   },
 }));
 
-const HeaderNavItems = (props: {}) => {
+const HeaderNavItems = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>

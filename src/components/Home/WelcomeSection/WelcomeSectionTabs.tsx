@@ -1,8 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
-import React, { useEffect, useState } from "react";
-import { db } from "../../../App";
-import WelcomeSectionTab from "./WelcomeSectionTab";
+import React from "react";
 import * as homepageData from "../../../constants/firestoreData/homePageData";
+import { WelcomeTab } from "../../../constants/firestoreData/homePageData";
+import WelcomeSectionTab from "./WelcomeSectionTab";
 
 const useStyles = makeStyles(() => ({
   sectionContainer: {
@@ -30,20 +30,8 @@ const useStyles = makeStyles(() => ({
     textAlign: "center",
   },
 }));
-const WelcomeSectionTabs = ({}: any) => {
+const WelcomeSectionTabs = () => {
   const classes = useStyles();
-  // const [welcomeTabs, setWelcomeTabs] = useState<any>([]);
-  // useEffect(() => {
-  //   const items: any = [];
-  //   db.collection("welcomeToWoolworthTabs")
-  //     .get()
-  //     .then(({ docs }) => {
-  //       docs.forEach((doc) => {
-  //         items.push(doc.data());
-  //       });
-  //       setWelcomeTabs(items);
-  //     });
-  // }, []);
   const welcomeTabs = homepageData.welcomeTabs;
   return (
     <section className={classes.sectionContainer}>
@@ -51,7 +39,7 @@ const WelcomeSectionTabs = ({}: any) => {
         <h1 className={classes.heading}>Welcome to Woolworths</h1>
         <nav>
           <ul className={classes.cardsContainer}>
-            {welcomeTabs.map((card: any, index: number) => {
+            {welcomeTabs.map((card: WelcomeTab, index: number) => {
               return <WelcomeSectionTab key={index} {...card} />;
             })}
           </ul>

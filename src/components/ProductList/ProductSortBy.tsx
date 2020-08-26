@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import React from "react";
 import { Link } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {},
   sortByContainer: {
     display: "flex",
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#178841",
   },
 }));
-const ProductSortBy = ({}: any) => {
+const ProductSortBy = () => {
   const classes = useStyles();
   return (
     <div className={classes.sortByContainer}>

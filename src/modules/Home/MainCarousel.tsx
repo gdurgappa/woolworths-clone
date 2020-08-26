@@ -1,9 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
-// import { AutoRotatingCarousel, Slide } from "material-auto-rotating-carousel";
 import Slider from "react-slick";
 import ButtonWithIcon from "../../components/Common/ButtonWithIcon";
-import { carousel } from "../../constants/firestoreData/homePageData";
+import { carousel, Carousel } from "../../constants/firestoreData/homePageData";
 import {
   SampleNextArrow,
   SamplePrevArrow,
@@ -90,31 +89,16 @@ const MainCarousel = () => {
         )}
       />
     ),
-    // nextArrow: <SampleNextArrow className="slick-next" />,
-    // prevArrow: <SamplePrevArrow className="slick-prev" />,
   };
-  // useEffect(() => {
-  //   const items: any = [];
-  //   db.collection("carousel")
-  //     .get()
-  //     .then(({ docs }) => {
-  //       docs.forEach((doc) => {
-  //         items.push(doc.data());
-  //       });
-  //       setCarouselItems(items);
-  //     });
-  // }, []);
+
   const carouselItems = carousel;
   return (
     <div className={classes.root}>
       <Slider className={classes.slider} {...settings}>
         {carouselItems.length &&
-          carouselItems.map((item: any, index: number) => {
+          carouselItems.map((item: Carousel, index: number) => {
             return (
-              <div
-                key={index}
-                // style={{ background: item.background && item.background }}
-              >
+              <div key={index}>
                 <div
                   className={classes.sliderItem}
                   style={{ background: item.background && item.background }}

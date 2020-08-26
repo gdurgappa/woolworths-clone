@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    alignItems: "center",
-    height: "70px",
-    backgroundColor: "#125430",
-  },
-}));
-const ViewCartButton = ({ onClickCallback, name, buttonStyle }: any) => {
-  const classes = useStyles();
+interface ViewCartButtonProps {
+  name: string;
+  buttonStyle: string;
+}
+const ViewCartButton = ({ name, buttonStyle }: ViewCartButtonProps) => {
   return <Button className={buttonStyle}>{name}</Button>;
 };
 

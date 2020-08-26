@@ -1,13 +1,17 @@
-import { createStore, applyMiddleware, combineReducers } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
-import rootSaga from "./rootSaga";
+import { CategoryReducerType } from "../types/category";
+import {
+  ProductReducerType,
+  SearchProductsReducerType,
+} from "../types/product";
 import rootReducer from "./rootReducer";
-import { CategoryInitialState } from "../types/category";
+import rootSaga from "./rootSaga";
 
 export interface RootState {
-  category: CategoryInitialState;
-  products: any;
-  search: any;
+  category: CategoryReducerType;
+  products: ProductReducerType;
+  search: SearchProductsReducerType;
 }
 const sagaMiddleware = createSagaMiddleware();
 

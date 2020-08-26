@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import { Box } from "@material-ui/core";
-import Home from "../modules/Home/Home";
+import { makeStyles } from "@material-ui/core/styles";
+import React, { useEffect, useState } from "react";
 import Categories from "../modules/Categories/Categories";
-import Routes from "../modules/Routes/Routes";
 import Header from "../modules/Header/Header";
+import Routes from "../modules/Routes/Routes";
 import TopNavLinks from "./TopNav/TopNavLinks";
-import AnnouncementBanner from "./AnnouncementBanner";
-import { topNavLinks } from "../constants/menus";
-import TopNavLink from "./TopNav/TopNavLink";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,8 +22,10 @@ const useStyles = makeStyles((theme) => ({
   },
   categories: {
     zIndex: 3,
-    position: (props: any) => (props.isScrollDown ? "static" : "sticky"),
-    top: (props: any) => (props.isScrollDown ? "" : "70px"),
+    position: (props: { isScrollDown: boolean }) =>
+      props.isScrollDown ? "static" : "sticky",
+    top: (props: { isScrollDown: boolean }) =>
+      props.isScrollDown ? "" : "70px",
   },
   bannerAd: {
     background: "lightgreen",
@@ -54,9 +50,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-var lastScrollTop = 0;
+let lastScrollTop = 0;
 //todo: scroll issue
-const Layout = (props: {}) => {
+const Layout = () => {
   const [isScrollDown, setIsScrollDown] = useState(false);
   const classes = useStyles({ isScrollDown });
   useEffect(() => {
@@ -68,7 +64,7 @@ const Layout = (props: {}) => {
 
   // todo: causing re-render..
   const callback = () => {
-    var st = window.pageYOffset || document.documentElement.scrollTop;
+    const st = window.pageYOffset || document.documentElement.scrollTop;
     if (st > lastScrollTop) {
       // downscroll code
       setIsScrollDown(true);

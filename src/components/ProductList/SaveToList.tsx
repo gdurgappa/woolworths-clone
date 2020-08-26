@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 import { Link } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {},
   saveToListLink: {},
 }));
-const SaveToList = ({}: any) => {
+const SaveToList = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>

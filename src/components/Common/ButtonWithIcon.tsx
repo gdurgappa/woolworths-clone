@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 import Cheveron from "./Cheveron";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     alignItems: "center",
@@ -27,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
     color: "#fff",
     padding: "0 24px",
     overflow: "hidden",
-    opacity: (props: any) => (props.animation ? 0 : 1),
-    transition: (props: any) =>
+    opacity: (props: { animation: boolean }) => (props.animation ? 0 : 1),
+    transition: (props: { animation: boolean }) =>
       props.animation ? "opacity .35s ease-in-out .3s" : "",
   },
   buttonRoot: {
@@ -55,15 +54,21 @@ const useStyles = makeStyles((theme) => ({
     // color: "#fff",
   },
 }));
+interface ButtonWithIconProps {
+  rootDivOverrideStyle?: React.CSSProperties;
+  buttonOverrideStyle?: React.CSSProperties;
+  title: string;
+  cheveronType?: string;
+  animation?: boolean;
+}
+
 const ButtonWithIcon = ({
-  onClickCallback,
   rootDivOverrideStyle,
   buttonOverrideStyle,
   title = "Discover More",
-  renderIcon: Icon,
   cheveronType = "right",
   animation = false,
-}: any) => {
+}: ButtonWithIconProps) => {
   const classes = useStyles({ animation });
   return (
     <div
