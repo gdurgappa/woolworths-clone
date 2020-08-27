@@ -97,7 +97,7 @@ export const searchProducts = async <Body>(
   const apiResponse = await axios.post(url, body);
   // return apiResponse.data;
   apiResponse.data.Products = apiResponse.data.Products.map(
-    (res) => res.Products[0]
+    (res: ProductsApiBundleData) => res.Products[0]
   );
   return apiResponse.data;
 };
