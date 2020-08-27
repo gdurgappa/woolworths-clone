@@ -2,13 +2,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { fetchProducts } from "../../../api/request";
-import {
-  ProductType,
-  FetchProductsReqBody,
-  ProductsListType,
-} from "../../../types/product";
-import Product from "../Product";
 import { GET_PRODUCTS_URL } from "../../../api/urls";
+import { FetchProductsReqBody, ProductType } from "../../../types/product";
+import Product from "../Product";
 const settings = {
   dots: true,
   infinite: true,

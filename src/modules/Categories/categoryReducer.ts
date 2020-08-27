@@ -4,6 +4,7 @@ import {
   Category,
   CategoryReducerType,
 } from "../../types/category";
+import { IAction } from "../../types/commonTypes";
 
 const initialState: CategoryReducerType = {
   allCategories: [],
@@ -13,7 +14,7 @@ const initialState: CategoryReducerType = {
 
 export default function categoryReducer(
   state: CategoryReducerType = initialState,
-  action: any
+  action: IAction<Category[]>
 ): CategoryReducerType {
   switch (action.type) {
     case "CATEGORIES_LIST":

@@ -1,9 +1,15 @@
+import { call, put, takeLatest } from "redux-saga/effects";
 import * as api from "../../api/request";
 import {
-  GET_PRODUCTS_SEARCH_URL,
   GET_AGGREGATED_SEARCH_PRODUCTS_RESULT_URL,
+  GET_PRODUCTS_SEARCH_URL,
 } from "../../api/urls";
-import { put, takeLatest, call } from "redux-saga/effects";
+import {
+  SearchProductsReponseType,
+  SearchProductsReqBody,
+  AggregatedProductsResult,
+} from "../../types/product";
+import { IAction } from "../../types/commonTypes";
 
 export function* watchGetSearchProductsResultsList() {
   yield takeLatest("PRODUCTS_SEARCH_RESULTS", getSearchProductsResultsList);
@@ -15,8 +21,8 @@ export function* watchGetAggregatedSearchProductsResults() {
   );
 }
 
-function* getSearchProductsResultsList(action: any) {
-  const body = {
+function* getSearchProductsResultsList(action: IAction<string>) {
+  const body: SearchProductsReqBody = {
     Filters: [],
     IsSpecial: false,
     Location: "/shop/search/products?searchTerm=" + action.payload,
@@ -26,15 +32,21 @@ function* getSearchProductsResultsList(action: any) {
     SortType: "TraderRelevance",
   };
 
-  const products = yield api.post(GET_PRODUCTS_SEARCH_URL, body);
+  // const products = yield api.post(GET_PRODUCTS_SEARCH_URL, body);
+  const products: SearchProductsReponseType = yield api.searchProducts(
+    GET_PRODUCTS_SEARCH_URL,
+    body
+  );
   yield put({
     type: "PRODUCTS_SEARCH_RESULTS_SUCCESS",
     payload: products,
   });
 }
 
-function* getAggregatedSearchProductsResults(action: any) {
-  const aggregatedResult = yield call(
+function* getAggregatedSearchProductsResults(action: IAction<string>) {
+  const aggregatedResult: {
+    SearchCount: AggregatedProductsResult;
+  } = yield call(
     api.get,
     GET_AGGREGATED_SEARCH_PRODUCTS_RESULT_URL + "?searchTerm=" + action.payload
   );

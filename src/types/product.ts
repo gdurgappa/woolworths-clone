@@ -1,4 +1,3 @@
-import { Action } from "redux";
 //extends { [key:string]: value: string }
 export interface ProductsApiBundleData {
   Products: ProductType[];
@@ -96,11 +95,20 @@ export interface SearchProductsReducerType {
   Aggregations: AggregationsResultType[];
 }
 
+export interface SearchProductsReponseType {
+  Products: ProductType[];
+  SearchResultsCount: number;
+  SuggestedTerm: string;
+  Aggregations: AggregationType[];
+}
+
 export interface AggregatedProductsResult {
   ProductCount: number;
   SpecialProductCount: number;
   SuggestedTerm: number;
   Total: number;
+  ArticleCount: number;
+  RecipeCount: number;
 }
 
 export interface AggregationType {
@@ -133,15 +141,20 @@ export interface FetchProductsReqBody {
   filters?: boolean | null;
 }
 
+export interface SearchProductsReqBody {
+  Filters: string[];
+  IsSpecial: boolean;
+  Location: string;
+  PageNumber: number;
+  PageSize: number;
+  SearchTerm: string;
+  SortType: string;
+}
+
 export interface ProductPriceType {
   CupString: string;
   InstorePrice: number;
   InstoreHasCupPrice?: boolean;
   HideWasSavedPrice?: boolean;
   InstoreWasPrice?: number;
-}
-
-export interface IAction<T> extends Action<string> {
-  type: string;
-  payload: T;
 }

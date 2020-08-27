@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
   dynamicBannerContent: {},
 }));
 const DynamicBanner = ({ url }: { url: string }) => {
-  const [dynamicHtml, setDynamicHtml] = useState<any>();
+  const [dynamicHtml, setDynamicHtml] = useState<string>("");
 
   const classes = useStyles();
 
@@ -28,7 +28,7 @@ const DynamicBanner = ({ url }: { url: string }) => {
     //https://www.woolworths.com.au/Shop/DynamicContent2Panel?scheduleKey=/shop/browse/fruit-veg/vegetables
     //https://www.woolworths.com.au/Shop/DynamicContent2Panel?scheduleKey=/shop/search/products
     if (url) {
-      api.get<HTMLElement>(GET_DYNAMIC_CONTENT_URL + url).then((res) => {
+      api.get<string>(GET_DYNAMIC_CONTENT_URL + url).then((res) => {
         setDynamicHtml(res);
       });
     }

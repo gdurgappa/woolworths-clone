@@ -24,8 +24,6 @@ class App extends React.Component<Props> {
   render() {
     return (
       <Provider store={store}>
-        {/* <h1>Hello {name}</h1>
-        <Button variant="contained">xthis is a material UI button</Button> */}
         <BrowserRouter>
           <ThemeProvider theme={theme}>
             <Layout />

@@ -1,8 +1,9 @@
 import axios from "axios";
 import {
-  ProductType,
-  ProductsListType,
   ProductsApiBundleData,
+  ProductsListType,
+  ProductType,
+  SearchProductsReponseType,
 } from "../types/product";
 axios.defaults.headers.common["authority"] = "www.woolworths.com.au";
 axios.defaults.headers.common["scheme"] = "https";
@@ -88,15 +89,15 @@ export const fetchProducts = async <Body>(
 
   return { products, TotalRecordCount: response.data.TotalRecordCount };
 };
-// export const post = async (url: any, body: any) => {
-//   const initialResponse = await fetch(url, {
-//     method: "POST",
-//     body: JSON.stringify(body),
-//     headers: {
-//       "Access-Control-Request-Headers": "x-requested-with",
-//     },
-//     mode: "cors",
-//   });
-//   const response = await initialResponse.json();
-//   return JSON.parse(response.contents);
-// };
+
+export const searchProducts = async <Body>(
+  url: string,
+  body: Body
+): Promise<SearchProductsReponseType> => {
+  const apiResponse = await axios.post(url, body);
+  // return apiResponse.data;
+  apiResponse.data.Products = apiResponse.data.Products.map(
+    (res) => res.Products[0]
+  );
+  return apiResponse.data;
+};

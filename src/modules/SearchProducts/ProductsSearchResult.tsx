@@ -87,6 +87,7 @@ function ProductsSearchResult() {
       payload: query.get("searchTerm"),
     });
   }, [params]);
+  console.log("searchProductsResultsList", searchProductsResultsList);
   return (
     <Grid container spacing={3}>
       <Grid item xs={2}>

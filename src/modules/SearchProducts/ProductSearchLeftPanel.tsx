@@ -2,6 +2,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Cheveron from "../../components/Common/Cheveron";
+import {
+  AggregatedProductsResult,
+  AggregationsResultType,
+} from "../../types/product";
 
 const useStyles = makeStyles(() => ({
   leftPanelNav: {
@@ -52,7 +56,15 @@ const useStyles = makeStyles(() => ({
 }));
 //background-color: #3a474e; -- is active color: #fff;
 //background-color: #ffda00; color: #3a474e; -- all special
-const ProductSearchLeftPanel = ({ productSearchCount, aggregations }: any) => {
+
+interface ProductSearchLeftPanelProps {
+  productSearchCount: AggregatedProductsResult;
+  aggregations: AggregationsResultType[];
+}
+const ProductSearchLeftPanel = ({
+  productSearchCount,
+  aggregations,
+}: ProductSearchLeftPanelProps) => {
   const classes = useStyles();
   const [activeLink, setActiveLink] = useState("All Products");
   return (
@@ -130,7 +142,7 @@ const ProductSearchLeftPanel = ({ productSearchCount, aggregations }: any) => {
             <Cheveron cheveronType="right" />
           </Link>
         </li>
-        {aggregations.map((aggr: any, index: number) => (
+        {aggregations.map((aggr: AggregationsResultType, index: number) => (
           <li
             key={index}
             className={classes.leftPanelLi}

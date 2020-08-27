@@ -15,6 +15,4 @@ function* fetchCategories() {
     GET_ALL_CATEGORIES_URL
   );
   yield put({ type: "CATEGORIES_LIST", payload: allCategories.Categories });
-
-  //   const products = yield Api.fetch('/products')
 }

@@ -7,6 +7,7 @@ import * as api from "../../../api/request";
 import CategoryDialogHeader from "./CategoryDialogHeader";
 import CategoryDialogInitialContent from "./CategoryDialogInitialContent";
 import { Category } from "../../../types/category";
+import { GET_CATEGORY_DIALOG_BANNER_URL } from "../../../api/urls";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -117,7 +118,7 @@ const CategoriesDialog = ({
       ).then((res) => {
         setCategoryIcon(res.default);
       });
-    const url = `https://www.woolworths.com.au/apis/ui/banner?CategoryId=${activeCategory.NodeId}&IsSpecialRoot=false`;
+    const url = GET_CATEGORY_DIALOG_BANNER_URL(activeCategory.NodeId);
     api.get<CategoryBannerThumbnails>(url).then((res) => {
       setCategoryBetbannerThumbnails(res.BannerResponses);
     });

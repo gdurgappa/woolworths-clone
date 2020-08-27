@@ -19,14 +19,16 @@
 
 ## code quality
 
-- webpack - code splitting, etc
+- webpack - production build, minify, uglify, code splitting, etc
+- responsiveness
+- story book
 - custom hooks,
-- configure linting
 - reusable and clean components
 - styling best practices
+- naming convention best practices
 - caching
 - eslint loader
-- testing
+- unit testing
 - deployment
 - accessiblity
 - cypress

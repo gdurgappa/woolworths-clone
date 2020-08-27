@@ -78,7 +78,7 @@ const useStyles = makeStyles({
 });
 
 const headingStyleMapping = (headerType: string) => {
-  const headerBackgroundObj: { [key: string]: any } = {
+  const headerBackgroundObj: { [key: string]: { background: string } } = {
     halfPrice: {
       background: "#ffda00",
     },

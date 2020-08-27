@@ -2,7 +2,10 @@ import {
   AggregationsResultType,
   AggregationType,
   SearchProductsReducerType,
+  SearchProductsReponseType,
+  AggregatedProductsResult,
 } from "../../types/product";
+import { IAction } from "../../types/commonTypes";
 
 const initialState: SearchProductsReducerType = {
   aggregatedProductsResult: {
@@ -10,6 +13,8 @@ const initialState: SearchProductsReducerType = {
     SpecialProductCount: 0,
     SuggestedTerm: 0,
     Total: 0,
+    ArticleCount: 0,
+    RecipeCount: 0,
   },
   searchProductsResultsList: [],
   TotalRecordCount: 0,
@@ -19,16 +24,17 @@ const initialState: SearchProductsReducerType = {
 
 export default function searchProductsReducer(
   state: SearchProductsReducerType = initialState,
-  action: any
+  action: IAction<SearchProductsReponseType | AggregatedProductsResult>
 ) {
   switch (action.type) {
     case "PRODUCTS_SEARCH_RESULTS_SUCCESS":
+      const payload = action.payload as SearchProductsReponseType;
       return {
         ...state,
-        searchProductsResultsList: action.payload.Products,
-        TotalRecordCount: action.payload.SearchResultsCount,
-        SuggestedTerm: action.payload.SuggestedTerm,
-        Aggregations: getSearchCategoriesAndCount(action.payload.Aggregations),
+        searchProductsResultsList: payload.Products,
+        TotalRecordCount: payload.SearchResultsCount,
+        SuggestedTerm: payload.SuggestedTerm,
+        Aggregations: getSearchCategoriesAndCount(payload.Aggregations),
       };
     case "PRODUCTS_SEARCH_AGGREGATED_RESULTS_SUCCESS":
       return { ...state, aggregatedProductsResult: action.payload };

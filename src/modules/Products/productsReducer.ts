@@ -1,4 +1,5 @@
-import { ProductReducerType } from "../../types/product";
+import { ProductReducerType, ProductsListType } from "../../types/product";
+import { IAction } from "../../types/commonTypes";
 
 const initialState: ProductReducerType = {
   filteredProducts: [],
@@ -9,7 +10,7 @@ const initialState: ProductReducerType = {
 //todo: providing type 2 times
 export default function productsReducer(
   state: ProductReducerType = initialState,
-  action: any
+  action: IAction<ProductsListType>
 ) {
   switch (action.type) {
     case "PRODUCTS_LIST_SUCCESS":
