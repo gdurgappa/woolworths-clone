@@ -1,5 +1,7 @@
 const webpack = require("webpack");
 const path = require("path");
+const dotenv = require("dotenv");
+
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const config = {
   entry: ["react-hot-loader/patch", "./src/index.tsx"],
@@ -65,6 +67,8 @@ const config = {
       appMountId: "app",
       filename: "index.html",
       template: require("html-webpack-template"),
+      favicon: "./favicon.ico",
+      title: "Woolworths Supermarket - Buy Groceries Online",
     }),
   ],
   resolve: {

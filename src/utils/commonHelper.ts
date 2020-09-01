@@ -18,14 +18,14 @@ export const getUrlParamsToFetchProducts = (
     };
   } else if (subCategory) {
     return {
-      url: `/shop/browse/${category}/${subCategory}/`,
+      url: `/shop/browse/${category}/${subCategory}`,
       categoryId: categoryMappedId[subCategory].NodeId.replace("_BUNDLES", ""),
       formatObject: `{"name":"${categoryMappedId[subCategory].Description}"}`,
       isBundle: categoryMappedId[subCategory].IsBundle,
     };
   } else if (category) {
     return {
-      url: `/shop/browse/${category}/`,
+      url: `/shop/browse/${category}`,
       categoryId: categoryMappedId[category].NodeId.replace("_BUNDLES", ""),
       formatObject: `{"name":"${categoryMappedId[category].Description}"}`,
       isBundle: categoryMappedId[category].IsBundle,
@@ -34,6 +34,7 @@ export const getUrlParamsToFetchProducts = (
 
   return { url: "", categoryId: "" };
 };
+// rename to getRequestBodyToFetchProducts
 export const getUrlParamsToFetchProductsNew = (
   params: UrlParams,
   urlMappedId: UrlMappedId
@@ -59,7 +60,7 @@ export const getUrlParamsToFetchProductsNew = (
     };
   } else if (category) {
     return {
-      url: `/shop/browse/${category}/`,
+      url: `/shop/browse/${category}`,
       categoryId: urlMappedId[category].NodeId.replace("_BUNDLES", ""),
       formatObject: `{"name":"${urlMappedId[category].Description}"}`,
       isBundle: urlMappedId[category].IsBundle,

@@ -1,7 +1,7 @@
-import categoryReducer from "../modules/Categories/categoryReducer";
+import categoryReducer from "../features/Categories/categoryReducer";
 import { combineReducers } from "redux";
-import productsReducer from "../modules/Products/productsReducer";
-import searchProductsReducer from "../modules/SearchProducts/searchProductsReducer";
+import productsReducer from "../features/Products/productsReducer";
+import searchProductsReducer from "../features/SearchProducts/searchProductsReducer";
 
 export default combineReducers({
   category: categoryReducer,

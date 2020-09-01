@@ -1,4 +1,4 @@
-import { HomePageCardProps } from "../../components/Home/AnimatedCard";
+import { CardProps } from "../../features/Home/AnimatedCard";
 
 export interface Carousel {
   background: string;
@@ -73,7 +73,7 @@ export const welcomeTabs: WelcomeTab[] = [
     link: "/shop/discover/everyday-rewards?icmpid=sm-hp-ribbon4:earn-rewards",
   },
 ];
-export const latestFromWoolworth: HomePageCardProps[] = [
+export const latestFromWoolworth: CardProps[] = [
   {
     link:
       "/shop/discover/woolworths-australian-first-sourcing-policy?icmpid=sm-hp-right:other:generic:marketing:wk07",
@@ -102,7 +102,7 @@ export const latestFromWoolworth: HomePageCardProps[] = [
     title: "More ways to help your money go further",
   },
 ];
-export const cooking: HomePageCardProps[] = [
+export const cooking: CardProps[] = [
   {
     buttonText: "View recipes",
     link:
@@ -131,7 +131,7 @@ export const cooking: HomePageCardProps[] = [
       "https://cdn0.woolworths.media/content/new-homepage/wk7-homepage-recipe-middle.jpg",
   },
 ];
-export const shopOnline: HomePageCardProps[] = [
+export const shopOnline: CardProps[] = [
   {
     image:
       "https://cdn0.woolworths.media/content/new-homepage/wk16-b2b-tile.png",
@@ -160,7 +160,7 @@ export const shopOnline: HomePageCardProps[] = [
     description: "Min spend $100. T&Cs apply.",
   },
 ];
-export const moreFromWoolworth: HomePageCardProps[] = [
+export const moreFromWoolworth: CardProps[] = [
   {
     image:
       "https://cdn0.woolworths.media/content/new-homepage/wk47-tile-mobile.jpg",
@@ -188,7 +188,7 @@ export const moreFromWoolworth: HomePageCardProps[] = [
       "https://cdn0.woolworths.media/content/new-homepage/wk47-tile-gift-cards.png",
   },
 ];
-export const exploreThisWeekSpecials: HomePageCardProps[] = [
+export const exploreThisWeekSpecials: CardProps[] = [
   {
     description:
       "Connoisseur Ice Cream Sticks Pk 4, Mr Chen's Yum Cha 204-300g",

@@ -1,20 +1,13 @@
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
 import * as React from "react";
 import { hot } from "react-hot-loader/root";
 import "react-placeholder/lib/reactPlaceholder.css";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import Layout from "./components/Layout";
+import Layout from "./shared/Layout/Layout";
+import { theme } from "./shared/theme";
 import store from "./store/store";
 import "./style.css";
-
-const theme = createMuiTheme({
-  typography: {
-    fontFamily: ['"Fresh Sans Md"', "Helvetica", "Arial", "sans-serif"].join(
-      ","
-    ),
-  },
-});
 
 interface Props {
   name: string;
