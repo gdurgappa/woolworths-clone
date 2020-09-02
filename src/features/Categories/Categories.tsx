@@ -1,16 +1,13 @@
-import { makeStyles } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CategoriesDialog from "./CategoryDialog/CategoriesDialog";
-import { Category, CategoryReducerType } from "../../types/category";
-import { RootState } from "../../store/store";
-import { useActiveScreensize } from "../../shared/hooks/useActiveScreensize";
-import CategoriesRow from "./CategoriesListRow";
+import { matchPath, useLocation, useParams } from "react-router";
 import ButtonWithIcon from "../../shared/Common/ButtonWithIcon";
-import CategoriesListColumns from "./CategoryDialog/CategoriesListColumns";
-import { useParams, matchPath, useLocation } from "react-router";
-import { UrlParamsType } from "../Products/ProductList/ProductList";
+import { useActiveScreensize } from "../../shared/hooks/useActiveScreensize";
+import { RootState } from "../../store/store";
+import { Category, CategoryReducerType } from "../../types/category";
 import { getUrlParamsToFetchProducts } from "../../utils/commonHelper";
+import CategoriesRow from "./CategoriesListRow";
+import CategoriesListColumns from "./CategoryDialog/CategoriesListColumns";
 
 const Categories = () => {
   // const [categories, setCategories] = useState<Category[]>([]);
@@ -22,7 +19,7 @@ const Categories = () => {
   >("");
   // const [open, setopen] = useState(initialState)
   const screenSize = useActiveScreensize();
-
+  const x = useParams();
   const handleCategoryClick = (cat: Category) => {
     setActiveCategory(cat);
     setActiveSubCategory(undefined);
@@ -49,11 +46,13 @@ const Categories = () => {
   }, []);
 
   useEffect(() => {
-    const match = matchPath(location.pathname, {
+    const match = matchPath<any>(location.pathname, {
       path: "/shop/browse/:category/:subCategory?/:subCategorySelected?",
       exact: true,
       strict: false,
     });
+    // todo: webpack shd fail for typescript errors
+    console.log("x", x);
     if (
       Object.keys(categoryMappedId).length &&
       match &&
@@ -70,7 +69,7 @@ const Categories = () => {
     } else {
       setBrowseCategoryButtonTitle("");
     }
-  }, [location, categoryMappedId]);
+  }, [location, categoryMappedId, x]);
 
   return (
     <>

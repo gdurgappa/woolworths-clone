@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
     marginBottom: "20px",
     boxShadow: "0 2px 4px 0 rgba(58,71,78,.15)",
     borderRadius: "4px",
-    width: "100%",
+    // width: "100%",
     background: "#fff",
     border: "1px solid #fff",
     textAlign: "left",

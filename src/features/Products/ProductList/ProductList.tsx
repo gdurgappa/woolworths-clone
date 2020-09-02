@@ -12,10 +12,14 @@ import { FetchProductsReqBody } from "../../../types/product";
 import { useState } from "react";
 import { useActiveScreensize } from "../../../shared/hooks/useActiveScreensize";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   pageContainer: {
     display: "flex",
     width: "100%",
+    [theme.breakpoints.down("sm")]: {
+      padding: "20px",
+      width: "auto",
+    },
   },
 }));
 

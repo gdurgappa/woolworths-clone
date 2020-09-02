@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     width: "960px",
     [theme.breakpoints.down("sm")]: {
       width: "100%",
-      padding: "10px",
+      // padding: "10px",
     },
   },
   breadCrumbContainer: {},

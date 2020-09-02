@@ -1,6 +1,8 @@
 // const CORS_ANYWHERE = "https://api.allorigins.win/get?url=";
 const CORS_ANYWHERE = "https://cors-anywhere.herokuapp.com/";
-export const EXPRESS_API_URL = "http://localhost:4000/getDataFromWoolyApi";
+// export const EXPRESS_API_URL = "http://localhost:4000/getDataFromWoolyApi";
+export const EXPRESS_API_URL =
+  "https://vigilant-goldstine-7114ff.netlify.app/.netlify/functions/api/getDataFromWoolyApi";
 export const GET_ALL_CATEGORIES_URL = `https://www.woolworths.com.au/apis/ui/PiesCategoriesWithSpecials`;
 // export const GET_ALL_CATEGORIES_URL = `http://localhost:4000/getAllCategories`;
 export const GET_PRODUCTS_URL = `https://www.woolworths.com.au/apis/ui/browse/category`;
