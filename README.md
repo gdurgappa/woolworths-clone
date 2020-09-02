@@ -19,16 +19,20 @@
 
 ## code quality
 
-- webpack - production build, minify, uglify, code splitting, etc
-- responsiveness
-- story book
-- custom hooks,
+- post build script - "postbuild": "precompress build -t gz",
 - reusable and clean components
 - styling best practices
 - naming convention best practices
 - caching
 - eslint loader
 - unit testing
-- deployment
+- reselect,
 - accessiblity
 - cypress
+- husky hooks
+- ===
+- custom hooks,
+- responsiveness
+- ====
+
+- story book

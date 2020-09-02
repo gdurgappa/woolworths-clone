@@ -1,10 +1,10 @@
 import { all } from "redux-saga/effects";
-import { watchFetchCategories } from "../modules/Categories/categorySaga";
-import { watchFetchProducts } from "../modules/Products/productsSaga";
+import { watchFetchCategories } from "../features/Categories/categorySaga";
+import { watchFetchProducts } from "../features/Products/productsSaga";
 import {
   watchGetAggregatedSearchProductsResults,
   watchGetSearchProductsResultsList,
-} from "../modules/SearchProducts/searchProductsSaga";
+} from "../features/SearchProducts/searchProductsSaga";
 
 export default function* main() {
   yield all([
