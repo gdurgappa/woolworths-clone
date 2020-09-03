@@ -5,11 +5,16 @@
     "strict": true,
     "noImplicitReturns": true,
     "noImplicitAny": true,
-    "module": "es6",
+    // "module": "es6",
+    "module": "esnext",
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "target": "es5",
     "allowJs": true,
-    "jsx": "react"
+    "jsx": "react",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+    // "typeRoots": ["./types", "./node_modules/@types"]
   },
   "include": ["./src/**/*", "config"]
 }

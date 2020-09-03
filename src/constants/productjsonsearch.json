@@ -1,0 +1,78 @@
+AdID: null
+AdIndex: null
+AdditionalAttributes: {sapdepartmentname: "FRESH CONVENIENCE", sapdepartmentno: "10", sapcategoryname: "DAIRY - MILK", sapcategoryno: "93", sapsubcategoryname: "DAIRY - MILK", …}
+AgeRestricted: false
+Barcode: "9339687066865"
+Brand: "woolworths"
+CentreTag: {TagContent: null, TagLink: null, FallbackText: null, TagType: "None"}
+ChildProducts: []
+CupMeasure: "1L"
+CupPrice: 1.2
+CupString: "$1.20 / 1L"
+Description: " Woolworths Drought Relief<br>Full Cream Milk 3l"
+DetailsImagePaths: ["https://cdn0.woolworths.media/content/wowproductimages/large/807384.jpg"]
+Diagnostics: "0"
+DisplayQuantity: 1
+FooterTag: {TagContent: null, TagLink: null, FallbackText: null, TagType: "None"}
+FullDescription: "Woolworths Drought Relief Full Cream Milk"
+GtinFormat: 13
+HasBeenBoughtBefore: false
+HasCupPrice: true
+HasHeaderTag: false
+HasProductSubs: false
+HeaderTag: null
+HideWasSavedPrice: false
+ImageTag: {TagContent: null, TagLink: null, FallbackText: "", TagType: "None"}
+InstoreCupPrice: 1.2
+InstoreCupString: "$1.20 / 1L"
+InstoreHasCupPrice: true
+InstoreIsAvailable: true
+InstoreIsOnSpecial: false
+InstoreIsPurchasable: true
+InstorePrice: 3.59
+InstoreSavingsAmount: 0
+InstoreWasPrice: 3.59
+IsAvailable: true
+IsBundle: false
+IsCentreTag: false
+IsDeliveryPass: false
+IsEdrSpecial: false
+IsFooterEnabled: true
+IsForCollection: true
+IsForDelivery: true
+IsForExpress: false
+IsInFamily: false
+IsInStock: true
+IsInTrolley: false
+IsNew: false
+IsOnSpecial: false
+IsPmDelivery: true
+IsPurchasable: true
+IsRanged: false
+IsSponsoredAd: false
+LargeImageFile: "https://cdn0.woolworths.media/content/wowproductimages/large/807384.jpg"
+MediumImageFile: "https://cdn0.woolworths.media/content/wowproductimages/medium/807384.jpg"
+MinimumQuantity: 1
+Name: "Woolworths Drought Relief Full Cream Milk"
+PackageSize: "3l"
+Price: 3.59
+ProductRestrictionMessage: null
+ProductWarningMessage: null
+QuantityInTrolley: 0
+Rating: {ReviewCount: 0, RatingCount: 0, OneStarCount: 0, TwoStarCount: 0, ThreeStarCount: 0, …}
+RichDescription: "<div>At Woolworths, we care deeply and this new Drought Relief Milk range will offer our customers Woolworths Full Cream and Woolworths Lite Milk varieties at two litres and for three litres, with the extra 10 cents per litre to support dairy farmers in drought affected areas.<br><br><a href="https://www.woolworths.com.au/shop/discover/our-brands/woolworths-drought-relief-milk">Find out more here</a>. (NSW, VIC, QLD & ACT Only)<br><br>Simple goodness of Australian Full Cream Milk :<br>- Permeate free.</div><div>- Calcium is good for: healthy teeth, bones & energy.</div><div>1 cup of milk (250mL serving) = 1 serve of dairy (Eating 3 serves of dairy each day as part of a healthy, balanced diet will provide most people with their daily calcium requirements.)</div>"
+SapCategories: null
+SavingsAmount: 0
+SmallFormatDescription: "Woolworths Drought Relief Full Cream Milk"
+SmallImageFile: "https://cdn0.woolworths.media/content/wowproductimages/small/807384.jpg"
+Source: "SearchServiceSearchProducts"
+Stockcode: 807384
+SupplyLimit: 10
+SupplyLimitMessage: "'Woolworths Drought Relief Full Cream Milk' has a supply limit of 10. The quantity in your cart has been reduced accordingly. To purchase a larger quantity, please contact us on 1800 000 610. Please note we do not supply trade orders."
+TileID: 1
+Unit: "Each"
+UnitWeightInGrams: 3100
+UrlFriendlyName: "woolworths-drought-relief-full-cream-milk"
+UrlOverride: null
+Variety: "full cream milk"
+WasPrice: 3.59

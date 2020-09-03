@@ -1,6 +1,13 @@
+import { ThemeProvider } from "@material-ui/core/styles";
 import * as React from "react";
 import { hot } from "react-hot-loader/root";
-import Button from "@material-ui/core/Button";
+import "react-placeholder/lib/reactPlaceholder.css";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import Layout from "./shared/Layout/Layout";
+import { theme } from "./shared/theme";
+import store from "./store/store";
+import "./style.css";
 
 interface Props {
   name: string;
@@ -8,12 +15,14 @@ interface Props {
 
 class App extends React.Component<Props> {
   render() {
-    const { name } = this.props;
     return (
-      <>
-        <h1>Hello {name}</h1>
-        <Button variant="contained">xthis is a material UI button</Button>
-      </>
+      <Provider store={store}>
+        <BrowserRouter>
+          <ThemeProvider theme={theme}>
+            <Layout />
+          </ThemeProvider>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }

@@ -1,0 +1,332 @@
+<script>
+    (function (document, Swiper) {
+     
+    // COLOR FUNCTIONS
+       function getCorrectTextColor(hex) {
+           /*
+           From this W3C document: http://www.webmasterworld.com/r.cgi?f=88&d=9769&url=http://www.w3.org/TR/AERT#color-contrast
+           Color brightness is determined by the following formula: 
+           ((Red value X 299) + (Green value X 587) + (Blue value X 114)) / 1000
+       I know this could be more compact, but I think this is easier to read/explain.
+           */
+           threshold = 130; /* about half of 256. Lower threshold equals more dark text on dark background  */
+           hRed = hexToR(hex);
+           hGreen = hexToG(hex);
+           hBlue = hexToB(hex);
+           function hexToR(h) {
+               return parseInt((cutHex(h)).substring(0, 2), 16)
+           }
+           function hexToG(h) {
+               return parseInt((cutHex(h)).substring(2, 4), 16)
+           }
+           function hexToB(h) {
+               return parseInt((cutHex(h)).substring(4, 6), 16)
+           }
+           function cutHex(h) {
+               return (h.charAt(0) == "#") ? h.substring(1, 7) : h
+           }
+           cBrightness = ((hRed * 299) + (hGreen * 587) + (hBlue * 114)) / 1000;
+           if (cBrightness > threshold) {
+               return "#178841";
+           } else {
+               return "#ffffff";
+           }
+       }
+       function rgb2hex(rgb) {
+           rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+           return (rgb && rgb.length === 4) ? "#" +
+               ("0" + parseInt(rgb[1], 10).toString(16)).slice(-2) +
+               ("0" + parseInt(rgb[2], 10).toString(16)).slice(-2) +
+               ("0" + parseInt(rgb[3], 10).toString(16)).slice(-2) : '';
+       }
+       var getStyle = function (element, property) {
+           return window.getComputedStyle ? window.getComputedStyle(element, null).getPropertyValue(property) : element.style[property.replace(/-([a-z])/g, function (g) {
+               return g[1].toUpperCase();
+           })];
+       };
+    
+    // document.documentElement.style.setProperty('--swiper-theme-color', '#ffffff');
+    
+    var swiper = new Swiper('.swiper-container', {
+     // Disable preloading of all images
+       preloadImages: false,
+       // Enable lazy loading
+       lazy: true,
+       pagination: {
+           el: '.swiper-pagination',
+           clickable: true
+       },
+       loop: true,
+       autoplay: {
+           delay: 4000,
+           disableOnInteraction: true,
+       },
+       navigation: {
+           nextEl: '.next-slide',
+           prevEl: '.prev-slide',
+       },
+       on: {
+               init: function () {
+                   let index_currentSlide = this.activeIndex,
+                       currentSlide = this.slides[index_currentSlide]
+                   //
+                   // 
+                   // 
+                   // 
+         
+                   // document.documentElement.style.setProperty('--swiper-theme-color', getCorrectTextColor(rgb2hex(getStyle(currentSlide, "background-color"))));
+                   document.documentElement.style.setProperty('--swiper-theme-color', getCorrectTextColor(rgb2hex(getStyle(currentSlide, "background-color"))));
+               },
+               slideChange: function () {
+                   let index_currentSlide = this.activeIndex,
+                       currentSlide = this.slides[index_currentSlide]
+                   //
+                   // 
+                   // 
+                   // 
+                   // document.documentElement.style.setProperty('--swiper-theme-color', getCorrectTextColor(rgb2hex(getStyle(currentSlide, "background-color"))));
+                   document.documentElement.style.setProperty('--swiper-theme-color', getCorrectTextColor(rgb2hex(getStyle(currentSlide, "background-color"))));
+               }
+           },
+     
+    });
+    
+    
+    document.getElementById("pause").addEventListener("click", function(){
+       document.getElementById("pause").style.display = "none";
+       document.getElementById("play").style.display = "block";
+       swiper.autoplay.stop();
+    });
+    document.getElementById("play").addEventListener("click", function(){
+       document.getElementById("pause").style.display = "block";
+       document.getElementById("play").style.display = "none";
+       swiper.autoplay.start();
+    });
+    
+    
+    })(document, Swiper);
+    </script>
+<script>
+    (function(){
+       
+          var callback = function(){
+    let cs = ["cs1","cs2","cs3","cs4","cs5"];//,"cs2","cs3","cs4","cs5"
+    
+    for (var i = 0; i < cs.length; i++) {
+       document.getElementById("carouselSlides").appendChild(document.getElementById(cs[i]));
+    }
+    
+    };
+    
+    if (
+    document.readyState === "complete" ||
+    (document.readyState !== "loading" && !document.documentElement.doScroll)
+    ) {
+    callback();
+    } else {
+    document.addEventListener("DOMContentLoaded", callback);
+    }
+       
+    })(document)
+    
+    </script>
+    </div>
+    
+    
+    
+    
+    <div style="
+           
+           "
+    class="dynamic-content2-item dynamic-content2-item-html">
+    
+    <script>
+<style>
+.swiper-container {
+   width: 100%;
+   height: 100%;
+}
+.hp-swiper-module {
+   height: 300px;
+   width: 100%;
+   position: relative;
+   margin: auto;
+}
+.hp-swiper-module h2 {
+   font-size: 24px;
+   line-height: 28px;
+}
+.hp-swiper-module p {
+   font-size: 14px;
+   line-height: 20px;
+}
+.hp-swiper-module span {
+   font-size: 12px;
+   line-height: 16px;
+}
+@media screen and (min-width: 768px) {
+   .hp-swiper-module h2 {
+       font-size: 28px;
+       line-height: 32px;
+   }
+   .hp-swiper-module p {
+       font-size: 16px;
+       line-height: 23px;
+   }
+   .hp-swiper-module span {
+       font-size: 14px;
+       line-height: 20px;
+   }
+
+}
+@media screen and (min-width: 480px) {
+   .hp-swiper-module {
+       height: 320px;
+   }
+}
+@media screen and (min-width: 768px) {
+   .hp-swiper-module {
+       height: 400px;
+   }
+}
+.slide-arrows {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   z-index: 10;
+   cursor: pointer;
+   -webkit-transition: all 150ms ease-out;
+   transition: all 150ms ease-out;
+   -webkit-backdrop-filter: saturate(180%) blur(20px);
+   backdrop-filter: saturate(180%) blur(20px);
+   background: rgba(255, 255, 255, 0.6);
+   width: 44px;
+   height: 44px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   border-radius: 50%;
+   border: none;
+   -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+   color: #178841;
+}
+.slide-arrows:hover {
+   background: #3A474E;
+   color: #fff;
+   -webkit-transition: all 150ms ease-out;
+   transition: all 150ms ease-out;
+   -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+.prev-slide {
+   left: 4px;
+}
+.next-slide {
+   right: 4px;
+}
+
+#play {
+   position:absolute; 
+   right:16px; 
+   bottom:16px; 
+   z-index:2; 
+   color:#3a474e; 
+   background-color:white; 
+   box-shadow: 0 0 8px; 
+   border-radius:24px; 
+   display:none;
+   width: 35px;
+   height: 35px;
+   cursor: pointer;
+}
+
+#pause {
+   font-family:"Fresh Sans Medium", Helvetica, Arial, sans-serif; 
+   position:absolute; 
+   right:16px; 
+   bottom:16px; 
+   z-index:3; 
+   color:#3a474e; 
+   background-color:white; 
+   box-shadow: 0 0 8px; 
+   border-radius:24px; 
+   font-size:16px; 
+   /*transform:rotate(90deg); */
+   width: 35px;
+   height: 35px;
+   cursor: pointer;
+}
+   
+.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+   bottom: 3px;
+}
+</style>
+<style>
+.swiper-slide {
+   background: #fff;
+}
+.hp-slide-content-wrapper {
+   display: flex;
+   flex-direction: column;
+   position: relative;
+   width: 100%;
+   height: 100%;
+}
+.hp-slide-content {
+   position: relative;
+   width: 100%;
+   height: 100%;
+}
+
+.hp-slide-content-wrapper[has-overlay]::before {
+   content: "";
+   background: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.5));
+   z-index: 2;
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+}
+</style>
+<style>
+.secondary-button {
+   background-color: #FFFFFF;
+   color: #3A474E;
+   border: 2px Solid #3A474E;
+   transition: all 150ms ease-out;
+}
+.secondary-button:hover,
+.secondary-button:focus {
+   background-color: #3A474E;
+   color: #ffffff;
+   border: 2px Solid #3A474E;
+   transition: all 350ms ease-out;
+}
+</style>
+
+<section class="hp-swiper-module">
+<div class="swiper-container hp-swiper-container">
+   <button id="play"><i class="iconAct-Play"></i></button>
+   <button id="pause"><i class="iconAct-Pause"></i></button>
+   
+   <div class="swiper-wrapper" id="carouselSlides">
+            
+   </div>
+   
+   <!-- Add Arrows -->
+   <button class="slide-arrows prev-slide" title="Go to previouse slide">
+      <i class="iconAct-Chevron_Left"></i>
+   </button>
+   <button class="slide-arrows next-slide" title="Go to next slide">
+      <i class="iconAct-Chevron_Right"></i>
+   </button>
+   <!-- Add Pagination -->
+   <div class="swiper-pagination"></div>
+   
+</div>
+
+</section>
+

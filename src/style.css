@@ -1,0 +1,278 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+@font-face {
+  font-family: "Fresh Sans Md";
+  src: url("assets/fonts/FreshSans-Medium.eot");
+  src: url("assets/fonts/FreshSans-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("assets/fonts/FreshSans-Medium.woff2") format("woff2"),
+    url("assets/fonts/FreshSans-Medium.woff") format("woff"),
+    url("assets/fonts/FreshSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "wwfoodicons";
+  src: url("assets/fonts/wwfoodicons.eot");
+  src: url("assets/fonts/wwfoodicons.eot?#iefix") format("embedded-opentype"),
+    url("assets/fonts/wwfoodicons.woff2") format("woff2"),
+    url("assets/fonts/wwfoodicons.woff") format("woff"),
+    url("assets/fonts/wwfoodicons.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+body {
+  font-family: "Fresh Sans Md", Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  line-height: 1.625;
+  background: #eee;
+  color: #3a474e;
+}
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+button,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  font-family: "Fresh Sans Md", Helvetica, Arial, sans-serif;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* product category search dynamic image banner */
+.visible-xs {
+  display: none !important;
+  width: 100%;
+}
+
+.hidden-xs {
+  display: block !important;
+  width: 100%;
+}
+@media only screen and (max-width: 768px) {
+    .visible-xs {
+    display: block !important;
+  }
+
+  .hidden-xs {
+    display: none !important;
+  }
+}
+
+.each-slide > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  height: 350px;
+}
+
+.each-slide span {
+  padding: 20px;
+  font-size: 20px;
+  background: #efefef;
+  text-align: center;
+}
+
+/* product search result left hand panel related classes */
+.activeCategoryLink {
+  background-color: #3a474e;
+  color: #fff !important;
+}
+.activeCategoryLink:hover {
+  background-color: #3a474e;
+  color: #fff !important;
+}
+
+.small-window-dialog {
+  display: none;
+}
+@media only screen and (max-width: 1080px) {
+  .main-app {
+    display: none;
+  }
+  .small-window-dialog {
+    display: block;
+
+    width: 100vw;
+    height: 100vh;
+    background: red;
+    position: fixed;
+    top: 0;
+    z-index: 4;
+    color: blue;
+  }
+}
+
+.slickprev,
+.slicknext {
+  color: #a2cfb3;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  height: 80px;
+  font-size: 28px;
+  color: #178841;
+  background: #eee;
+  opacity: 0.8;
+  margin: auto;
+  border: none;
+  cursor: pointer;
+  font-family: wwfoodicons;
+  background: #eee;
+
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  justify-content: center;
+}
+
+.slicknext {
+  right: -5px;
+  border-radius: 40px 0 0 40px;
+}
+.slickprev {
+  left: -5px;
+  border-radius: 0 40px 40px 0;
+}
+.prevButton::before {
+  content: "\E932" !important;
+  font-family: wwfoodicons;
+}
+
+.nextButton::before {
+  content: "\E933" !important;
+  font-family: wwfoodicons;
+}
+
+/* .slicknext::before {
+  content: "\E933" !important;
+  font-family: wwfoodicons;
+} */
+
+.slick-dots {
+  bottom: 0;
+}
