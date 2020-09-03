@@ -1,38 +1,44 @@
-## Feature
+# Woolworths Clone
 
-- People Who Viewed This Item Also Viewed
+[![Netlify Status](https://api.netlify.com/api/v1/badges/587e6a85-4a43-4694-827f-f6586b83ba10/deploy-status)](https://app.netlify.com/sites/romantic-bose-106004/deploys)
 
-## TODO
+I did this project for fun plus for showcasing my frontend skills specially around react and related libraries.
 
-- readme
-- granular
-- reusability, custom hooks etc
--
+- Type some Markdown on the left
+- See HTML in the right
+- Magic
 
-## Fix me
+# Features!
 
-- http://localhost:8080/shop/browse/freezer/frozen-meals/frozen-meals fix heading alignment
-- home page explore this week specials - link click - images shuffles
-- category scroll up issue
-- http://localhost:8080/shop/productdetails/363949/woolworths-bread-sourdough-garlic-and-olive-oil-loaf displays html.
-- cherries and berries
+- Homepage (static data)
+- Search Products (real data from wooly api)
+- Browse Categories (real data from wooly api)
+- Product Details Page
 
-## code quality
+### Frontend stack
 
-- post build script - "postbuild": "precompress build -t gz",
-- reusable and clean components
-- styling best practices
-- naming convention best practices
-- caching
-- eslint loader
-- unit testing
-- reselect,
-- accessiblity
-- cypress
-- husky hooks
-- ===
-- custom hooks,
-- responsiveness
-- ====
+    - React, Redux, redux-saga
+    - Typescript
+    - material ui
+    - webpack
 
-- story book
+### Backend stack
+
+Here is a [simple node/express backend](https://github.com/gdurgappa/woolworth-clone-backend) to serve the product list, search suggestions and product details data. - Node, - Express - Javascript
+
+### Installation
+
+```sh
+$ cd <project>
+$ npm install
+$ npm start
+```
+
+### Todos
+
+- Write MORE Tests
+- Fix few FE alignment issues
+
+# Honest Disclaimer
+
+I deeply respect woolworth and their products and I do not have any intention to use woolworth's brand/apis in any kind of unhealthy reason.

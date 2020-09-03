@@ -1,7 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles";
 import SearchIconButton from "@material-ui/icons/Search";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchProducts from "./SearchProducts";
+import { useRef } from "react";
+import useClickOutside from "../../shared/hooks/useClickOutside";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -30,12 +32,20 @@ const useStyles = makeStyles(() => ({
 const SearchIcon = () => {
   const [showSearchInput, setShowSearchInput] = useState<boolean>(false);
   const classes = useStyles({ showSearchInput });
+  const ref = useRef();
+  const isClickedOutside = useClickOutside(ref);
+  useEffect(() => {
+    if (isClickedOutside) {
+      setShowSearchInput(false);
+    }
+  }, [isClickedOutside]);
   return (
     <div
       className={classes.root}
-      onClick={() => setShowSearchInput((prev) => !prev)}
+      // onClick={() => setShowSearchInput((prev) => !prev)}
+      ref={ref}
     >
-      <SearchIconButton />
+      <SearchIconButton onClick={() => setShowSearchInput((prev) => !prev)} />
       {showSearchInput && (
         <div className={classes.searchProductsContainer}>
           <SearchProducts />
