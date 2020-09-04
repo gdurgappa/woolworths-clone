@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-const useClickOutside = (ref) => {
+const useClickOutside = (ref: any) => {
   const [isOutSide, setIsOutSide] = useState(false);
 
   useEffect(() => {
@@ -7,7 +7,7 @@ const useClickOutside = (ref) => {
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
-  const handleClick = (e) => {
+  const handleClick = (e: any) => {
     if (ref.current.contains(e.target)) {
       setIsOutSide(false);
     } else {

@@ -4,10 +4,6 @@
 
 I did this project for fun plus for showcasing my frontend skills specially around react and related libraries.
 
-- Type some Markdown on the left
-- See HTML in the right
-- Magic
-
 # Features!
 
 - Homepage (static data)

@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
 const SearchIcon = () => {
   const [showSearchInput, setShowSearchInput] = useState<boolean>(false);
   const classes = useStyles({ showSearchInput });
-  const ref = useRef();
+  const ref = useRef<any>();
   const isClickedOutside = useClickOutside(ref);
   useEffect(() => {
     if (isClickedOutside) {
