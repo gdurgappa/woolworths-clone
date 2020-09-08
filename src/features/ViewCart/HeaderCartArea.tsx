@@ -62,7 +62,7 @@ const HeaderCartArea = () => {
       <ShoppingCartIcon className={classes.cartIcon} />
       <div className={classes.cartTotalArea}>
         <p>Your Cart</p>
-        <p className={classes.cartAmount}>$12.30</p>
+        <p className={classes.cartAmount}>$0.00</p>
       </div>
       <ViewCartButton buttonStyle={classes.cartButton} name={"View cart"} />
     </div>

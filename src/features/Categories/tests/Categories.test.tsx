@@ -1,15 +1,9 @@
+import { render } from "@testing-library/react";
 import React from "react";
-import {
-  render,
-  fireEvent,
-  cleanup,
-  waitForElement,
-} from "@testing-library/react";
-
-import { Router, MemoryRouter, Link } from "react-router-dom";
-import Categories from "../Categories";
 import { Provider } from "react-redux";
+import { MemoryRouter } from "react-router-dom";
 import store from "../../../store/store";
+import Categories from "../Categories";
 
 describe("<Category />", () => {
   it("link prop validation", () => {

@@ -4,7 +4,11 @@
 
 I did this project for fun plus for showcasing my frontend skills specially around react and related libraries.
 
-# Features!
+# Live Demo of app
+
+Coming soon...
+
+# Features
 
 - Homepage (static data)
 - Search Products (real data from wooly api)
@@ -20,7 +24,8 @@ I did this project for fun plus for showcasing my frontend skills specially arou
 
 ### Backend stack
 
-Here is a [simple node/express backend](https://github.com/gdurgappa/woolworth-clone-backend) to serve the product list, search suggestions and product details data. - Node, - Express - Javascript
+- I have written a [simple node/express backend](https://github.com/gdurgappa/woolworth-clone-backend) to serve the products, search suggestions and product details data. The data is in turn obtained from woolworth endpoints.
+- Tech stack used for backend - Node, - Express - Javascript
 
 ### Installation
 
@@ -30,10 +35,21 @@ $ npm install
 $ npm start
 ```
 
-### Todos
+# App Preview - Home Page
+
+![App Preview  - Home Page](https://media.giphy.com/media/lqkLhl7Eai7wgyHyDM/giphy.gif)
+
+# App Preview - Categories and Product Details Page
+
+![App Preview  - Categories and Product Details Page](https://media.giphy.com/media/f6JsC3Ch328HYHc9iK/giphy.gif)
+
+# App Preview - Search Feature
+
+![App Preview  - Search Feature](https://media.giphy.com/media/f6JsC3Ch328HYHc9iK/giphy.gif)
+
+## Todos
 
 - Write MORE Tests
-- Fix few FE alignment issues
 
 # Honest Disclaimer
 

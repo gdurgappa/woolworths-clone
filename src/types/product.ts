@@ -93,6 +93,7 @@ export interface SearchProductsReducerType {
   TotalRecordCount: number;
   SuggestedTerm: string;
   Aggregations: AggregationsResultType[];
+  loading: boolean;
 }
 
 export interface SearchProductsReponseType {

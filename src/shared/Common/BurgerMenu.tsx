@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import HamBurgerMenu from "@material-ui/icons/Menu";
 import React from "react";
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     color: "white",
     display: "flex",

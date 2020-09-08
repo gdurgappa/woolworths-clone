@@ -1,7 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import React from "react";
-import ViewCartButton from "./ViewCartButton";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
@@ -23,24 +22,6 @@ const useStyles = makeStyles(() => ({
     marginRight: "10px",
     padding: "0 20px",
   },
-  // root: {
-  //   height: "40px",
-  //   display: "flex",
-  //   alignItems: "center",
-  //   backgroundColor: "#fff",
-  //   WebkitBoxFlex: 0,
-  //   flex: "0 0 auto",
-  //   WebkitBoxAlign: "center",
-  //   WebkitBoxPack: "justify",
-  //   justifyContent: "space-between",
-  //   position: "relative",
-  //   width: "210px",
-  //   marginRight: "10px",
-  //   borderRadius: "20px",
-  //   fontSize: "11px",
-  //   lineHeight: "normal",
-  //   color: "#3a474e",
-  // },
   cartTotalArea: {
     display: "flex",
     WebkitBoxAlign: "center",
@@ -60,7 +41,7 @@ const HeaderCartButton = () => {
     <Link to="#" className={classes.root}>
       <div className={classes.cartTotalArea}>
         <ShoppingCartIcon className={classes.cartIcon} />
-        <span className={classes.cartAmount}>$12.30</span>
+        <span className={classes.cartAmount}>$0.00</span>
       </div>
     </Link>
   );

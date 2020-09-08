@@ -7,7 +7,7 @@ import {
 } from "../../types/product";
 import { IAction } from "../../types/commonTypes";
 
-const initialState: SearchProductsReducerType = {
+export const initialSearchProductsState: SearchProductsReducerType = {
   aggregatedProductsResult: {
     ProductCount: 0,
     SpecialProductCount: 0,
@@ -20,14 +20,21 @@ const initialState: SearchProductsReducerType = {
   TotalRecordCount: 0,
   SuggestedTerm: "",
   Aggregations: [],
+  loading: true,
 };
 
 export default function searchProductsReducer(
-  state: SearchProductsReducerType = initialState,
+  state: SearchProductsReducerType = initialSearchProductsState,
   action: IAction<SearchProductsReponseType | AggregatedProductsResult>
 ) {
   switch (action.type) {
+    case "PRODUCTS_SEARCH_INIT":
+      return {
+        ...initialSearchProductsState,
+        loading: true,
+      };
     case "PRODUCTS_SEARCH_RESULTS_SUCCESS":
+      console.log("PRODUCTS_SEARCH_RESULTS_SUCCESS loading");
       const payload = action.payload as SearchProductsReponseType;
       return {
         ...state,
@@ -35,9 +42,15 @@ export default function searchProductsReducer(
         TotalRecordCount: payload.SearchResultsCount,
         SuggestedTerm: payload.SuggestedTerm,
         Aggregations: getSearchCategoriesAndCount(payload.Aggregations),
+        loading: false,
       };
     case "PRODUCTS_SEARCH_AGGREGATED_RESULTS_SUCCESS":
-      return { ...state, aggregatedProductsResult: action.payload };
+      console.log("PRODUCTS_SEARCH_AGGREGATED_RESULTS_SUCCESS");
+      return {
+        ...state,
+        aggregatedProductsResult: action.payload,
+        loading: false,
+      };
     default:
       return state;
   }

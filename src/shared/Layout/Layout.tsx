@@ -3,11 +3,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
 import Categories from "../../features/Categories/Categories";
 import Header from "../../features/Header/Header";
+import { useActiveScreensize } from "../hooks/useActiveScreensize";
 import Routes from "../Routes/Routes";
 import TopNavLinks from "../TopNav/TopNavLinks";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useActiveScreensize } from "../hooks/useActiveScreensize";
-import ButtonWithIcon from "../Common/ButtonWithIcon";
 
 const useStyles = makeStyles((theme) => ({
   root: {

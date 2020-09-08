@@ -1,12 +1,7 @@
+import { render } from "@testing-library/react";
 import React from "react";
-import {
-  render,
-  fireEvent,
-  cleanup,
-  waitForElement,
-} from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import LoginButton from "../LoginButton";
-import { Router, MemoryRouter } from "react-router-dom";
 
 describe("<LoginButton /> ", () => {
   it("should correctly render LoginButton", async () => {

@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
   contentContainer: {
     margin: "0 auto",
     width: "960px",
+    paddingTop: "64px",
     [theme.breakpoints.down("sm")]: {
       width: "100%",
     },
@@ -32,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
   breadCrumbItem: {},
   headingText: {
     marginBottom: "32px",
-    textTransform: "capitalize",
     fontSize: "38px",
     lineHeight: 1.05263158,
     fontWeight: 500,
@@ -76,6 +76,7 @@ function ProductsSearchResult() {
     TotalRecordCount,
     SuggestedTerm,
     Aggregations,
+    loading,
   } = useSelector<RootState, SearchProductsReducerType>(
     (state) => state.search
   );
@@ -90,7 +91,7 @@ function ProductsSearchResult() {
       payload: query.get("searchTerm"),
     });
   }, [params]);
-
+  console.log("loading", loading, productSearchCount.ProductCount);
   return (
     <Grid container spacing={3}>
       <Grid item xs={2}>
@@ -100,11 +101,10 @@ function ProductsSearchResult() {
         />
       </Grid>
       <Grid item xs={9} style={{ margin: "0 auto" }}>
-        {/* <div className={classes.root}> */}
         <div className={classes.contentContainer}>
-          {productSearchCount.ProductCount === 0 && search && (
+          {!loading && productSearchCount.ProductCount === 0 && search && (
             <h1 className={classes.headingText}>
-              {`No results TBD... “${search.split("=")[1]}”`}
+              {`No results for “${search.split("=")[1]}”`}
             </h1>
           )}
           {SuggestedTerm && search && (
@@ -121,7 +121,8 @@ function ProductsSearchResult() {
           )}
           {!SuggestedTerm && search && (
             <h1 className={classes.headingText}>
-              {`Showing results for “${search.split("=")[1]}”`}
+              Showing results for &quot;<i>{decodeURI(search.split("=")[1])}</i>
+              &quot;
             </h1>
           )}
           <ProductFilter />

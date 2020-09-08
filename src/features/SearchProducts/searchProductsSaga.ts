@@ -4,17 +4,23 @@ import {
   GET_AGGREGATED_SEARCH_PRODUCTS_RESULT_URL,
   GET_PRODUCTS_SEARCH_URL,
 } from "../../api/urls";
+import { IAction } from "../../types/commonTypes";
 import {
+  AggregatedProductsResult,
   SearchProductsReponseType,
   SearchProductsReqBody,
-  AggregatedProductsResult,
 } from "../../types/product";
-import { IAction } from "../../types/commonTypes";
 
 export function* watchGetSearchProductsResultsList() {
+  yield put({
+    type: "PRODUCTS_SEARCH_INIT",
+  });
   yield takeLatest("PRODUCTS_SEARCH_RESULTS", getSearchProductsResultsList);
 }
 export function* watchGetAggregatedSearchProductsResults() {
+  yield put({
+    type: "PRODUCTS_SEARCH_INIT",
+  });
   yield takeLatest(
     "PRODUCTS_SEARCH_AGGREGATED_RESULTS",
     getAggregatedSearchProductsResults
