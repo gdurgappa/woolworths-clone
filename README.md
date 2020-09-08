@@ -4,18 +4,18 @@
 
 I did this project for fun plus for showcasing my frontend skills specially around react and related libraries.
 
-# Live Demo of app
+## Live Demo of app
 
 Coming soon...
 
-# Features
+## Features
 
 - Homepage (static data)
 - Search Products (real data from wooly api)
 - Browse Categories (real data from wooly api)
 - Product Details Page
 
-### Frontend stack
+## Frontend stack
 
     - React, Redux, redux-saga
     - Typescript
@@ -45,7 +45,7 @@ $ npm start
 
 # App Preview - Search Feature
 
-![App Preview  - Search Feature](https://media.giphy.com/media/f6JsC3Ch328HYHc9iK/giphy.gif)
+![App Preview  - Search Feature](https://media.giphy.com/media/UtPEqvWCOroUefkPLy/giphy.gif)
 
 ## Todos
 
